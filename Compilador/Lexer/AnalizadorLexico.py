@@ -9,14 +9,19 @@
 # TEC 2020 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-import ply.ply.lex as lex
+
+
+#Se importan las librerias a utilizar
+import Compilador.ply.ply.lex as lex
 import re
 import codecs
 import os
 import sys
 
-#Se declaran los tokens a utilizar dentro del programa, en forma de una lista de strings
 
+
+
+#Se declaran los tokens a utilizar dentro del programa, en forma de una lista de strings
 tokens = ['ID0',
 'ID1', 
 'ID2',
@@ -49,8 +54,8 @@ tokens = ['ID0',
 'MENORIGUALQUE',
 'DISTINTOQUE']
 
-#Se declaran las keywords o palabras reservadas a utilizar dentro del programa, en forma de un diccionario
 
+#Se declaran las keywords o palabras reservadas a utilizar dentro del programa, en forma de un diccionario
 keywords = {'type' : 'TYPE',
 'Timer' : 'TIMER',
 'Rango_Timer' : 'RANGOTIMER',
@@ -82,14 +87,22 @@ keywords = {'type' : 'TYPE',
 'CALL': 'CALL',
 'Main': 'MAIN'}
 
+
+#Se añade a la lista de tokens los valores (los datos en mayuscula) del diccionario de palabras reservadas
 tokens = tokens + list(keywords.values())
 
+#Se establece que se ignoran los caracteres " " y salto de tabulador
 t_ignore = ' \t'
+
+
+
+
+
 
 #-------------------------------- EXPRESIONES REGULARES----------------------------------------
 
-#Se declara la estructura a reconocer para cada token
 
+#Se declara la estructura a reconocer para cada token
 t_SUMA = r'\+'
 t_RESTA = r'\-'
 t_MULTIPLICACION = r'\*'
@@ -114,60 +127,85 @@ t_MENORQUE = r'<'
 t_MAYORIGUALQUE = r'>='
 t_MENORIGUALQUE = r'<='
 
+
+
 #Revisa ID's invalidos de más de 10 caracteres
 def t_ID1(t):
-
     r'[a-zA-Z0-9_@&]{10,}'
     t.type = keywords.get(t.value, 'ID1')  #Revisa palabras reservadas
-
     return t
+
+
 
 #Revisa que los Id's esten correctos segun la especificacion del proyecto
 def t_ID0(t):
-
     #Primero, una letra de la "a" a la "z"
     #Concatenado con cualquier letra, numero o simbolo indicado
     #con un maximo de 10 caracteres
     r'[a-z]([a-zA-Z0-9_@&]{0,9})'
-
     t.type = keywords.get(t.value, 'ID0') #Revisa palabras reservadas
-
     return t
+
+
 
 #Revisa id's que comiencen con mayuscula o minuscula, cualquier cantidad de caracteres
 def t_ID2(t):
-    
     r'[a-zA-Z][a-zA-Z0-9_@&]*'
-
     t.type = keywords.get(t.value, 'ID2') #Revisa palabras reservadas
-
     return t
 
+
+#Revisa comentarios que empiezen con -- y siga cualquier caracter n cantidad de veces. Se coloca pass porque la funcion
+#debe retornar nada, al ser un comentario
 def t_COMENTARIO(t):
     r'\--.*'
     pass
 
+
+#Revisa numeros de cualquier tipo, que sean de al menos un digito
 def t_NUMERO(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
+#Revisa que hayan dos ** juntos y los cataloga como exponenciales
 def t_EXPONENCIAL(t):
 	r'[*][*]'
 	return t
 
+
+#En caso de no encontrar ningun caracter valido, se considera como error
 def t_error(t):
     print("Caracter ilegal '%s' " % t.value[0])
     t.lexer.skip(1)
 
 
+#Cuenta la cantidad de saltos de linea dentro del lexer
 def t_NUEVALINEA(t):
 	r'\n+'
 	t.lexer.lineno += len(t.value)
 
 
+
+
 #-------------------------------------------------------------------------------------------
 
-#Se inicia el lexer 
 
+#Se inicia el lexer
 lexer = lex.lex()
+
+
+#Prueba
+data = '''int numero = 43;
+            int numero2 = 67 False;'''
+lexer.input(data)
+
+
+# Mostrar los tokens de una linea de caracteres
+while True:
+    tokenMostrar = lexer.token()
+    if not tokenMostrar:
+        break  # No more input
+    print("********************LINEA " + str(tokenMostrar.lineno) + "*****" + "POSICION " + str(tokenMostrar.lexpos) + "************************")
+    print("Tipo de Token: " +  str(tokenMostrar.type))
+    print("Valor del Token: " + str(tokenMostrar.value))
