@@ -197,7 +197,7 @@ lexer = lex.lex()
 
 #Prueba
 data = '''int numero = 43;
-            int numero2 = 67 False;'''
+            int numero2 = 67 False; '''
 lexer.input(data)
 
 
