@@ -3,3 +3,5 @@ from Compilador.Lexer.AnalizadorLexico import *
 from Compilador.EstructurasDeDatos.Node import *
 
 variables = {}
+
+#
