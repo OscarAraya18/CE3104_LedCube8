@@ -1,5 +1,5 @@
-from ply.ply import yacc
-from Lexer.AnalizadorLexico import *
+from Compilador.ply.ply import yacc
+from Compilador.Lexer.AnalizadorLexico import *
 
 funcList = []
 variables = {}
@@ -64,7 +64,7 @@ def p_factor_num(p):
     'factor : NUMERO'
     p[0] = p[1]
 
-
+'''
 def p_factor_ID(p):
     'factor : ID0'
     try:
@@ -88,7 +88,8 @@ def p_factor_array(p):
             print("Index out of range")
     else:
         print("Syntactic Error: Variable %s has not been declared." % p[1])
-
+        
+    '''
 
 def p_factor_expr(p):
     'factor : PARENTESISI expression PARENTESISD'

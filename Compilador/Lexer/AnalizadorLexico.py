@@ -209,3 +209,21 @@ while True:
     print("********************LINEA " + str(tokenMostrar.lineno) + "*****" + "POSICION " + str(tokenMostrar.lexpos) + "************************")
     print("Tipo de Token: " +  str(tokenMostrar.type))
     print("Valor del Token: " + str(tokenMostrar.value))
+
+
+# Main function to analyze a received data (source code string) and returns a list with tuples, containing
+# the token value and the token type for each lexeme found.
+def analyzeData(data):
+    # Build the lexer
+    lexer = lex.lex()
+    # Receive input
+    lexer.input(data)
+    # Create tokens list
+    token_list = []
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+        print(tok)
+        token_list.append((tok.value, tok.type))
+    return token_list
