@@ -1,7 +1,10 @@
-# ------------------------------------------------------------
+
+
+#Se importan las librerias a utilizar
+import Compilador.ply.ply.lex as lex# ------------------------------------------------------------
 # Codigo Fuente: AnalizadorLexico.py
 # Desarrollado por: Saymon Astúa, Oscar Araya
-# Proyecto: LedCube8 
+# Proyecto: LedCube8
 # Version: Beta
 #
 # Descripcion: Definir las reglas para el analizador lexico
@@ -10,9 +13,6 @@
 # ------------------------------------------------------------
 
 
-
-#Se importan las librerias a utilizar
-import Compilador.ply.ply.lex as lex
 import re
 import codecs
 import os
@@ -192,24 +192,23 @@ def t_NUEVALINEA(t):
 
 
 #Se inicia el lexer
-lexer = lex.lex()
+#lexer = lex.lex()
 
 
-#Prueba
-data = '''int numero = 43;
-            int numero2 = 67 False; '''
-lexer.input(data)
-
-
-# Mostrar los tokens de una linea de caracteres
-while True:
-    tokenMostrar = lexer.token()
-    if not tokenMostrar:
-        break  # No more input
-    print("********************LINEA " + str(tokenMostrar.lineno) + "*****" + "POSICION " + str(tokenMostrar.lexpos) + "************************")
-    print("Tipo de Token: " +  str(tokenMostrar.type))
-    print("Valor del Token: " + str(tokenMostrar.value))
-
+# #Prueba
+# data = '''hola=2;'''
+# lexer.input(data)
+#
+#
+# # Mostrar los tokens de una linea de caracteres
+# while True:
+#     tokenMostrar = lexer.token()
+#     if not tokenMostrar:
+#         break  # No more input
+#     print("********************LINEA " + str(tokenMostrar.lineno) + "*****" + "POSICION " + str(tokenMostrar.lexpos) + "************************")
+#     print("Tipo de Token: " +  str(tokenMostrar.type))
+#     print("Valor del Token: " + str(tokenMostrar.value))
+#
 
 # Main function to analyze a received data (source code string) and returns a list with tuples, containing
 # the token value and the token type for each lexeme found.

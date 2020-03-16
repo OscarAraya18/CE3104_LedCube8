@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftSUMARESTAleftMULTIPLICACIONDIVISIONDIVISIONErightNEGATIVOleftPARENTESISIPARENTESISDASIGNACION BLINK BOOL CALL COMA COMENTARIO COMPARACION CUBO DEL DELAY DIMCOLUMNAS DIMFILAS DISTINTOQUE DIVISION DIVISIONE DOSPUNTOS EXPONENCIAL F FALSE FOR ID0 ID1 ID2 IN INSERT LEN LIST LLAVED LLAVEI MAIN MAYORIGUALQUE MAYORQUE MENORIGUALQUE MENORQUE MIL MIN MODULO MULTIPLICACION NEG NEGATIVO NUMERO PARENTESISCD PARENTESISCI PARENTESISD PARENTESISI PROCEDURE PUNTO PUNTOCOMA RANGE RANGOTIMER RESTA SEG SHAPEA SHAPEC SHAPEF STEP SUMA T TIMER TRUE TYPEexpression : expression SUMA termexpression : expression RESTA termterm : term MULTIPLICACION factorterm : term DIVISION factorterm : term DIVISIONE factorterm : term MODULO factorterm : term EXPONENCIAL factorexpression : RESTA term %prec NEGATIVOexpression : termterm : factorfactor : NUMEROfactor : ID0factor : ID0 PARENTESISCI NUMERO PARENTESISCDfactor : PARENTESISI expression PARENTESISDempty :'
+_lr_signature = 'leftSUMARESTAleftMULTIPLICACIONDIVISIONDIVISIONErightNEGATIVOleftPARENTESISIPARENTESISDASIGNACION BLINK BOOL CALL COMA COMENTARIO COMPARACION CUBO DEL DELAY DIMCOLUMNAS DIMFILAS DISTINTOQUE DIVISION DIVISIONE DOSPUNTOS EXPONENCIAL F FALSE FOR ID0 ID1 ID2 IN INSERT LEN LIST LLAVED LLAVEI MAIN MAYORIGUALQUE MAYORQUE MENORIGUALQUE MENORQUE MIL MIN MODULO MULTIPLICACION NEG NEGATIVO NUMERO PARENTESISCD PARENTESISCI PARENTESISD PARENTESISI PROCEDURE PUNTO PUNTOCOMA RANGE RANGOTIMER RESTA SEG SHAPEA SHAPEC SHAPEF STEP SUMA T TIMER TRUE TYPEasignacion : ID0 ASIGNACION valor PUNTOCOMAasignacion : ID0 COMA asignacionexpression : expression SUMA termexpression : expression RESTA termterm : term MULTIPLICACION factorasignacion : ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMAterm : term DIVISION factorvalor : NUMERO\n               | bool term : term DIVISIONE factorvalor : NUMERO COMA valor\n               | bool COMA valor term : term MODULO factorterm : term EXPONENCIAL factorbool : TRUE\n            | FALSEexpression : RESTA term %prec NEGATIVOexpression : termterm : factorfactor : NUMEROfactor : PARENTESISI expression PARENTESISDempty :'
     
-_lr_action_items = {'RESTA':([0,1,2,4,5,6,7,15,17,18,19,20,21,22,23,24,26,27,],[3,9,-9,-10,-11,-12,3,-8,9,-1,-2,-3,-4,-5,-6,-7,-14,-13,]),'NUMERO':([0,3,7,8,9,10,11,12,13,14,16,],[5,5,5,5,5,5,5,5,5,5,25,]),'ID0':([0,3,7,8,9,10,11,12,13,14,],[6,6,6,6,6,6,6,6,6,6,]),'PARENTESISI':([0,3,7,8,9,10,11,12,13,14,],[7,7,7,7,7,7,7,7,7,7,]),'$end':([1,2,4,5,6,15,18,19,20,21,22,23,24,26,27,],[0,-9,-10,-11,-12,-8,-1,-2,-3,-4,-5,-6,-7,-14,-13,]),'SUMA':([1,2,4,5,6,15,17,18,19,20,21,22,23,24,26,27,],[8,-9,-10,-11,-12,-8,8,-1,-2,-3,-4,-5,-6,-7,-14,-13,]),'PARENTESISD':([2,4,5,6,15,17,18,19,20,21,22,23,24,26,27,],[-9,-10,-11,-12,-8,26,-1,-2,-3,-4,-5,-6,-7,-14,-13,]),'MULTIPLICACION':([2,4,5,6,15,18,19,20,21,22,23,24,26,27,],[10,-10,-11,-12,10,10,10,-3,-4,-5,-6,-7,-14,-13,]),'DIVISION':([2,4,5,6,15,18,19,20,21,22,23,24,26,27,],[11,-10,-11,-12,11,11,11,-3,-4,-5,-6,-7,-14,-13,]),'DIVISIONE':([2,4,5,6,15,18,19,20,21,22,23,24,26,27,],[12,-10,-11,-12,12,12,12,-3,-4,-5,-6,-7,-14,-13,]),'MODULO':([2,4,5,6,15,18,19,20,21,22,23,24,26,27,],[13,-10,-11,-12,13,13,13,-3,-4,-5,-6,-7,-14,-13,]),'EXPONENCIAL':([2,4,5,6,15,18,19,20,21,22,23,24,26,27,],[14,-10,-11,-12,14,14,14,-3,-4,-5,-6,-7,-14,-13,]),'PARENTESISCI':([6,],[16,]),'PARENTESISCD':([25,],[27,]),}
+_lr_action_items = {'ID0':([0,4,],[2,2,]),'$end':([1,11,13,21,],[0,-2,-1,-6,]),'ASIGNACION':([2,16,],[3,19,]),'COMA':([2,7,8,9,10,],[4,14,15,-15,-16,]),'PARENTESISCI':([2,],[5,]),'NUMERO':([3,5,14,15,19,],[7,12,7,7,7,]),'TRUE':([3,14,15,19,],[9,9,9,9,]),'FALSE':([3,14,15,19,],[10,10,10,10,]),'PUNTOCOMA':([6,7,8,9,10,17,18,20,],[13,-8,-9,-15,-16,-11,-12,21,]),'PARENTESISCD':([12,],[16,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,7,],[1,17,]),'term':([0,3,7,8,9,],[2,15,2,18,19,]),'factor':([0,3,7,8,9,10,11,12,13,14,],[4,4,4,4,4,20,21,22,23,24,]),}
+_lr_goto_items = {'asignacion':([0,4,],[1,11,]),'valor':([3,14,15,19,],[6,17,18,20,]),'bool':([3,14,15,19,],[8,8,8,8,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,20 +26,27 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> expression","S'",1,None,None,None),
-  ('expression -> expression SUMA term','expression',3,'p_expression_suma','OperacionesMatematicas.py',18),
-  ('expression -> expression RESTA term','expression',3,'p_expression_resta','OperacionesMatematicas.py',23),
-  ('term -> term MULTIPLICACION factor','term',3,'p_term_multiplicacion','OperacionesMatematicas.py',28),
-  ('term -> term DIVISION factor','term',3,'p_term_division','OperacionesMatematicas.py',33),
-  ('term -> term DIVISIONE factor','term',3,'p_term_divisione','OperacionesMatematicas.py',37),
-  ('term -> term MODULO factor','term',3,'p_term_modulo','OperacionesMatematicas.py',41),
-  ('term -> term EXPONENCIAL factor','term',3,'p_term_exponencial','OperacionesMatematicas.py',45),
-  ('expression -> RESTA term','expression',2,'p_expression_negativo','OperacionesMatematicas.py',49),
-  ('expression -> term','expression',1,'p_expression_term','OperacionesMatematicas.py',56),
-  ('term -> factor','term',1,'p_term_factor','OperacionesMatematicas.py',61),
-  ('factor -> NUMERO','factor',1,'p_factor_num','OperacionesMatematicas.py',66),
-  ('factor -> ID0','factor',1,'p_factor_ID','OperacionesMatematicas.py',71),
-  ('factor -> ID0 PARENTESISCI NUMERO PARENTESISCD','factor',4,'p_factor_array','OperacionesMatematicas.py',83),
-  ('factor -> PARENTESISI expression PARENTESISD','factor',3,'p_factor_expr','OperacionesMatematicas.py',96),
-  ('empty -> <empty>','empty',0,'p_empty','OperacionesMatematicas.py',101),
+  ("S' -> asignacion","S'",1,None,None,None),
+  ('asignacion -> ID0 ASIGNACION valor PUNTOCOMA','asignacion',4,'p_asignacion_0','Statements.py',20),
+  ('asignacion -> ID0 COMA asignacion','asignacion',3,'p_asignacion_1','Statements.py',27),
+  ('expression -> expression SUMA term','expression',3,'p_expression_suma','OperacionesMatematicas.py',28),
+  ('expression -> expression RESTA term','expression',3,'p_expression_resta','OperacionesMatematicas.py',33),
+  ('term -> term MULTIPLICACION factor','term',3,'p_term_multiplicacion','OperacionesMatematicas.py',38),
+  ('asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA','asignacion',7,'p_asignacion_index','Statements.py',39),
+  ('term -> term DIVISION factor','term',3,'p_term_division','OperacionesMatematicas.py',43),
+  ('valor -> NUMERO','valor',1,'p_valor_0','Statements.py',44),
+  ('valor -> bool','valor',1,'p_valor_0','Statements.py',45),
+  ('term -> term DIVISIONE factor','term',3,'p_term_divisione','OperacionesMatematicas.py',47),
+  ('valor -> NUMERO COMA valor','valor',3,'p_valor_1','Statements.py',50),
+  ('valor -> bool COMA valor','valor',3,'p_valor_1','Statements.py',51),
+  ('term -> term MODULO factor','term',3,'p_term_modulo','OperacionesMatematicas.py',51),
+  ('term -> term EXPONENCIAL factor','term',3,'p_term_exponencial','OperacionesMatematicas.py',55),
+  ('bool -> TRUE','bool',1,'p_bool','Statements.py',57),
+  ('bool -> FALSE','bool',1,'p_bool','Statements.py',58),
+  ('expression -> RESTA term','expression',2,'p_expression_negativo','OperacionesMatematicas.py',59),
+  ('expression -> term','expression',1,'p_expression_term','OperacionesMatematicas.py',66),
+  ('term -> factor','term',1,'p_term_factor','OperacionesMatematicas.py',71),
+  ('factor -> NUMERO','factor',1,'p_factor_num','OperacionesMatematicas.py',76),
+  ('factor -> PARENTESISI expression PARENTESISD','factor',3,'p_factor_expr','OperacionesMatematicas.py',107),
+  ('empty -> <empty>','empty',0,'p_empty','OperacionesMatematicas.py',112),
 ]

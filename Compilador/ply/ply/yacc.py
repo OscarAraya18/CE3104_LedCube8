@@ -3213,9 +3213,9 @@ class ParserReflect(object):
 # Build a parser
 # -----------------------------------------------------------------------------
 
-def yacc(method='LALR', debug=yaccdebug, module=None, tabmodule=tab_module, start=None,
-         check_recursion=True, optimize=False, write_tables=True, debugfile=debug_file,
-         outputdir=None, debuglog=None, errorlog=None, picklefile=None):
+def yacc(method: object = 'LALR', debug: object = yaccdebug, module: object = None, tabmodule: object = tab_module, start: object = None,
+         check_recursion: object = True, optimize: object = False, write_tables: object = True, debugfile: object = debug_file,
+         outputdir: object = None, debuglog: object = None, errorlog: object = None, picklefile: object = None) -> object:
 
     if tabmodule is None:
         tabmodule = tab_module

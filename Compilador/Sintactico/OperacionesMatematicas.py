@@ -1,5 +1,17 @@
-from Compilador.ply.ply import yacc
+# ------------------------------------------------------------
+# Codigo Fuente: OperacionesMatematicas.py
+# Desarrollado por: Saymon Astúa, Oscar Araya
+# Proyecto: LedCube8
+# Version: Beta
+#
+# Descripcion: Gramatica de las operaciones matematicas
+# TEC 2020 | CE3104 - Lenguajes, Compiladores e Interpretes
+# ------------------------------------------------------------
+
+
+from Compilador.ply.ply import yacc, lex
 from Compilador.Lexer.AnalizadorLexico import *
+
 
 funcList = []
 variables = {}
@@ -114,15 +126,17 @@ def p_error(p):
     # Build the parser
 
 
-parser = yacc.yacc()
-
-data = "3 + 5"
-
-while True:
-    try:
-        s = input('calc > ')
-    except EOFError:
-        break
-    if not s: continue
-    result = parser.parse(s)
-    print(result)
+# #parser = yacc.yacc()
+# lexer = lex.lex()
+# data = "3 + 5"
+#
+# #
+# while True:
+#     try:
+#         s = input('calc > ')
+#     except EOFError:
+#         break
+#     if not s: continue
+#     result = parser.parse(s)
+#     print(result)
+#
