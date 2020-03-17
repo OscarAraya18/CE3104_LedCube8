@@ -50,35 +50,37 @@ Grammar
 
 Rule 0     S' -> asignacion
 Rule 1     asignacion -> ID0 ASIGNACION valor PUNTOCOMA
-Rule 2     asignacion -> ID0 COMA asignacion
-Rule 3     expression -> expression SUMA term
+Rule 2     expression -> expression SUMA term
+Rule 3     asignacion -> ID0 COMA asignacion
 Rule 4     expression -> expression RESTA term
 Rule 5     term -> term MULTIPLICACION factor
-Rule 6     asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA
-Rule 7     term -> term DIVISION factor
-Rule 8     valor -> NUMERO
-Rule 9     valor -> bool
-Rule 10    term -> term DIVISIONE factor
-Rule 11    valor -> NUMERO COMA valor
-Rule 12    valor -> bool COMA valor
-Rule 13    term -> term MODULO factor
-Rule 14    term -> term EXPONENCIAL factor
-Rule 15    bool -> TRUE
-Rule 16    bool -> FALSE
-Rule 17    expression -> RESTA term
-Rule 18    expression -> term
-Rule 19    term -> factor
-Rule 20    factor -> NUMERO
-Rule 21    factor -> PARENTESISI expression PARENTESISD
-Rule 22    empty -> <empty>
+Rule 6     term -> term DIVISION factor
+Rule 7     asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+Rule 8     term -> term DIVISIONE factor
+Rule 9     asignacion -> ID0 ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA
+Rule 10    term -> term MODULO factor
+Rule 11    asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA
+Rule 12    term -> term EXPONENCIAL factor
+Rule 13    expression -> RESTA term
+Rule 14    expression -> term
+Rule 15    term -> factor
+Rule 16    valor -> NUMERO
+Rule 17    valor -> bool
+Rule 18    factor -> NUMERO
+Rule 19    valor -> valor valor2
+Rule 20    valor2 -> COMA valor
+Rule 21    bool -> TRUE
+Rule 22    bool -> FALSE
+Rule 23    factor -> PARENTESISI expression PARENTESISD
+Rule 24    empty -> <empty>
 
 Terminals, with rules where they appear
 
-ASIGNACION           : 1 6
+ASIGNACION           : 1 7 9 11
 BLINK                : 
 BOOL                 : 
 CALL                 : 
-COMA                 : 2 11 12
+COMA                 : 3 20
 COMENTARIO           : 
 COMPARACION          : 
 CUBO                 : 
@@ -87,14 +89,14 @@ DELAY                :
 DIMCOLUMNAS          : 
 DIMFILAS             : 
 DISTINTOQUE          : 
-DIVISION             : 7
-DIVISIONE            : 10
+DIVISION             : 6
+DIVISIONE            : 8
 DOSPUNTOS            : 
-EXPONENCIAL          : 14
+EXPONENCIAL          : 12
 F                    : 
-FALSE                : 16
+FALSE                : 22
 FOR                  : 
-ID0                  : 1 2 6
+ID0                  : 1 3 7 9 11
 ID1                  : 
 ID2                  : 
 IN                   : 
@@ -110,42 +112,43 @@ MENORIGUALQUE        :
 MENORQUE             : 
 MIL                  : 
 MIN                  : 
-MODULO               : 13
+MODULO               : 10
 MULTIPLICACION       : 5
 NEG                  : 
 NEGATIVO             : 
-NUMERO               : 6 8 11 20
-PARENTESISCD         : 6
-PARENTESISCI         : 6
-PARENTESISD          : 21
-PARENTESISI          : 21
+NUMERO               : 11 16 18
+PARENTESISCD         : 7 9 11
+PARENTESISCI         : 7 9 11
+PARENTESISD          : 23
+PARENTESISI          : 23
 PROCEDURE            : 
 PUNTO                : 
-PUNTOCOMA            : 1 6
+PUNTOCOMA            : 1 7 9 11
 RANGE                : 
 RANGOTIMER           : 
-RESTA                : 4 17
+RESTA                : 4 13
 SEG                  : 
 SHAPEA               : 
 SHAPEC               : 
 SHAPEF               : 
 STEP                 : 
-SUMA                 : 3
+SUMA                 : 2
 T                    : 
 TIMER                : 
-TRUE                 : 15
+TRUE                 : 21
 TYPE                 : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-asignacion           : 2 0
-bool                 : 9 12
+asignacion           : 3 0
+bool                 : 17
 empty                : 
-expression           : 3 4 21
-factor               : 5 7 10 13 14 19
-term                 : 3 4 5 7 10 13 14 17 18
-valor                : 1 6 11 12
+expression           : 2 4 23
+factor               : 5 6 8 10 12 15
+term                 : 2 4 5 6 8 10 12 13 14
+valor                : 1 9 11 19 20
+valor2               : 19
 
 Parsing method: LALR
 
@@ -153,8 +156,10 @@ state 0
 
     (0) S' -> . asignacion
     (1) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (2) asignacion -> . ID0 COMA asignacion
-    (6) asignacion -> . ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA
+    (3) asignacion -> . ID0 COMA asignacion
+    (7) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (9) asignacion -> . ID0 ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA
+    (11) asignacion -> . ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA
 
     ID0             shift and go to state 2
 
@@ -169,8 +174,10 @@ state 1
 state 2
 
     (1) asignacion -> ID0 . ASIGNACION valor PUNTOCOMA
-    (2) asignacion -> ID0 . COMA asignacion
-    (6) asignacion -> ID0 . PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA
+    (3) asignacion -> ID0 . COMA asignacion
+    (7) asignacion -> ID0 . ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (9) asignacion -> ID0 . ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA
+    (11) asignacion -> ID0 . PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA
 
     ASIGNACION      shift and go to state 3
     COMA            shift and go to state 4
@@ -180,182 +187,248 @@ state 2
 state 3
 
     (1) asignacion -> ID0 ASIGNACION . valor PUNTOCOMA
-    (8) valor -> . NUMERO
-    (9) valor -> . bool
-    (11) valor -> . NUMERO COMA valor
-    (12) valor -> . bool COMA valor
-    (15) bool -> . TRUE
-    (16) bool -> . FALSE
+    (7) asignacion -> ID0 ASIGNACION . PARENTESISCI PARENTESISCD PUNTOCOMA
+    (9) asignacion -> ID0 ASIGNACION . PARENTESISCI valor PARENTESISCD PUNTOCOMA
+    (16) valor -> . NUMERO
+    (17) valor -> . bool
+    (19) valor -> . valor valor2
+    (21) bool -> . TRUE
+    (22) bool -> . FALSE
 
-    NUMERO          shift and go to state 7
-    TRUE            shift and go to state 9
-    FALSE           shift and go to state 10
+    PARENTESISCI    shift and go to state 7
+    NUMERO          shift and go to state 8
+    TRUE            shift and go to state 10
+    FALSE           shift and go to state 11
 
     valor                          shift and go to state 6
-    bool                           shift and go to state 8
+    bool                           shift and go to state 9
 
 state 4
 
-    (2) asignacion -> ID0 COMA . asignacion
+    (3) asignacion -> ID0 COMA . asignacion
     (1) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (2) asignacion -> . ID0 COMA asignacion
-    (6) asignacion -> . ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA
+    (3) asignacion -> . ID0 COMA asignacion
+    (7) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (9) asignacion -> . ID0 ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA
+    (11) asignacion -> . ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA
 
     ID0             shift and go to state 2
 
-    asignacion                     shift and go to state 11
+    asignacion                     shift and go to state 12
 
 state 5
 
-    (6) asignacion -> ID0 PARENTESISCI . NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA
+    (11) asignacion -> ID0 PARENTESISCI . NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA
 
-    NUMERO          shift and go to state 12
+    NUMERO          shift and go to state 13
 
 
 state 6
 
     (1) asignacion -> ID0 ASIGNACION valor . PUNTOCOMA
+    (19) valor -> valor . valor2
+    (20) valor2 -> . COMA valor
 
-    PUNTOCOMA       shift and go to state 13
+    PUNTOCOMA       shift and go to state 14
+    COMA            shift and go to state 16
 
+    valor2                         shift and go to state 15
 
 state 7
 
-    (8) valor -> NUMERO .
-    (11) valor -> NUMERO . COMA valor
+    (7) asignacion -> ID0 ASIGNACION PARENTESISCI . PARENTESISCD PUNTOCOMA
+    (9) asignacion -> ID0 ASIGNACION PARENTESISCI . valor PARENTESISCD PUNTOCOMA
+    (16) valor -> . NUMERO
+    (17) valor -> . bool
+    (19) valor -> . valor valor2
+    (21) bool -> . TRUE
+    (22) bool -> . FALSE
 
-    PUNTOCOMA       reduce using rule 8 (valor -> NUMERO .)
-    COMA            shift and go to state 14
+    PARENTESISCD    shift and go to state 17
+    NUMERO          shift and go to state 8
+    TRUE            shift and go to state 10
+    FALSE           shift and go to state 11
 
+    valor                          shift and go to state 18
+    bool                           shift and go to state 9
 
 state 8
 
-    (9) valor -> bool .
-    (12) valor -> bool . COMA valor
+    (16) valor -> NUMERO .
 
-    PUNTOCOMA       reduce using rule 9 (valor -> bool .)
-    COMA            shift and go to state 15
+    PUNTOCOMA       reduce using rule 16 (valor -> NUMERO .)
+    COMA            reduce using rule 16 (valor -> NUMERO .)
+    PARENTESISCD    reduce using rule 16 (valor -> NUMERO .)
 
 
 state 9
 
-    (15) bool -> TRUE .
+    (17) valor -> bool .
 
-    COMA            reduce using rule 15 (bool -> TRUE .)
-    PUNTOCOMA       reduce using rule 15 (bool -> TRUE .)
+    PUNTOCOMA       reduce using rule 17 (valor -> bool .)
+    COMA            reduce using rule 17 (valor -> bool .)
+    PARENTESISCD    reduce using rule 17 (valor -> bool .)
 
 
 state 10
 
-    (16) bool -> FALSE .
+    (21) bool -> TRUE .
 
-    COMA            reduce using rule 16 (bool -> FALSE .)
-    PUNTOCOMA       reduce using rule 16 (bool -> FALSE .)
+    PUNTOCOMA       reduce using rule 21 (bool -> TRUE .)
+    COMA            reduce using rule 21 (bool -> TRUE .)
+    PARENTESISCD    reduce using rule 21 (bool -> TRUE .)
 
 
 state 11
 
-    (2) asignacion -> ID0 COMA asignacion .
+    (22) bool -> FALSE .
 
-    $end            reduce using rule 2 (asignacion -> ID0 COMA asignacion .)
+    PUNTOCOMA       reduce using rule 22 (bool -> FALSE .)
+    COMA            reduce using rule 22 (bool -> FALSE .)
+    PARENTESISCD    reduce using rule 22 (bool -> FALSE .)
 
 
 state 12
 
-    (6) asignacion -> ID0 PARENTESISCI NUMERO . PARENTESISCD ASIGNACION valor PUNTOCOMA
+    (3) asignacion -> ID0 COMA asignacion .
 
-    PARENTESISCD    shift and go to state 16
+    $end            reduce using rule 3 (asignacion -> ID0 COMA asignacion .)
 
 
 state 13
+
+    (11) asignacion -> ID0 PARENTESISCI NUMERO . PARENTESISCD ASIGNACION valor PUNTOCOMA
+
+    PARENTESISCD    shift and go to state 19
+
+
+state 14
 
     (1) asignacion -> ID0 ASIGNACION valor PUNTOCOMA .
 
     $end            reduce using rule 1 (asignacion -> ID0 ASIGNACION valor PUNTOCOMA .)
 
 
-state 14
-
-    (11) valor -> NUMERO COMA . valor
-    (8) valor -> . NUMERO
-    (9) valor -> . bool
-    (11) valor -> . NUMERO COMA valor
-    (12) valor -> . bool COMA valor
-    (15) bool -> . TRUE
-    (16) bool -> . FALSE
-
-    NUMERO          shift and go to state 7
-    TRUE            shift and go to state 9
-    FALSE           shift and go to state 10
-
-    valor                          shift and go to state 17
-    bool                           shift and go to state 8
-
 state 15
 
-    (12) valor -> bool COMA . valor
-    (8) valor -> . NUMERO
-    (9) valor -> . bool
-    (11) valor -> . NUMERO COMA valor
-    (12) valor -> . bool COMA valor
-    (15) bool -> . TRUE
-    (16) bool -> . FALSE
+    (19) valor -> valor valor2 .
 
-    NUMERO          shift and go to state 7
-    TRUE            shift and go to state 9
-    FALSE           shift and go to state 10
+    PUNTOCOMA       reduce using rule 19 (valor -> valor valor2 .)
+    COMA            reduce using rule 19 (valor -> valor valor2 .)
+    PARENTESISCD    reduce using rule 19 (valor -> valor valor2 .)
 
-    bool                           shift and go to state 8
-    valor                          shift and go to state 18
 
 state 16
 
-    (6) asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD . ASIGNACION valor PUNTOCOMA
+    (20) valor2 -> COMA . valor
+    (16) valor -> . NUMERO
+    (17) valor -> . bool
+    (19) valor -> . valor valor2
+    (21) bool -> . TRUE
+    (22) bool -> . FALSE
 
-    ASIGNACION      shift and go to state 19
+    NUMERO          shift and go to state 8
+    TRUE            shift and go to state 10
+    FALSE           shift and go to state 11
 
+    valor                          shift and go to state 20
+    bool                           shift and go to state 9
 
 state 17
 
-    (11) valor -> NUMERO COMA valor .
-
-    PUNTOCOMA       reduce using rule 11 (valor -> NUMERO COMA valor .)
-
-
-state 18
-
-    (12) valor -> bool COMA valor .
-
-    PUNTOCOMA       reduce using rule 12 (valor -> bool COMA valor .)
-
-
-state 19
-
-    (6) asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION . valor PUNTOCOMA
-    (8) valor -> . NUMERO
-    (9) valor -> . bool
-    (11) valor -> . NUMERO COMA valor
-    (12) valor -> . bool COMA valor
-    (15) bool -> . TRUE
-    (16) bool -> . FALSE
-
-    NUMERO          shift and go to state 7
-    TRUE            shift and go to state 9
-    FALSE           shift and go to state 10
-
-    valor                          shift and go to state 20
-    bool                           shift and go to state 8
-
-state 20
-
-    (6) asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor . PUNTOCOMA
+    (7) asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD . PUNTOCOMA
 
     PUNTOCOMA       shift and go to state 21
 
 
+state 18
+
+    (9) asignacion -> ID0 ASIGNACION PARENTESISCI valor . PARENTESISCD PUNTOCOMA
+    (19) valor -> valor . valor2
+    (20) valor2 -> . COMA valor
+
+    PARENTESISCD    shift and go to state 22
+    COMA            shift and go to state 16
+
+    valor2                         shift and go to state 15
+
+state 19
+
+    (11) asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD . ASIGNACION valor PUNTOCOMA
+
+    ASIGNACION      shift and go to state 23
+
+
+state 20
+
+    (20) valor2 -> COMA valor .
+    (19) valor -> valor . valor2
+    (20) valor2 -> . COMA valor
+
+  ! shift/reduce conflict for COMA resolved as shift
+    PUNTOCOMA       reduce using rule 20 (valor2 -> COMA valor .)
+    PARENTESISCD    reduce using rule 20 (valor2 -> COMA valor .)
+    COMA            shift and go to state 16
+
+  ! COMA            [ reduce using rule 20 (valor2 -> COMA valor .) ]
+
+    valor2                         shift and go to state 15
+
 state 21
 
-    (6) asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA .
+    (7) asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .
 
-    $end            reduce using rule 6 (asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA .)
+    $end            reduce using rule 7 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
 
+
+state 22
+
+    (9) asignacion -> ID0 ASIGNACION PARENTESISCI valor PARENTESISCD . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 24
+
+
+state 23
+
+    (11) asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION . valor PUNTOCOMA
+    (16) valor -> . NUMERO
+    (17) valor -> . bool
+    (19) valor -> . valor valor2
+    (21) bool -> . TRUE
+    (22) bool -> . FALSE
+
+    NUMERO          shift and go to state 8
+    TRUE            shift and go to state 10
+    FALSE           shift and go to state 11
+
+    valor                          shift and go to state 25
+    bool                           shift and go to state 9
+
+state 24
+
+    (9) asignacion -> ID0 ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA .
+
+    $end            reduce using rule 9 (asignacion -> ID0 ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA .)
+
+
+state 25
+
+    (11) asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor . PUNTOCOMA
+    (19) valor -> valor . valor2
+    (20) valor2 -> . COMA valor
+
+    PUNTOCOMA       shift and go to state 26
+    COMA            shift and go to state 16
+
+    valor2                         shift and go to state 15
+
+state 26
+
+    (11) asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA .
+
+    $end            reduce using rule 11 (asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for COMA in state 20 resolved as shift

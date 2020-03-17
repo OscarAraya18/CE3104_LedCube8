@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftSUMARESTAleftMULTIPLICACIONDIVISIONDIVISIONErightNEGATIVOleftPARENTESISIPARENTESISDASIGNACION BLINK BOOL CALL COMA COMENTARIO COMPARACION CUBO DEL DELAY DIMCOLUMNAS DIMFILAS DISTINTOQUE DIVISION DIVISIONE DOSPUNTOS EXPONENCIAL F FALSE FOR ID0 ID1 ID2 IN INSERT LEN LIST LLAVED LLAVEI MAIN MAYORIGUALQUE MAYORQUE MENORIGUALQUE MENORQUE MIL MIN MODULO MULTIPLICACION NEG NEGATIVO NUMERO PARENTESISCD PARENTESISCI PARENTESISD PARENTESISI PROCEDURE PUNTO PUNTOCOMA RANGE RANGOTIMER RESTA SEG SHAPEA SHAPEC SHAPEF STEP SUMA T TIMER TRUE TYPEasignacion : ID0 ASIGNACION valor PUNTOCOMAasignacion : ID0 COMA asignacionexpression : expression SUMA termexpression : expression RESTA termterm : term MULTIPLICACION factorasignacion : ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMAterm : term DIVISION factorvalor : NUMERO\n               | bool term : term DIVISIONE factorvalor : NUMERO COMA valor\n               | bool COMA valor term : term MODULO factorterm : term EXPONENCIAL factorbool : TRUE\n            | FALSEexpression : RESTA term %prec NEGATIVOexpression : termterm : factorfactor : NUMEROfactor : PARENTESISI expression PARENTESISDempty :'
+_lr_signature = 'leftSUMARESTAleftMULTIPLICACIONDIVISIONDIVISIONErightNEGATIVOleftPARENTESISIPARENTESISDASIGNACION BLINK BOOL CALL COMA COMENTARIO COMPARACION CUBO DEL DELAY DIMCOLUMNAS DIMFILAS DISTINTOQUE DIVISION DIVISIONE DOSPUNTOS EXPONENCIAL F FALSE FOR ID0 ID1 ID2 IN INSERT LEN LIST LLAVED LLAVEI MAIN MAYORIGUALQUE MAYORQUE MENORIGUALQUE MENORQUE MIL MIN MODULO MULTIPLICACION NEG NEGATIVO NUMERO PARENTESISCD PARENTESISCI PARENTESISD PARENTESISI PROCEDURE PUNTO PUNTOCOMA RANGE RANGOTIMER RESTA SEG SHAPEA SHAPEC SHAPEF STEP SUMA T TIMER TRUE TYPEasignacion : ID0 ASIGNACION valor PUNTOCOMAexpression : expression SUMA termasignacion : ID0 COMA asignacionexpression : expression RESTA termterm : term MULTIPLICACION factorterm : term DIVISION factorasignacion : ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMAterm : term DIVISIONE factorasignacion : ID0 ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMAterm : term MODULO factorasignacion : ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMAterm : term EXPONENCIAL factorexpression : RESTA term %prec NEGATIVOexpression : termterm : factorvalor : NUMERO\n               | bool factor : NUMEROvalor : valor valor2 valor2 : COMA valorbool : TRUE\n            | FALSEfactor : PARENTESISI expression PARENTESISDempty :'
     
-_lr_action_items = {'ID0':([0,4,],[2,2,]),'$end':([1,11,13,21,],[0,-2,-1,-6,]),'ASIGNACION':([2,16,],[3,19,]),'COMA':([2,7,8,9,10,],[4,14,15,-15,-16,]),'PARENTESISCI':([2,],[5,]),'NUMERO':([3,5,14,15,19,],[7,12,7,7,7,]),'TRUE':([3,14,15,19,],[9,9,9,9,]),'FALSE':([3,14,15,19,],[10,10,10,10,]),'PUNTOCOMA':([6,7,8,9,10,17,18,20,],[13,-8,-9,-15,-16,-11,-12,21,]),'PARENTESISCD':([12,],[16,]),}
+_lr_action_items = {'ID0':([0,4,],[2,2,]),'$end':([1,12,14,21,24,26,],[0,-3,-1,-7,-9,-11,]),'ASIGNACION':([2,19,],[3,23,]),'COMA':([2,6,8,9,10,11,15,18,20,25,],[4,16,-16,-17,-21,-22,-19,16,16,16,]),'PARENTESISCI':([2,3,],[5,7,]),'NUMERO':([3,5,7,16,23,],[8,13,8,8,8,]),'TRUE':([3,7,16,23,],[10,10,10,10,]),'FALSE':([3,7,16,23,],[11,11,11,11,]),'PUNTOCOMA':([6,8,9,10,11,15,17,20,22,25,],[14,-16,-17,-21,-22,-19,21,-20,24,26,]),'PARENTESISCD':([7,8,9,10,11,13,15,18,20,],[17,-16,-17,-21,-22,19,-19,22,-20,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'asignacion':([0,4,],[1,11,]),'valor':([3,14,15,19,],[6,17,18,20,]),'bool':([3,14,15,19,],[8,8,8,8,]),}
+_lr_goto_items = {'asignacion':([0,4,],[1,12,]),'valor':([3,7,16,23,],[6,18,20,25,]),'bool':([3,7,16,23,],[9,9,9,9,]),'valor2':([6,18,20,25,],[15,15,15,15,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -28,25 +28,27 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> asignacion","S'",1,None,None,None),
   ('asignacion -> ID0 ASIGNACION valor PUNTOCOMA','asignacion',4,'p_asignacion_0','Statements.py',20),
-  ('asignacion -> ID0 COMA asignacion','asignacion',3,'p_asignacion_1','Statements.py',27),
   ('expression -> expression SUMA term','expression',3,'p_expression_suma','OperacionesMatematicas.py',28),
+  ('asignacion -> ID0 COMA asignacion','asignacion',3,'p_asignacion_1','Statements.py',31),
   ('expression -> expression RESTA term','expression',3,'p_expression_resta','OperacionesMatematicas.py',33),
   ('term -> term MULTIPLICACION factor','term',3,'p_term_multiplicacion','OperacionesMatematicas.py',38),
-  ('asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA','asignacion',7,'p_asignacion_index','Statements.py',39),
   ('term -> term DIVISION factor','term',3,'p_term_division','OperacionesMatematicas.py',43),
-  ('valor -> NUMERO','valor',1,'p_valor_0','Statements.py',44),
-  ('valor -> bool','valor',1,'p_valor_0','Statements.py',45),
+  ('asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA','asignacion',5,'p_asignacion_2','Statements.py',44),
   ('term -> term DIVISIONE factor','term',3,'p_term_divisione','OperacionesMatematicas.py',47),
-  ('valor -> NUMERO COMA valor','valor',3,'p_valor_1','Statements.py',50),
-  ('valor -> bool COMA valor','valor',3,'p_valor_1','Statements.py',51),
+  ('asignacion -> ID0 ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA','asignacion',6,'p_asignacion_3','Statements.py',49),
   ('term -> term MODULO factor','term',3,'p_term_modulo','OperacionesMatematicas.py',51),
+  ('asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA','asignacion',7,'p_asignacion_index','Statements.py',54),
   ('term -> term EXPONENCIAL factor','term',3,'p_term_exponencial','OperacionesMatematicas.py',55),
-  ('bool -> TRUE','bool',1,'p_bool','Statements.py',57),
-  ('bool -> FALSE','bool',1,'p_bool','Statements.py',58),
   ('expression -> RESTA term','expression',2,'p_expression_negativo','OperacionesMatematicas.py',59),
   ('expression -> term','expression',1,'p_expression_term','OperacionesMatematicas.py',66),
   ('term -> factor','term',1,'p_term_factor','OperacionesMatematicas.py',71),
+  ('valor -> NUMERO','valor',1,'p_valor_0','Statements.py',71),
+  ('valor -> bool','valor',1,'p_valor_0','Statements.py',72),
   ('factor -> NUMERO','factor',1,'p_factor_num','OperacionesMatematicas.py',76),
+  ('valor -> valor valor2','valor',2,'p_valor_1','Statements.py',77),
+  ('valor2 -> COMA valor','valor2',2,'p_valor_2','Statements.py',81),
+  ('bool -> TRUE','bool',1,'p_bool','Statements.py',86),
+  ('bool -> FALSE','bool',1,'p_bool','Statements.py',87),
   ('factor -> PARENTESISI expression PARENTESISD','factor',3,'p_factor_expr','OperacionesMatematicas.py',107),
   ('empty -> <empty>','empty',0,'p_empty','OperacionesMatematicas.py',112),
 ]
