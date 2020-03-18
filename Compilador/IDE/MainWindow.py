@@ -5,7 +5,7 @@ from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QAction, QTextEdit, QMessageBox, QMainWindow, QFileDialog
 from PyQt5.QtGui import QIcon
 from Compilador.IDE import SyntaxColor
-from Compilador.IDE.SyntaxColor import *
+
 
 
 class Window(QMainWindow):

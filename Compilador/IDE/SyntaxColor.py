@@ -3,8 +3,6 @@ from PyQt5.QtGui import QColor, QTextCharFormat, QFont, QSyntaxHighlighter
 
 
 def format(color, style=''):
-    """Return a QTextCharFormat with the given attributes.
-    """
     _color = QColor()
     _color.setNamedColor(color)
     _format = QTextCharFormat()

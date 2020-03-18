@@ -8,7 +8,6 @@ from PyQt5.QtCore import QRect, QBasicTimer, Qt
 from PyQt5.QtGui import QPixmap
 import sys
 from Compilador.IDE.MainWindow import Window
-
 # this is the config of the ProgressBar
 DEFAULT_STYLE = """
 QProgressBar{
