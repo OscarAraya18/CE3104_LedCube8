@@ -1,13 +1,13 @@
 from Compilador.Lexer.AnalizadorLexico import *
 from Compilador.Sintactico.OperacionesMatematicas import *
-from Compilador.Sintactico.Statements import *
+#from Compilador.Sintactico.Statements import *
 import Compilador.ply.ply.yacc as yacc
 import Compilador.ply.ply.lex as lex
-
+from Compilador.Sintactico.Valores import *
 
 def Main():
 
-    data = '''x , y , z = 1 ,  2 ,3;'''
+    data = '''x[3]'''
 
     analyzeData(data)
 
