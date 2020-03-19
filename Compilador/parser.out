@@ -2,9 +2,12 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    ASIGNACION
     BLINK
     BOOL
     CALL
+    COMA
+    COMENTARIO
     COMPARACION
     CUBO
     DEL
@@ -12,7 +15,11 @@ Unused terminals:
     DIMCOLUMNAS
     DIMFILAS
     DISTINTOQUE
+    DIVISION
+    DIVISIONE
+    EXPONENCIAL
     F
+    FALSE
     FOR
     ID1
     ID2
@@ -29,62 +36,44 @@ Unused terminals:
     MENORQUE
     MIL
     MIN
+    MODULO
+    MULTIPLICACION
     NEG
     NEGATIVO
+    PARENTESISD
+    PARENTESISI
     PROCEDURE
     PUNTO
+    PUNTOCOMA
+    RANGE
     RANGOTIMER
+    RESTA
     SEG
     SHAPEA
     SHAPEC
     SHAPEF
     STEP
+    SUMA
     T
     TIMER
+    TRUE
     TYPE
 
 Grammar
 
 Rule 0     S' -> indexar
 Rule 1     indexar -> ID0 PARENTESISCI NUMERO PARENTESISCD
-Rule 2     asignacion -> ID0 ASIGNACION valor PUNTOCOMA
-Rule 3     expression -> expression SUMA term
-Rule 4     expression -> expression RESTA term
-Rule 5     asignacion -> ID0 COMA asignacion
-Rule 6     indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD
-Rule 7     term -> term MULTIPLICACION factor
-Rule 8     term -> term DIVISION factor
-Rule 9     term -> term DIVISIONE factor
-Rule 10    asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
-Rule 11    term -> term MODULO factor
-Rule 12    asignacion -> ID0 ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA
-Rule 13    indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD
-Rule 14    term -> term EXPONENCIAL factor
-Rule 15    asignacion -> ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
-Rule 16    expression -> RESTA term
-Rule 17    expression -> term
-Rule 18    asignacion -> ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA
-Rule 19    term -> factor
-Rule 20    factor -> NUMERO
-Rule 21    valor -> NUMERO
-Rule 22    valor -> bool
-Rule 23    valor -> valor valor2
-Rule 24    valor2 -> COMA valor
-Rule 25    bool -> TRUE
-Rule 26    bool -> FALSE
-Rule 27    factor -> PARENTESISI expression PARENTESISD
-Rule 28    comentario_opcional -> COMENTARIO
-Rule 29    comentario_opcional -> empty
-Rule 30    empty -> <empty>
+Rule 2     indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD
+Rule 3     indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD
 
 Terminals, with rules where they appear
 
-ASIGNACION           : 2 10 12 15 18
+ASIGNACION           : 
 BLINK                : 
 BOOL                 : 
 CALL                 : 
-COMA                 : 5 15 24
-COMENTARIO           : 28
+COMA                 : 
+COMENTARIO           : 
 COMPARACION          : 
 CUBO                 : 
 DEL                  : 
@@ -92,14 +81,14 @@ DELAY                :
 DIMCOLUMNAS          : 
 DIMFILAS             : 
 DISTINTOQUE          : 
-DIVISION             : 8
-DIVISIONE            : 9
-DOSPUNTOS            : 6 13
-EXPONENCIAL          : 14
+DIVISION             : 
+DIVISIONE            : 
+DOSPUNTOS            : 2 3
+EXPONENCIAL          : 
 F                    : 
-FALSE                : 26
+FALSE                : 
 FOR                  : 
-ID0                  : 1 2 5 6 10 12 13 15 18
+ID0                  : 1 2 3
 ID1                  : 
 ID2                  : 
 IN                   : 
@@ -115,45 +104,36 @@ MENORIGUALQUE        :
 MENORQUE             : 
 MIL                  : 
 MIN                  : 
-MODULO               : 11
-MULTIPLICACION       : 7
+MODULO               : 
+MULTIPLICACION       : 
 NEG                  : 
 NEGATIVO             : 
-NUMERO               : 1 6 6 13 15 18 20 21
-PARENTESISCD         : 1 6 10 12 13 18
-PARENTESISCI         : 1 6 10 12 13 18
-PARENTESISD          : 15 27
-PARENTESISI          : 15 27
+NUMERO               : 1 2 2 3
+PARENTESISCD         : 1 2 3
+PARENTESISCI         : 1 2 3
+PARENTESISD          : 
+PARENTESISI          : 
 PROCEDURE            : 
 PUNTO                : 
-PUNTOCOMA            : 2 10 12 15 18
-RANGE                : 15
+PUNTOCOMA            : 
+RANGE                : 
 RANGOTIMER           : 
-RESTA                : 4 16
+RESTA                : 
 SEG                  : 
 SHAPEA               : 
 SHAPEC               : 
 SHAPEF               : 
 STEP                 : 
-SUMA                 : 3
+SUMA                 : 
 T                    : 
 TIMER                : 
-TRUE                 : 25
+TRUE                 : 
 TYPE                 : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-asignacion           : 5
-bool                 : 15 22
-comentario_opcional  : 
-empty                : 29
-expression           : 3 4 27
-factor               : 7 8 9 11 14 19
 indexar              : 0
-term                 : 3 4 7 8 9 11 14 16 17
-valor                : 2 12 18 23 24
-valor2               : 23
 
 Parsing method: LALR
 
@@ -161,8 +141,8 @@ state 0
 
     (0) S' -> . indexar
     (1) indexar -> . ID0 PARENTESISCI NUMERO PARENTESISCD
-    (6) indexar -> . ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD
-    (13) indexar -> . ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD
+    (2) indexar -> . ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD
+    (3) indexar -> . ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD
 
     ID0             shift and go to state 2
 
@@ -177,8 +157,8 @@ state 1
 state 2
 
     (1) indexar -> ID0 . PARENTESISCI NUMERO PARENTESISCD
-    (6) indexar -> ID0 . PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD
-    (13) indexar -> ID0 . PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD
+    (2) indexar -> ID0 . PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD
+    (3) indexar -> ID0 . PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD
 
     PARENTESISCI    shift and go to state 3
 
@@ -186,8 +166,8 @@ state 2
 state 3
 
     (1) indexar -> ID0 PARENTESISCI . NUMERO PARENTESISCD
-    (6) indexar -> ID0 PARENTESISCI . NUMERO DOSPUNTOS NUMERO PARENTESISCD
-    (13) indexar -> ID0 PARENTESISCI . DOSPUNTOS NUMERO PARENTESISCD
+    (2) indexar -> ID0 PARENTESISCI . NUMERO DOSPUNTOS NUMERO PARENTESISCD
+    (3) indexar -> ID0 PARENTESISCI . DOSPUNTOS NUMERO PARENTESISCD
 
     NUMERO          shift and go to state 4
     DOSPUNTOS       shift and go to state 5
@@ -196,7 +176,7 @@ state 3
 state 4
 
     (1) indexar -> ID0 PARENTESISCI NUMERO . PARENTESISCD
-    (6) indexar -> ID0 PARENTESISCI NUMERO . DOSPUNTOS NUMERO PARENTESISCD
+    (2) indexar -> ID0 PARENTESISCI NUMERO . DOSPUNTOS NUMERO PARENTESISCD
 
     PARENTESISCD    shift and go to state 6
     DOSPUNTOS       shift and go to state 7
@@ -204,7 +184,7 @@ state 4
 
 state 5
 
-    (13) indexar -> ID0 PARENTESISCI DOSPUNTOS . NUMERO PARENTESISCD
+    (3) indexar -> ID0 PARENTESISCI DOSPUNTOS . NUMERO PARENTESISCD
 
     NUMERO          shift and go to state 8
 
@@ -218,35 +198,35 @@ state 6
 
 state 7
 
-    (6) indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS . NUMERO PARENTESISCD
+    (2) indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS . NUMERO PARENTESISCD
 
     NUMERO          shift and go to state 9
 
 
 state 8
 
-    (13) indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO . PARENTESISCD
+    (3) indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO . PARENTESISCD
 
     PARENTESISCD    shift and go to state 10
 
 
 state 9
 
-    (6) indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO . PARENTESISCD
+    (2) indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO . PARENTESISCD
 
     PARENTESISCD    shift and go to state 11
 
 
 state 10
 
-    (13) indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD .
+    (3) indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD .
 
-    $end            reduce using rule 13 (indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD .)
+    $end            reduce using rule 3 (indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD .)
 
 
 state 11
 
-    (6) indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD .
+    (2) indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD .
 
-    $end            reduce using rule 6 (indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD .)
+    $end            reduce using rule 2 (indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD .)
 

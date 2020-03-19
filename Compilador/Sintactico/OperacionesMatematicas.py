@@ -8,13 +8,10 @@
 # TEC 2020 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-
-from Compilador.ply.ply import yacc, lex
+import Compilador.ply.ply.yacc as yacc
 from Compilador.Lexer.AnalizadorLexico import *
 
-
 funcList = []
-variables = {}
 precedence = (
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULTIPLICACION', 'DIVISION', 'DIVISIONE'),
@@ -126,11 +123,6 @@ def p_error(p):
     # Build the parser
 
 
-# #parser = yacc.yacc()
-# lexer = lex.lex()
-# data = "3 + 5"
-#
-# #
 # while True:
 #     try:
 #         s = input('calc > ')
@@ -140,3 +132,4 @@ def p_error(p):
 #     result = parser.parse(s)
 #     print(result)
 #
+

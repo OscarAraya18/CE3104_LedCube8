@@ -8,11 +8,10 @@
 # TEC 2020 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-import Compilador.ply.ply.yacc as yacc
-import Compilador.ply.ply.lex as lex
 from Compilador.Lexer.AnalizadorLexico import *
-from Compilador.Sintactico.OperacionesMatematicas import *
-from Compilador.Sintactico.Statements import *
+from Compilador.ply.ply import yacc
+
+variables = {'x' : [1,2,3,4]}
 
 
 def p_index_list(p):
@@ -23,8 +22,7 @@ def p_index_list(p):
         valor = variables[ID]
         if isinstance(valor, list):
             if len(valor) > p[3]:
-                print(valor[p[3]])
-                return valor[p[3]]
+                p[0] = valor[p[3]]
             else:
                 print("Error. Indice fuera de rango")
         else:
@@ -41,8 +39,7 @@ def p_index_list_2(p):
         valor = variables[ID]
         if isinstance(valor, list):
             if len(valor) > p[5] and p[3] < p[5]:
-                print(valor[p[3]:p[5]])
-                return valor[p[3]:p[5]]
+                p[0] = valor[p[3]:p[5]]
             else:
                 print("Error. Indice fuera de rango")
         else:
@@ -58,11 +55,14 @@ def p_index_list_3(p):
         valor = variables[ID]
         if isinstance(valor, list):
             if len(valor) > p[4]:
-                print(valor[:p[4]])
-                return valor[:p[4]]
+                p[0] = valor[:p[4]]
             else:
                 print("Error. Indice fuera de rango")
         else:
             print("Error. La variable no es indexable")
     else:
         print("Error. La variable no ha sido declarada")
+
+
+
+yacc.yacc()
