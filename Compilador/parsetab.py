@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ASIGNACION BLINK BOOL CALL COMA COMENTARIO COMPARACION CUBO DEL DELAY DIMCOLUMNAS DIMFILAS DISTINTOQUE DIVISION DIVISIONE DOSPUNTOS EXPONENCIAL F FALSE FOR ID0 ID1 ID2 IN INSERT LEN LIST LLAVED LLAVEI MAIN MAYORIGUALQUE MAYORQUE MENORIGUALQUE MENORQUE MIL MIN MODULO MULTIPLICACION NEG NEGATIVO NUMERO PARENTESISCD PARENTESISCI PARENTESISD PARENTESISI PROCEDURE PUNTO PUNTOCOMA RANGE RANGOTIMER RESTA SEG SHAPEA SHAPEC SHAPEF STEP SUMA T TIMER TRUE TYPEindexar : ID0 PARENTESISCI NUMERO PARENTESISCDindexar : ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCDindexar : ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD'
+_lr_signature = 'leftSUMARESTAleftMULTIPLICACIONDIVISIONDIVISIONErightNEGATIVOleftPARENTESISIPARENTESISDASIGNACION BLINK BOOL CALL COMA COMENTARIO COMPARACION CUBO DEL DELAY DIMCOLUMNAS DIMFILAS DISTINTOQUE DIVISION DIVISIONE DOSPUNTOS EXPONENCIAL F FALSE FOR ID0 ID1 ID2 IN INSERT LEN LIST LLAVED LLAVEI MAIN MAYORIGUALQUE MAYORQUE MENORIGUALQUE MENORQUE MIL MIN MODULO MULTIPLICACION NEG NEGATIVO NUMERO PARENTESISCD PARENTESISCI PARENTESISD PARENTESISI PROCEDURE PUNTO PUNTOCOMA RANGE RANGOTIMER RESTA SEG SHAPEA SHAPEC SHAPEF STEP SUMA T TIMER TRUE TYPEexpression : expression SUMA termexpression : expression RESTA termterm : term MULTIPLICACION factorterm : term DIVISION factorterm : term DIVISIONE factorterm : term MODULO factorterm : term EXPONENCIAL factorexpression : RESTA term %prec NEGATIVOexpression : termterm : factorfactor : NUMEROfactor : PARENTESISI expression PARENTESISDempty :'
     
-_lr_action_items = {'ID0':([0,],[2,]),'$end':([1,6,10,11,],[0,-1,-3,-2,]),'PARENTESISCI':([2,],[3,]),'NUMERO':([3,5,7,],[4,8,9,]),'DOSPUNTOS':([3,4,],[5,7,]),'PARENTESISCD':([4,8,9,],[6,10,11,]),}
+_lr_action_items = {'RESTA':([0,1,2,4,5,6,14,15,16,17,18,19,20,21,22,23,],[3,8,-9,-10,-11,3,-8,8,-1,-2,-3,-4,-5,-6,-7,-12,]),'NUMERO':([0,3,6,7,8,9,10,11,12,13,],[5,5,5,5,5,5,5,5,5,5,]),'PARENTESISI':([0,3,6,7,8,9,10,11,12,13,],[6,6,6,6,6,6,6,6,6,6,]),'$end':([1,2,4,5,14,16,17,18,19,20,21,22,23,],[0,-9,-10,-11,-8,-1,-2,-3,-4,-5,-6,-7,-12,]),'SUMA':([1,2,4,5,14,15,16,17,18,19,20,21,22,23,],[7,-9,-10,-11,-8,7,-1,-2,-3,-4,-5,-6,-7,-12,]),'PARENTESISD':([2,4,5,14,15,16,17,18,19,20,21,22,23,],[-9,-10,-11,-8,23,-1,-2,-3,-4,-5,-6,-7,-12,]),'MULTIPLICACION':([2,4,5,14,16,17,18,19,20,21,22,23,],[9,-10,-11,9,9,9,-3,-4,-5,-6,-7,-12,]),'DIVISION':([2,4,5,14,16,17,18,19,20,21,22,23,],[10,-10,-11,10,10,10,-3,-4,-5,-6,-7,-12,]),'DIVISIONE':([2,4,5,14,16,17,18,19,20,21,22,23,],[11,-10,-11,11,11,11,-3,-4,-5,-6,-7,-12,]),'MODULO':([2,4,5,14,16,17,18,19,20,21,22,23,],[12,-10,-11,12,12,12,-3,-4,-5,-6,-7,-12,]),'EXPONENCIAL':([2,4,5,14,16,17,18,19,20,21,22,23,],[13,-10,-11,13,13,13,-3,-4,-5,-6,-7,-12,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'indexar':([0,],[1,]),}
+_lr_goto_items = {'expression':([0,6,],[1,15,]),'term':([0,3,6,7,8,],[2,14,2,16,17,]),'factor':([0,3,6,7,8,9,10,11,12,13,],[4,4,4,4,4,18,19,20,21,22,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,8 +26,18 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> indexar","S'",1,None,None,None),
-  ('indexar -> ID0 PARENTESISCI NUMERO PARENTESISCD','indexar',4,'p_index_list','Valores.py',18),
-  ('indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD','indexar',6,'p_index_list_2','Valores.py',36),
-  ('indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD','indexar',5,'p_index_list_3','Valores.py',53),
+  ("S' -> expression","S'",1,None,None,None),
+  ('expression -> expression SUMA term','expression',3,'p_expression_suma','OperacionesMatematicas.py',25),
+  ('expression -> expression RESTA term','expression',3,'p_expression_resta','OperacionesMatematicas.py',30),
+  ('term -> term MULTIPLICACION factor','term',3,'p_term_multiplicacion','OperacionesMatematicas.py',35),
+  ('term -> term DIVISION factor','term',3,'p_term_division','OperacionesMatematicas.py',40),
+  ('term -> term DIVISIONE factor','term',3,'p_term_divisione','OperacionesMatematicas.py',44),
+  ('term -> term MODULO factor','term',3,'p_term_modulo','OperacionesMatematicas.py',48),
+  ('term -> term EXPONENCIAL factor','term',3,'p_term_exponencial','OperacionesMatematicas.py',52),
+  ('expression -> RESTA term','expression',2,'p_expression_negativo','OperacionesMatematicas.py',56),
+  ('expression -> term','expression',1,'p_expression_term','OperacionesMatematicas.py',63),
+  ('term -> factor','term',1,'p_term_factor','OperacionesMatematicas.py',68),
+  ('factor -> NUMERO','factor',1,'p_factor_num','OperacionesMatematicas.py',73),
+  ('factor -> PARENTESISI expression PARENTESISD','factor',3,'p_factor_expr','OperacionesMatematicas.py',104),
+  ('empty -> <empty>','empty',0,'p_empty','OperacionesMatematicas.py',109),
 ]

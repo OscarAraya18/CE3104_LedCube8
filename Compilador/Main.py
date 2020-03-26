@@ -1,14 +1,13 @@
-from Compilador.Lexer import AnalizadorLexico
 from Compilador.Lexer.AnalizadorLexico import *
 import Compilador.ply.ply.yacc as yacc
 import Compilador.ply.ply.lex as lex
-#from Compilador.Sintactico.Statements import *
-from Compilador.Sintactico.Valores import *
-#from Compilador.Sintactico.OperacionesMatematicas import *
-
+from Compilador.Sintactico.Parser import *
 
 def Main():
-    data = '''x[0]'''
+    data = ''' Procedure Main(){
+        x = range(5, True);
+    };
+    '''
 
     # analyzeData(data)
 
@@ -18,9 +17,8 @@ def Main():
     lexer.input(data)
 
     try:
-        parser = yacc.yacc()
-        result = parser.parse(lexer = lexer)
-        print("Me interesa: " + str(result))
+        result = parse(lexer)
+        print("Exito: " + str(result))
 
         return
     except Exception:

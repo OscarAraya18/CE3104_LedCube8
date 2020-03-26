@@ -225,4 +225,4 @@ def analyzeData(data):
             break  # No more input
         print(tok)
         token_list.append((tok.value, tok.type))
-    return token_list
+    return lexer

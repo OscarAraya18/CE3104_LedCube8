@@ -15,12 +15,11 @@ Unused terminals:
     DIMCOLUMNAS
     DIMFILAS
     DISTINTOQUE
-    DIVISION
-    DIVISIONE
-    EXPONENCIAL
+    DOSPUNTOS
     F
     FALSE
     FOR
+    ID0
     ID1
     ID2
     IN
@@ -36,24 +35,20 @@ Unused terminals:
     MENORQUE
     MIL
     MIN
-    MODULO
-    MULTIPLICACION
     NEG
     NEGATIVO
-    PARENTESISD
-    PARENTESISI
+    PARENTESISCD
+    PARENTESISCI
     PROCEDURE
     PUNTO
     PUNTOCOMA
     RANGE
     RANGOTIMER
-    RESTA
     SEG
     SHAPEA
     SHAPEC
     SHAPEF
     STEP
-    SUMA
     T
     TIMER
     TRUE
@@ -61,10 +56,20 @@ Unused terminals:
 
 Grammar
 
-Rule 0     S' -> indexar
-Rule 1     indexar -> ID0 PARENTESISCI NUMERO PARENTESISCD
-Rule 2     indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD
-Rule 3     indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD
+Rule 0     S' -> expression
+Rule 1     expression -> expression SUMA term
+Rule 2     expression -> expression RESTA term
+Rule 3     term -> term MULTIPLICACION factor
+Rule 4     term -> term DIVISION factor
+Rule 5     term -> term DIVISIONE factor
+Rule 6     term -> term MODULO factor
+Rule 7     term -> term EXPONENCIAL factor
+Rule 8     expression -> RESTA term
+Rule 9     expression -> term
+Rule 10    term -> factor
+Rule 11    factor -> NUMERO
+Rule 12    factor -> PARENTESISI expression PARENTESISD
+Rule 13    empty -> <empty>
 
 Terminals, with rules where they appear
 
@@ -81,14 +86,14 @@ DELAY                :
 DIMCOLUMNAS          : 
 DIMFILAS             : 
 DISTINTOQUE          : 
-DIVISION             : 
-DIVISIONE            : 
-DOSPUNTOS            : 2 3
-EXPONENCIAL          : 
+DIVISION             : 4
+DIVISIONE            : 5
+DOSPUNTOS            : 
+EXPONENCIAL          : 7
 F                    : 
 FALSE                : 
 FOR                  : 
-ID0                  : 1 2 3
+ID0                  : 
 ID1                  : 
 ID2                  : 
 IN                   : 
@@ -104,27 +109,27 @@ MENORIGUALQUE        :
 MENORQUE             : 
 MIL                  : 
 MIN                  : 
-MODULO               : 
-MULTIPLICACION       : 
+MODULO               : 6
+MULTIPLICACION       : 3
 NEG                  : 
 NEGATIVO             : 
-NUMERO               : 1 2 2 3
-PARENTESISCD         : 1 2 3
-PARENTESISCI         : 1 2 3
-PARENTESISD          : 
-PARENTESISI          : 
+NUMERO               : 11
+PARENTESISCD         : 
+PARENTESISCI         : 
+PARENTESISD          : 12
+PARENTESISI          : 12
 PROCEDURE            : 
 PUNTO                : 
 PUNTOCOMA            : 
 RANGE                : 
 RANGOTIMER           : 
-RESTA                : 
+RESTA                : 2 8
 SEG                  : 
 SHAPEA               : 
 SHAPEC               : 
 SHAPEF               : 
 STEP                 : 
-SUMA                 : 
+SUMA                 : 1
 T                    : 
 TIMER                : 
 TRUE                 : 
@@ -133,100 +138,387 @@ error                :
 
 Nonterminals, with rules where they appear
 
-indexar              : 0
+empty                : 
+expression           : 1 2 12 0
+factor               : 3 4 5 6 7 10
+term                 : 1 2 3 4 5 6 7 8 9
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . indexar
-    (1) indexar -> . ID0 PARENTESISCI NUMERO PARENTESISCD
-    (2) indexar -> . ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD
-    (3) indexar -> . ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD
+    (0) S' -> . expression
+    (1) expression -> . expression SUMA term
+    (2) expression -> . expression RESTA term
+    (8) expression -> . RESTA term
+    (9) expression -> . term
+    (3) term -> . term MULTIPLICACION factor
+    (4) term -> . term DIVISION factor
+    (5) term -> . term DIVISIONE factor
+    (6) term -> . term MODULO factor
+    (7) term -> . term EXPONENCIAL factor
+    (10) term -> . factor
+    (11) factor -> . NUMERO
+    (12) factor -> . PARENTESISI expression PARENTESISD
 
-    ID0             shift and go to state 2
+    RESTA           shift and go to state 3
+    NUMERO          shift and go to state 5
+    PARENTESISI     shift and go to state 6
 
-    indexar                        shift and go to state 1
+    expression                     shift and go to state 1
+    term                           shift and go to state 2
+    factor                         shift and go to state 4
 
 state 1
 
-    (0) S' -> indexar .
+    (0) S' -> expression .
+    (1) expression -> expression . SUMA term
+    (2) expression -> expression . RESTA term
 
+    SUMA            shift and go to state 7
+    RESTA           shift and go to state 8
 
 
 state 2
 
-    (1) indexar -> ID0 . PARENTESISCI NUMERO PARENTESISCD
-    (2) indexar -> ID0 . PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD
-    (3) indexar -> ID0 . PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD
+    (9) expression -> term .
+    (3) term -> term . MULTIPLICACION factor
+    (4) term -> term . DIVISION factor
+    (5) term -> term . DIVISIONE factor
+    (6) term -> term . MODULO factor
+    (7) term -> term . EXPONENCIAL factor
 
-    PARENTESISCI    shift and go to state 3
+    SUMA            reduce using rule 9 (expression -> term .)
+    RESTA           reduce using rule 9 (expression -> term .)
+    $end            reduce using rule 9 (expression -> term .)
+    PARENTESISD     reduce using rule 9 (expression -> term .)
+    MULTIPLICACION  shift and go to state 9
+    DIVISION        shift and go to state 10
+    DIVISIONE       shift and go to state 11
+    MODULO          shift and go to state 12
+    EXPONENCIAL     shift and go to state 13
 
 
 state 3
 
-    (1) indexar -> ID0 PARENTESISCI . NUMERO PARENTESISCD
-    (2) indexar -> ID0 PARENTESISCI . NUMERO DOSPUNTOS NUMERO PARENTESISCD
-    (3) indexar -> ID0 PARENTESISCI . DOSPUNTOS NUMERO PARENTESISCD
+    (8) expression -> RESTA . term
+    (3) term -> . term MULTIPLICACION factor
+    (4) term -> . term DIVISION factor
+    (5) term -> . term DIVISIONE factor
+    (6) term -> . term MODULO factor
+    (7) term -> . term EXPONENCIAL factor
+    (10) term -> . factor
+    (11) factor -> . NUMERO
+    (12) factor -> . PARENTESISI expression PARENTESISD
 
-    NUMERO          shift and go to state 4
-    DOSPUNTOS       shift and go to state 5
+    NUMERO          shift and go to state 5
+    PARENTESISI     shift and go to state 6
 
+    term                           shift and go to state 14
+    factor                         shift and go to state 4
 
 state 4
 
-    (1) indexar -> ID0 PARENTESISCI NUMERO . PARENTESISCD
-    (2) indexar -> ID0 PARENTESISCI NUMERO . DOSPUNTOS NUMERO PARENTESISCD
+    (10) term -> factor .
 
-    PARENTESISCD    shift and go to state 6
-    DOSPUNTOS       shift and go to state 7
+    MULTIPLICACION  reduce using rule 10 (term -> factor .)
+    DIVISION        reduce using rule 10 (term -> factor .)
+    DIVISIONE       reduce using rule 10 (term -> factor .)
+    MODULO          reduce using rule 10 (term -> factor .)
+    EXPONENCIAL     reduce using rule 10 (term -> factor .)
+    SUMA            reduce using rule 10 (term -> factor .)
+    RESTA           reduce using rule 10 (term -> factor .)
+    $end            reduce using rule 10 (term -> factor .)
+    PARENTESISD     reduce using rule 10 (term -> factor .)
 
 
 state 5
 
-    (3) indexar -> ID0 PARENTESISCI DOSPUNTOS . NUMERO PARENTESISCD
+    (11) factor -> NUMERO .
 
-    NUMERO          shift and go to state 8
+    MULTIPLICACION  reduce using rule 11 (factor -> NUMERO .)
+    DIVISION        reduce using rule 11 (factor -> NUMERO .)
+    DIVISIONE       reduce using rule 11 (factor -> NUMERO .)
+    MODULO          reduce using rule 11 (factor -> NUMERO .)
+    EXPONENCIAL     reduce using rule 11 (factor -> NUMERO .)
+    SUMA            reduce using rule 11 (factor -> NUMERO .)
+    RESTA           reduce using rule 11 (factor -> NUMERO .)
+    $end            reduce using rule 11 (factor -> NUMERO .)
+    PARENTESISD     reduce using rule 11 (factor -> NUMERO .)
 
 
 state 6
 
-    (1) indexar -> ID0 PARENTESISCI NUMERO PARENTESISCD .
+    (12) factor -> PARENTESISI . expression PARENTESISD
+    (1) expression -> . expression SUMA term
+    (2) expression -> . expression RESTA term
+    (8) expression -> . RESTA term
+    (9) expression -> . term
+    (3) term -> . term MULTIPLICACION factor
+    (4) term -> . term DIVISION factor
+    (5) term -> . term DIVISIONE factor
+    (6) term -> . term MODULO factor
+    (7) term -> . term EXPONENCIAL factor
+    (10) term -> . factor
+    (11) factor -> . NUMERO
+    (12) factor -> . PARENTESISI expression PARENTESISD
 
-    $end            reduce using rule 1 (indexar -> ID0 PARENTESISCI NUMERO PARENTESISCD .)
+    RESTA           shift and go to state 3
+    NUMERO          shift and go to state 5
+    PARENTESISI     shift and go to state 6
 
+    expression                     shift and go to state 15
+    term                           shift and go to state 2
+    factor                         shift and go to state 4
 
 state 7
 
-    (2) indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS . NUMERO PARENTESISCD
+    (1) expression -> expression SUMA . term
+    (3) term -> . term MULTIPLICACION factor
+    (4) term -> . term DIVISION factor
+    (5) term -> . term DIVISIONE factor
+    (6) term -> . term MODULO factor
+    (7) term -> . term EXPONENCIAL factor
+    (10) term -> . factor
+    (11) factor -> . NUMERO
+    (12) factor -> . PARENTESISI expression PARENTESISD
 
-    NUMERO          shift and go to state 9
+    NUMERO          shift and go to state 5
+    PARENTESISI     shift and go to state 6
 
+    term                           shift and go to state 16
+    factor                         shift and go to state 4
 
 state 8
 
-    (3) indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO . PARENTESISCD
+    (2) expression -> expression RESTA . term
+    (3) term -> . term MULTIPLICACION factor
+    (4) term -> . term DIVISION factor
+    (5) term -> . term DIVISIONE factor
+    (6) term -> . term MODULO factor
+    (7) term -> . term EXPONENCIAL factor
+    (10) term -> . factor
+    (11) factor -> . NUMERO
+    (12) factor -> . PARENTESISI expression PARENTESISD
 
-    PARENTESISCD    shift and go to state 10
+    NUMERO          shift and go to state 5
+    PARENTESISI     shift and go to state 6
 
+    term                           shift and go to state 17
+    factor                         shift and go to state 4
 
 state 9
 
-    (2) indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO . PARENTESISCD
+    (3) term -> term MULTIPLICACION . factor
+    (11) factor -> . NUMERO
+    (12) factor -> . PARENTESISI expression PARENTESISD
 
-    PARENTESISCD    shift and go to state 11
+    NUMERO          shift and go to state 5
+    PARENTESISI     shift and go to state 6
 
+    factor                         shift and go to state 18
 
 state 10
 
-    (3) indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD .
+    (4) term -> term DIVISION . factor
+    (11) factor -> . NUMERO
+    (12) factor -> . PARENTESISI expression PARENTESISD
 
-    $end            reduce using rule 3 (indexar -> ID0 PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD .)
+    NUMERO          shift and go to state 5
+    PARENTESISI     shift and go to state 6
 
+    factor                         shift and go to state 19
 
 state 11
 
-    (2) indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD .
+    (5) term -> term DIVISIONE . factor
+    (11) factor -> . NUMERO
+    (12) factor -> . PARENTESISI expression PARENTESISD
 
-    $end            reduce using rule 2 (indexar -> ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD .)
+    NUMERO          shift and go to state 5
+    PARENTESISI     shift and go to state 6
+
+    factor                         shift and go to state 20
+
+state 12
+
+    (6) term -> term MODULO . factor
+    (11) factor -> . NUMERO
+    (12) factor -> . PARENTESISI expression PARENTESISD
+
+    NUMERO          shift and go to state 5
+    PARENTESISI     shift and go to state 6
+
+    factor                         shift and go to state 21
+
+state 13
+
+    (7) term -> term EXPONENCIAL . factor
+    (11) factor -> . NUMERO
+    (12) factor -> . PARENTESISI expression PARENTESISD
+
+    NUMERO          shift and go to state 5
+    PARENTESISI     shift and go to state 6
+
+    factor                         shift and go to state 22
+
+state 14
+
+    (8) expression -> RESTA term .
+    (3) term -> term . MULTIPLICACION factor
+    (4) term -> term . DIVISION factor
+    (5) term -> term . DIVISIONE factor
+    (6) term -> term . MODULO factor
+    (7) term -> term . EXPONENCIAL factor
+
+    SUMA            reduce using rule 8 (expression -> RESTA term .)
+    RESTA           reduce using rule 8 (expression -> RESTA term .)
+    $end            reduce using rule 8 (expression -> RESTA term .)
+    PARENTESISD     reduce using rule 8 (expression -> RESTA term .)
+    MULTIPLICACION  shift and go to state 9
+    DIVISION        shift and go to state 10
+    DIVISIONE       shift and go to state 11
+    MODULO          shift and go to state 12
+    EXPONENCIAL     shift and go to state 13
+
+
+state 15
+
+    (12) factor -> PARENTESISI expression . PARENTESISD
+    (1) expression -> expression . SUMA term
+    (2) expression -> expression . RESTA term
+
+    PARENTESISD     shift and go to state 23
+    SUMA            shift and go to state 7
+    RESTA           shift and go to state 8
+
+
+state 16
+
+    (1) expression -> expression SUMA term .
+    (3) term -> term . MULTIPLICACION factor
+    (4) term -> term . DIVISION factor
+    (5) term -> term . DIVISIONE factor
+    (6) term -> term . MODULO factor
+    (7) term -> term . EXPONENCIAL factor
+
+    SUMA            reduce using rule 1 (expression -> expression SUMA term .)
+    RESTA           reduce using rule 1 (expression -> expression SUMA term .)
+    $end            reduce using rule 1 (expression -> expression SUMA term .)
+    PARENTESISD     reduce using rule 1 (expression -> expression SUMA term .)
+    MULTIPLICACION  shift and go to state 9
+    DIVISION        shift and go to state 10
+    DIVISIONE       shift and go to state 11
+    MODULO          shift and go to state 12
+    EXPONENCIAL     shift and go to state 13
+
+
+state 17
+
+    (2) expression -> expression RESTA term .
+    (3) term -> term . MULTIPLICACION factor
+    (4) term -> term . DIVISION factor
+    (5) term -> term . DIVISIONE factor
+    (6) term -> term . MODULO factor
+    (7) term -> term . EXPONENCIAL factor
+
+    SUMA            reduce using rule 2 (expression -> expression RESTA term .)
+    RESTA           reduce using rule 2 (expression -> expression RESTA term .)
+    $end            reduce using rule 2 (expression -> expression RESTA term .)
+    PARENTESISD     reduce using rule 2 (expression -> expression RESTA term .)
+    MULTIPLICACION  shift and go to state 9
+    DIVISION        shift and go to state 10
+    DIVISIONE       shift and go to state 11
+    MODULO          shift and go to state 12
+    EXPONENCIAL     shift and go to state 13
+
+
+state 18
+
+    (3) term -> term MULTIPLICACION factor .
+
+    MULTIPLICACION  reduce using rule 3 (term -> term MULTIPLICACION factor .)
+    DIVISION        reduce using rule 3 (term -> term MULTIPLICACION factor .)
+    DIVISIONE       reduce using rule 3 (term -> term MULTIPLICACION factor .)
+    MODULO          reduce using rule 3 (term -> term MULTIPLICACION factor .)
+    EXPONENCIAL     reduce using rule 3 (term -> term MULTIPLICACION factor .)
+    SUMA            reduce using rule 3 (term -> term MULTIPLICACION factor .)
+    RESTA           reduce using rule 3 (term -> term MULTIPLICACION factor .)
+    $end            reduce using rule 3 (term -> term MULTIPLICACION factor .)
+    PARENTESISD     reduce using rule 3 (term -> term MULTIPLICACION factor .)
+
+
+state 19
+
+    (4) term -> term DIVISION factor .
+
+    MULTIPLICACION  reduce using rule 4 (term -> term DIVISION factor .)
+    DIVISION        reduce using rule 4 (term -> term DIVISION factor .)
+    DIVISIONE       reduce using rule 4 (term -> term DIVISION factor .)
+    MODULO          reduce using rule 4 (term -> term DIVISION factor .)
+    EXPONENCIAL     reduce using rule 4 (term -> term DIVISION factor .)
+    SUMA            reduce using rule 4 (term -> term DIVISION factor .)
+    RESTA           reduce using rule 4 (term -> term DIVISION factor .)
+    $end            reduce using rule 4 (term -> term DIVISION factor .)
+    PARENTESISD     reduce using rule 4 (term -> term DIVISION factor .)
+
+
+state 20
+
+    (5) term -> term DIVISIONE factor .
+
+    MULTIPLICACION  reduce using rule 5 (term -> term DIVISIONE factor .)
+    DIVISION        reduce using rule 5 (term -> term DIVISIONE factor .)
+    DIVISIONE       reduce using rule 5 (term -> term DIVISIONE factor .)
+    MODULO          reduce using rule 5 (term -> term DIVISIONE factor .)
+    EXPONENCIAL     reduce using rule 5 (term -> term DIVISIONE factor .)
+    SUMA            reduce using rule 5 (term -> term DIVISIONE factor .)
+    RESTA           reduce using rule 5 (term -> term DIVISIONE factor .)
+    $end            reduce using rule 5 (term -> term DIVISIONE factor .)
+    PARENTESISD     reduce using rule 5 (term -> term DIVISIONE factor .)
+
+
+state 21
+
+    (6) term -> term MODULO factor .
+
+    MULTIPLICACION  reduce using rule 6 (term -> term MODULO factor .)
+    DIVISION        reduce using rule 6 (term -> term MODULO factor .)
+    DIVISIONE       reduce using rule 6 (term -> term MODULO factor .)
+    MODULO          reduce using rule 6 (term -> term MODULO factor .)
+    EXPONENCIAL     reduce using rule 6 (term -> term MODULO factor .)
+    SUMA            reduce using rule 6 (term -> term MODULO factor .)
+    RESTA           reduce using rule 6 (term -> term MODULO factor .)
+    $end            reduce using rule 6 (term -> term MODULO factor .)
+    PARENTESISD     reduce using rule 6 (term -> term MODULO factor .)
+
+
+state 22
+
+    (7) term -> term EXPONENCIAL factor .
+
+    MULTIPLICACION  reduce using rule 7 (term -> term EXPONENCIAL factor .)
+    DIVISION        reduce using rule 7 (term -> term EXPONENCIAL factor .)
+    DIVISIONE       reduce using rule 7 (term -> term EXPONENCIAL factor .)
+    MODULO          reduce using rule 7 (term -> term EXPONENCIAL factor .)
+    EXPONENCIAL     reduce using rule 7 (term -> term EXPONENCIAL factor .)
+    SUMA            reduce using rule 7 (term -> term EXPONENCIAL factor .)
+    RESTA           reduce using rule 7 (term -> term EXPONENCIAL factor .)
+    $end            reduce using rule 7 (term -> term EXPONENCIAL factor .)
+    PARENTESISD     reduce using rule 7 (term -> term EXPONENCIAL factor .)
+
+
+state 23
+
+    (12) factor -> PARENTESISI expression PARENTESISD .
+
+    MULTIPLICACION  reduce using rule 12 (factor -> PARENTESISI expression PARENTESISD .)
+    DIVISION        reduce using rule 12 (factor -> PARENTESISI expression PARENTESISD .)
+    DIVISIONE       reduce using rule 12 (factor -> PARENTESISI expression PARENTESISD .)
+    MODULO          reduce using rule 12 (factor -> PARENTESISI expression PARENTESISD .)
+    EXPONENCIAL     reduce using rule 12 (factor -> PARENTESISI expression PARENTESISD .)
+    SUMA            reduce using rule 12 (factor -> PARENTESISI expression PARENTESISD .)
+    RESTA           reduce using rule 12 (factor -> PARENTESISI expression PARENTESISD .)
+    $end            reduce using rule 12 (factor -> PARENTESISI expression PARENTESISD .)
+    PARENTESISD     reduce using rule 12 (factor -> PARENTESISI expression PARENTESISD .)
 

@@ -10,8 +10,16 @@
 # ------------------------------------------------------------
 
 from Compilador.EstructurasDeDatos.Node import *
-from Compilador.Sintactico.OperacionesMatematicas import *
 
 def p_loop_for(p):
-    'loop : FOR variable IN iterable STEP salto LLAVEI statement LLAVED PUNTOCOMA'
-    p[0] = Node("loop")
+    'loop : FOR ID0 IN iterable STEP salto LLAVEI statements LLAVED PUNTOCOMA'
+    print("Reconoce el FOR")
+
+
+def p_iterable(p):
+    '''iterable : NUMERO
+                | lista'''
+
+def p_salto(p):
+    '''salto : NUMERO
+             | empty'''

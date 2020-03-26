@@ -8,7 +8,6 @@
 # TEC 2020 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-import Compilador.ply.ply.yacc as yacc
 from Compilador.Lexer.AnalizadorLexico import *
 
 funcList = []
@@ -114,22 +113,7 @@ def p_empty(p):
 def p_error(p):
     if p:
         error_message = "Syntax error in line: " + str(p.lineno)
-        #file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
-        #file.write(error_message)
-        #file.close()
         print(error_message)
         raise SyntaxError
 
-    # Build the parser
-
-
-# while True:
-#     try:
-#         s = input('calc > ')
-#     except EOFError:
-#         break
-#     if not s: continue
-#     result = parser.parse(s)
-#     print(result)
-#
 
