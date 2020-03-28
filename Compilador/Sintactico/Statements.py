@@ -13,10 +13,11 @@ from Compilador.EstructurasDeDatos.TreeNode import TreeNode
 from Compilador.Sintactico.OperacionesMatematicas import *
 from Compilador.Lexer.AnalizadorLexico import *
 from Compilador.Sintactico.Ciclos import *
+from Compilador.Sintactico.FuncionesReservadas import *
 
 
 
-variables = {}
+
 valores = []
 
 def p_statements_1(p):
@@ -26,10 +27,20 @@ def p_statements_1(p):
 
 def p_statements_2(p):
     '''statements : empty'''
+    p[0] = p[1]
 
 def p_statements_3(p):
     '''statements : expression PUNTOCOMA statements'''
     p[0] = p[3]
+
+def p_statements_4(p):
+    '''statements : loop statements'''
+    p[0] = p[1]
+
+def p_statements_5(p):
+    '''statements : funcionReservada statements'''
+    funcList.insert(0, p[1])
+    p[0] = p[2]
 
 def p_asignacion_0(p):
     'asignacion : ID0 ASIGNACION valor PUNTOCOMA'
@@ -45,8 +56,6 @@ def p_asignacion_0(p):
         if isinstance(valor, valores.pop()):
             variables[ID] = valores.pop()
 
-    nodo = Node("asignacion",[ID, variables[ID], p[2]])
-    p[0] = nodo
 
 
 def p_asignacion_1(p):
@@ -61,7 +70,7 @@ def p_asignacion_1(p):
         asig = valores.pop()
         if isinstance(asig, type(valor)):
             variables[ID] = asig
-    p[0] = variables
+    #p[0] = variables
 
 
 def p_asignacion_2(p):
@@ -72,7 +81,7 @@ def p_asignacion_2(p):
 def p_asignacion_3(p):
     'asignacion : ID0 ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA'
     variables[p[1]] = valores
-    p[0] = variables
+    #p[0] = variables
 
 def p_statements_4(p):
     '''statements : loop statements'''
@@ -126,14 +135,16 @@ def p_asignacion_index_2(p):
                     variables[ID] = valor
                     p[0] = variables
                 else:
-                    print("Error.Debe indicar la cantidad de elementos correctos")
+                    print("Error Sintáctico.Debe indicar la cantidad de elementos correctos")
+                    print("Linea: " + str(p.lineno(2)))
             else:
-                print("Error. Indice fuera de rango o declaracion incorrecta de rango")
+                print("Error Sintáctico. Indice fuera de rango o declaracion incorrecta de rango")
+                print("Linea: " + str(p.lineno(2)))
         else:
             print("Error. La variable no es indexable")
     else:
         print("Error. La variable no ha sido declarada")
-
+        print("Linea: " + str(p.lineno(2)))
 
 def p_valor_0(p):
     '''valor : NUMERO

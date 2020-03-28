@@ -10,5 +10,4 @@ class TreeNode:
         for child in children:
             self.add_child(child)
 
-    # def print_tree(self, node, tab):
-    #     self.print_tree(tab + "\t")
+

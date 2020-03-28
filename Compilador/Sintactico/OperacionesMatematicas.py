@@ -10,7 +10,11 @@
 
 from Compilador.Lexer.AnalizadorLexico import *
 
+
+variables = {}
+
 funcList = []
+
 precedence = (
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULTIPLICACION', 'DIVISION', 'DIVISIONE'),

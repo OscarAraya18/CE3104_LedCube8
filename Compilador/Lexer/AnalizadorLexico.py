@@ -1,7 +1,4 @@
-
-
-#Se importan las librerias a utilizar
-import Compilador.ply.ply.lex as lex# ------------------------------------------------------------
+# ------------------------------------------------------------
 # Codigo Fuente: AnalizadorLexico.py
 # Desarrollado por: Saymon Astúa, Oscar Araya
 # Proyecto: LedCube8
@@ -13,6 +10,8 @@ import Compilador.ply.ply.lex as lex# ------------------------------------------
 # ------------------------------------------------------------
 
 
+#Se importan las librerias a utilizar
+import Compilador.ply.ply.lex as lex
 import re
 import codecs
 import os
@@ -96,9 +95,6 @@ t_ignore = ' \t'
 
 
 
-
-
-
 #-------------------------------- EXPRESIONES REGULARES----------------------------------------
 
 
@@ -136,7 +132,6 @@ def t_ID1(t):
     return t
 
 
-
 #Revisa que los Id's esten correctos segun la especificacion del proyecto
 def t_ID0(t):
     #Primero, una letra de la "a" a la "z"
@@ -145,7 +140,6 @@ def t_ID0(t):
     r'[a-z]([a-zA-Z0-9_@&]{0,9})'
     t.type = keywords.get(t.value, 'ID0') #Revisa palabras reservadas
     return t
-
 
 
 #Revisa id's que comiencen con mayuscula o minuscula, cualquier cantidad de caracteres
@@ -187,28 +181,8 @@ def t_NUEVALINEA(t):
 
 
 
-
 #-------------------------------------------------------------------------------------------
 
-
-#Se inicia el lexer
-#lexer = lex.lex()
-
-
-# #Prueba
-# data = '''hola=2;'''
-# lexer.input(data)
-#
-#
-# # Mostrar los tokens de una linea de caracteres
-# while True:
-#     tokenMostrar = lexer.token()
-#     if not tokenMostrar:
-#         break  # No more input
-#     print("********************LINEA " + str(tokenMostrar.lineno) + "*****" + "POSICION " + str(tokenMostrar.lexpos) + "************************")
-#     print("Tipo de Token: " +  str(tokenMostrar.type))
-#     print("Valor del Token: " + str(tokenMostrar.value))
-#
 
 # Main function to analyze a received data (source code string) and returns a list with tuples, containing
 # the token value and the token type for each lexeme found.

@@ -5,7 +5,17 @@ from Compilador.Sintactico.Parser import *
 
 def Main():
     data = ''' Procedure Main(){
-        x = range(5, True);
+            miLista.del(2);
+            len(miLista);
+            x[:4].Neg;
+            miLista[1].T;
+            miLista[:3].T;
+            miLista[1].F;
+            miLista[1:3].F;
+            Blink(x[1], 5, Min, True);
+            Blink(x[1], True);
+            Delay();
+            Delay(3, Seg);
     };
     '''
 

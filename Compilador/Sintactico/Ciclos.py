@@ -9,17 +9,33 @@
 # TEC 2020 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-from Compilador.EstructurasDeDatos.Node import *
+from Compilador.EstructurasDeDatos.TreeNode import *
+from Compilador.Sintactico.OperacionesMatematicas import *
+
 
 def p_loop_for(p):
-    'loop : FOR ID0 IN iterable STEP salto LLAVEI statements LLAVED PUNTOCOMA'
+    'loop : FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA'
+    loopNode = TreeNode("loop")
+    loopNode.add_children([p[1], p[2], p[4], p[6]])
+    for child in funcList:
+        loopNode.add_child(child)
     print("Reconoce el FOR")
+    p[0] = loopNode
+    funcList.clear()
+
+def p_loop_for_2(p):
+    'loop : FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA'
+    loopNode = TreeNode("loop")
+    loopNode.add_children([p[1], p[2], p[4]])
+    for child in funcList:
+        loopNode.add_child(child)
+    print("Reconoce el FOR")
+    p[0] = loopNode
+    funcList.clear()
+
 
 
 def p_iterable(p):
     '''iterable : NUMERO
                 | lista'''
 
-def p_salto(p):
-    '''salto : NUMERO
-             | empty'''

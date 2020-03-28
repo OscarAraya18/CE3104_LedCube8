@@ -3,12 +3,15 @@ from Compilador.Lexer.AnalizadorLexico import *
 from Compilador.Sintactico.OperacionesMatematicas import *
 from Compilador.Sintactico.Statements import *
 
+
+tablaSimbolos = {}
+
 start = 'estructura'
 
 
 def p_estructura(p):
     '''estructura : main\
-    MODULO'''
+    '''
 
 
 def p_main(p):
@@ -16,8 +19,9 @@ def p_main(p):
     print("Entra al main")
     p[0] = p[6]
 
-# Build the parser
+
+#Se crea el parser
 def parse(lex):
     parser = yacc.yacc()
-    astTree = parser.parse(lexer = lex)
+    astTree = parser.parse(lexer=lex)
     return astTree
