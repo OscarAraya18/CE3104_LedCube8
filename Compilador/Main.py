@@ -6,8 +6,9 @@ from Compilador.Sintactico.Parser import *
 def Main():
     data = ''' Procedure Main(){
             miLista.del(2);
+            miLista.insert([True, False, True], 1, 1);
             len(miLista);
-            x[:4].Neg;
+            x[1:4].Neg;
             miLista[1].T;
             miLista[:3].T;
             miLista[1].F;
@@ -16,6 +17,11 @@ def Main():
             Blink(x[1], True);
             Delay();
             Delay(3, Seg);
+            If miVar[:,1] == 5 {
+                jaja = 2;
+            };
+            Procedure jAAA (){
+            };
     };
     '''
 

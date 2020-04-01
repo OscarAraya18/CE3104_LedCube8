@@ -75,6 +75,7 @@ keywords = {'type' : 'TYPE',
 'Delay': 'DELAY',
 'for': 'FOR',
 'in': 'IN',
+'If': 'IF',
 'Step': 'STEP',
 'shapeF': 'SHAPEF',
 'shapeC': 'SHAPEC',
@@ -122,7 +123,6 @@ t_MAYORQUE = r'>'
 t_MENORQUE = r'<'
 t_MAYORIGUALQUE = r'>='
 t_MENORIGUALQUE = r'<='
-
 
 
 #Revisa ID's invalidos de más de 10 caracteres

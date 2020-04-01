@@ -16,9 +16,8 @@ from Compilador.Sintactico.Ciclos import *
 from Compilador.Sintactico.FuncionesReservadas import *
 
 
-
-
 valores = []
+valores2 = []
 
 def p_statements_1(p):
     '''statements : asignacion statements
@@ -42,12 +41,27 @@ def p_statements_5(p):
     funcList.insert(0, p[1])
     p[0] = p[2]
 
+def p_statements_6(p):
+    '''statements : bifurcacion statements'''
+    p[0] = p[1]
+
+def p_statements_7(p):
+    '''statements : rutina statements'''
+    p[0] = p[1]
+
 def p_asignacion_0(p):
     'asignacion : ID0 ASIGNACION valor PUNTOCOMA'
     ID = p[1]
     id_en_variables = variables.get(ID, False)
     if not id_en_variables:
-        variables[ID] = valores.pop()
+        if len(valores) > 0:
+            variables[ID] = valores.pop()
+            if isinstance(variables[ID], list):
+                variables[ID] += valores2
+        else:
+            variables[ID] = valores2[0]
+        valores.clear()
+        valores2.clear()
     else:
         # Aqui cambia el valor de una variable ya establecida
         # tengo que revisar si es correcto hacer x, y ,z = 1, 2, 3;
@@ -55,14 +69,14 @@ def p_asignacion_0(p):
         valor = variables[ID]
         if isinstance(valor, valores.pop()):
             variables[ID] = valores.pop()
-
-
+            #variables[ID] += valores2
+    print(variables)
 
 def p_asignacion_1(p):
     'asignacion : ID0 COMA asignacion'
     ID = p[1]
+    print(ID)
     id_en_variables = variables.get(ID, False)
-
     if not id_en_variables:
         variables[ID] = valores.pop()
     else:
@@ -71,21 +85,14 @@ def p_asignacion_1(p):
         if isinstance(asig, type(valor)):
             variables[ID] = asig
     #p[0] = variables
+    print(variables)
 
 
 def p_asignacion_2(p):
     'asignacion : ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA'
     variables[p[1]] = []
+    print(variables)
 
-
-def p_asignacion_3(p):
-    'asignacion : ID0 ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA'
-    variables[p[1]] = valores
-    #p[0] = variables
-
-def p_statements_4(p):
-    '''statements : loop statements'''
-    p[0] = p[1]
 
 def p_asignacion_range(p):
     'asignacion : ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA'
@@ -101,67 +108,90 @@ def p_asignacion_range(p):
 
 
 def p_asignacion_index(p):
-    'asignacion : ID0 PARENTESISCI NUMERO PARENTESISCD ASIGNACION valor PUNTOCOMA'
+    'asignacion : ID0 conjunto ASIGNACION valor PUNTOCOMA'
 
     ID = p[1]
     id_en_variables = variables.get(ID, False)
-    print(id_en_variables)
     if id_en_variables != False:
         valor = variables[ID]
-        if isinstance(valor, list):
-            if len(valor) > p[3]:
-                valor[p[3]] = p[6]
-                variables[ID] = valor
-                p[0] = variables
-            else:
-                print("Error. Indice fuera de rango")
-        else:
-            print("Error. La variable no es indexable")
+        # if isinstance(valor, list):
+        #     if len(valor) > p[3]:
+        #         valor[p[3]] = p[6]
+        #         variables[ID] = valor
+        #         p[0] = variables
+        #     else:
+        #         print("Error. Indice fuera de rango")
+        # else:
+        #     print("Error. La variable no es indexable")
     else:
         print("Error. La variable no ha sido declarada")
 
 
 def p_asignacion_index_2(p):
-    'asignacion : ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA'
+    'asignacion : ID0 conjunto ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA'
 
     ID = p[1]
     id_en_variables = variables.get(ID, False)
     if id_en_variables != False:
         valor = variables[ID]
-        if isinstance(valor, list):
-            if len(valor) > p[5] and p[5] > p[3]:
-                if (p[5] - p[3]) == len(valores):
-                    valor[p[3]:p[5]] = valores
-                    variables[ID] = valor
-                    p[0] = variables
-                else:
-                    print("Error Sintáctico.Debe indicar la cantidad de elementos correctos")
-                    print("Linea: " + str(p.lineno(2)))
-            else:
-                print("Error Sintáctico. Indice fuera de rango o declaracion incorrecta de rango")
-                print("Linea: " + str(p.lineno(2)))
-        else:
-            print("Error. La variable no es indexable")
+        # if isinstance(valor, list):
+        #     if len(valor) > p[5] and p[5] > p[3]:
+        #         if (p[5] - p[3]) == len(valores):
+        #             valor[p[3]:p[5]] = valores
+        #             variables[ID] = valor
+        #             p[0] = variables
+        #         else:
+        #             print("Error Sintáctico.Debe indicar la cantidad de elementos correctos")
+        #             print("Linea: " + str(p.lineno(2)))
+        #     else:
+        #         print("Error Sintáctico. Indice fuera de rango o declaracion incorrecta de rango")
+        #         print("Linea: " + str(p.lineno(2)))
+        # else:
+        #     print("Error. La variable no es indexable")
     else:
         print("Error. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(2)))
 
+
+def p_if(p):
+    '''bifurcacion : IF ID0 operador valor LLAVEI statements LLAVED PUNTOCOMA'''
+    print("Entra al if")
+
+
+def p_if_2(p):
+    '''bifurcacion : IF ID0 conjunto operador valor LLAVEI statements LLAVED PUNTOCOMA'''
+    print("Entra al if")
+
+
+def p_operador(p):
+    '''operador : COMPARACION
+                | DISTINTOQUE
+                | MENORQUE
+                | MAYORQUE
+                | MAYORIGUALQUE
+                | MENORIGUALQUE '''
+    p[0] = p[1]
+
 def p_valor_0(p):
     '''valor : NUMERO
-               | bool '''
+             | bool
+             | empty'''
     p[0] = p[1]
     valores.append(p[1])
 
 
 def p_valor_1(p):
     '''valor : valor valor2 '''
-    p[0] = [p[1] ,p[2]]
+    p[0] = valores
 
 
 def p_valor_2(p):
     '''valor2 : COMA valor'''
     p[0] = p[2]
 
+def p_valor_3(p):
+    '''valor : lista'''
+    p[0] = p[1]
 
 def p_bool(p):
     '''bool : TRUE
@@ -171,7 +201,41 @@ def p_bool(p):
 
 def p_comentario_opcional(p):
     '''comentario_opcional : COMENTARIO
-                          | empty'''
+                           | empty'''
 
 def p_lista_1(p):
     ''' lista : PARENTESISCI valor PARENTESISCD'''
+    valores_aux = valores.copy()
+    if len(valores) == 1:
+        valores2.append(valores.copy()[0])
+        valores.clear()
+    else:
+        lista = []
+        if len(valores) > 0 and isinstance(valores[0], list):
+            valores_aux2 = valores_aux.pop(0)
+            valores_aux3 = valores_aux.copy()
+            if isinstance(valores_aux2[0], list):
+                if isinstance(valores_aux2[0][0], list):
+                    lista.append(valores_aux2)
+                else:
+                    lista += valores_aux2
+            else:
+                lista.append(valores_aux2)
+            lista.append(valores_aux3)
+            valores.clear()
+            valores.append(lista)
+        else:
+            valores.clear()
+            valores.append(valores_aux)
+
+    p[0] = valores.copy()
+
+def p_lista_2(p):
+    ''' lista : empty'''
+    p[0] = p[1]
+
+
+
+
+
+

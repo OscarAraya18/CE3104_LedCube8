@@ -1,12 +1,23 @@
 from Compilador.EstructurasDeDatos.TreeNode import TreeNode
 
 
-def p_funcionReservada_1(p):
-    '''funcionReservada : BLINK'''
-
-
 def p_insert(p):
     '''funcionReservada : ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA'''
+    nodo = TreeNode("funcion")
+    nodo.add_children([p[3], p[1], p[5], p[7]])
+    p[0] = nodo
+    print("Entra al insert")
+
+def p_insert_2(p):
+    '''funcionReservada : ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA'''
+    nodo = TreeNode("funcion")
+    nodo.add_children([p[3], p[1], p[5], p[7], p[9]])
+    p[0] = nodo
+    print(p[5])
+    print("Entra al insert")
+
+def p_insert_3(p):
+    '''funcionReservada : ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA '''
     nodo = TreeNode("funcion")
     nodo.add_children([p[3], p[1], p[5], p[7]])
     p[0] = nodo
@@ -20,6 +31,13 @@ def p_del(p):
     p[0] = nodo
     print("Entra al del")
 
+def p_del_2(p):
+    '''funcionReservada : ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA'''
+    nodo = TreeNode("funcion")
+    nodo.add_children([p[3], p[1], p[5], p[7]])
+    p[0] = nodo
+    print("Entra al del")
+
 
 def p_len(p):
     '''funcionReservada :  LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA'''
@@ -30,89 +48,41 @@ def p_len(p):
 
 
 def p_neg(p):
-    '''funcionReservada : ID0 PARENTESISCI NUMERO PARENTESISCD PUNTO NEG PUNTOCOMA'''
+    '''funcionReservada : ID0 conjunto PUNTO NEG PUNTOCOMA'''
     nodo = TreeNode("funcion")
-    nodo.add_children([p[6], p[1], p[3]])
+    nodo.add_children([p[4], p[1], p[2]])
     p[0] = nodo
-    print("Entra al neg")
-
-
-def p_neg_2(p):
-    '''funcionReservada : ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD PUNTO NEG PUNTOCOMA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[8], p[1], p[3], p[4], p[5]])
-    p[0] = nodo
-    print("Entra al neg")
-
-
-def p_neg_3(p):
-    '''funcionReservada : ID0 PARENTESISCI  DOSPUNTOS NUMERO PARENTESISCD PUNTO NEG PUNTOCOMA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[7], p[1], p[3], p[4]])
-    p[0] = nodo
-    print("Entra al neg")
+    print("Entra al neg ")
 
 
 def p_t(p):
-    '''funcionReservada : ID0 PARENTESISCI NUMERO PARENTESISCD PUNTO T PUNTOCOMA'''
+    '''funcionReservada : ID0 conjunto PUNTO T PUNTOCOMA'''
     nodo = TreeNode("funcion")
-    nodo.add_children([p[6], p[1], p[3]])
-    p[0] = nodo
-    print("Entra al T")
-
-
-def p_t_2(p):
-    '''funcionReservada : ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD PUNTO T PUNTOCOMA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[8], p[1], p[3], p[4], p[5]])
-    p[0] = nodo
-    print("Entra al T")
-
-
-def p_t_3(p):
-    '''funcionReservada : ID0 PARENTESISCI  DOSPUNTOS NUMERO PARENTESISCD PUNTO T PUNTOCOMA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[7], p[1], p[3], p[4]])
+    nodo.add_children([p[4], p[1], p[2]])
     p[0] = nodo
     print("Entra al T")
 
 
 def p_f(p):
-    '''funcionReservada : ID0 PARENTESISCI NUMERO PARENTESISCD PUNTO F PUNTOCOMA'''
+    '''funcionReservada : ID0 conjunto PUNTO F PUNTOCOMA'''
     nodo = TreeNode("funcion")
-    nodo.add_children([p[6], p[1], p[3]])
-    p[0] = nodo
-    print("Entra al F")
-
-
-def p_f_2(p):
-    '''funcionReservada : ID0 PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD PUNTO F PUNTOCOMA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[8], p[1], p[3], p[4], p[5]])
-    p[0] = nodo
-    print("Entra al F")
-
-
-def p_f_3(p):
-    '''funcionReservada : ID0 PARENTESISCI  DOSPUNTOS NUMERO PARENTESISCD PUNTO F PUNTOCOMA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[7], p[1], p[3], p[4]])
+    nodo.add_children([p[4], p[1], p[2]])
     p[0] = nodo
     print("Entra al F")
 
 
 def p_blink_1(p):
-    '''funcionReservada : BLINK PARENTESISI ID0 PARENTESISCI NUMERO PARENTESISCD COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA '''
+    '''funcionReservada : BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA '''
     nodo = TreeNode("funcion")
-    nodo.add_children([p[1], p[3], p[5], p[8], p[10], p[12]])
+    nodo.add_children([p[1], p[3], p[4], p[6], p[8], p[10]])
     p[0] = nodo
     print("Entra a blink")
 
 
 def p_blink_2(p):
-    '''funcionReservada : BLINK PARENTESISI ID0 PARENTESISCI NUMERO PARENTESISCD COMA bool PARENTESISD PUNTOCOMA'''
+    '''funcionReservada : BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA'''
     nodo = TreeNode("funcion")
-    nodo.add_children([p[1], p[3], p[5], p[8]])
+    nodo.add_children([p[1], p[3], p[4], p[6]])
     p[0] = nodo
     print("Entra a blink")
 
@@ -131,6 +101,17 @@ def p_delay_2(p):
     p[0] = nodo
     print("Entra al delay")
 
+def p_shapeF(p):
+    '''funcionReservada : ID0 SHAPEF'''
+    nodo = TreeNode("funcion")
+    nodo.add_children([p[2], p[1]])
+    p[0] = nodo
+
+def p_shapeC(p):
+    '''funcionReservada : ID0 SHAPEC'''
+    nodo = TreeNode("funcion")
+    nodo.add_children([p[2], p[1]])
+    p[0] = nodo
 
 def p_rango(p):
     '''rango : SEG
@@ -138,3 +119,44 @@ def p_rango(p):
              | MIL'''
 
     p[0] = p[1]
+
+def p_tipo(p):
+    '''tipo : NUMERO '''
+    if p[1] == 0 or p[1] == 1:
+        p[0] = p[1]
+    else:
+        print("Error en la linea: " + str(p.lineno(1)))
+        raise Exception
+
+
+def p_conjunto_1(p):
+    '''conjunto : PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD'''
+    p[0] = [p[2], p[3], p[4]]
+
+def p_conjunto_2(p):
+    '''conjunto : PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD'''
+    p[0] = [p[2], p[3]]
+
+def p_conjunto_3(p):
+    '''conjunto : PARENTESISCI NUMERO PARENTESISCD'''
+    p[0] = [p[2]]
+
+def p_conjunto_4(p):
+    '''conjunto : PARENTESISCI NUMERO PARENTESISCD PARENTESISCI NUMERO PARENTESISCD '''
+    p[0] = [p[2], p[5]]
+
+def p_rango_matriz_1(p):
+    '''rango_matriz : PARENTESISCI NUMERO PARENTESISCD'''
+    p[0] = [p[2]]
+
+def p_rango_matriz_2(p):
+    '''conjunto : PARENTESISCI NUMERO COMA NUMERO PARENTESISCD'''
+    p[0] = [p[2], p[3], p[4]]
+
+def p_rango_matriz_3(p):
+    '''conjunto : PARENTESISCI DOSPUNTOS COMA NUMERO PARENTESISCD'''
+    p[0] = [p[2], p[3], p[4]]
+
+def p_rango_matriz_4(p):
+    '''conjunto : PARENTESISCI NUMERO PARENTESISCD PARENTESISCI NUMERO PARENTESISCD PARENTESISCI NUMERO PARENTESISCD'''
+    p[0] = [p[2], p[5], p[8]]

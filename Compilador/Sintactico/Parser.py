@@ -20,6 +20,19 @@ def p_main(p):
     p[0] = p[6]
 
 
+def p_rutina(p):
+    '''rutina : PROCEDURE ID0 PARENTESISI parametros PARENTESISD LLAVEI statements LLAVED PUNTOCOMA'''
+    print("Entra a proceso")
+
+def p_parametros_1(p):
+    '''parametros : ID0
+                  | empty'''
+    p[0] = p[1]
+
+def p_parametros_2(p):
+    '''parametros : ID0 COMA parametros'''
+    p[0] = p[2]
+
 #Se crea el parser
 def parse(lex):
     parser = yacc.yacc()

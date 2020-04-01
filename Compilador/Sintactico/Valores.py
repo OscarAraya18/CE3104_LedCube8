@@ -64,5 +64,3 @@ def p_index_list_3(p):
         print("Error. La variable no ha sido declarada")
 
 
-
-yacc.yacc()

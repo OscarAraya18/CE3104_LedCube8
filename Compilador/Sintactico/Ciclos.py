@@ -35,7 +35,11 @@ def p_loop_for_2(p):
 
 
 
-def p_iterable(p):
+def p_iterable_1(p):
     '''iterable : NUMERO
-                | lista'''
+                | ID0'''
+    p[0] = [p[1]]
 
+def p_iterable_2(p):
+    '''iterable : ID0 conjunto'''
+    p[0] = [p[1], p[2]]
