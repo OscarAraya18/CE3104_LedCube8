@@ -79,6 +79,8 @@ def p_asignacion_1(p):
     id_en_variables = variables.get(ID, False)
     if not id_en_variables:
         variables[ID] = valores.pop()
+        valores.clear()
+        valores2.clear()
     else:
         valor = variables[ID]
         asig = valores.pop()
@@ -104,6 +106,10 @@ def p_asignacion_range(p):
             list.append(p[7])
         variables[ID] = list
         p[0] = variables
+    else:
+        print("Error. La variable ya ha sido declarada")
+        print("Linea: " + str(p.lineno(2)))
+
     print(variables)
 
 
@@ -229,12 +235,6 @@ def p_lista_1(p):
             valores.append(valores_aux)
 
     p[0] = valores.copy()
-
-def p_lista_2(p):
-    ''' lista : empty'''
-    p[0] = p[1]
-
-
 
 
 

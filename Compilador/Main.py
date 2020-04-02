@@ -6,6 +6,7 @@ from Compilador.Sintactico.Parser import *
 def Main():
     data = ''' Procedure Main(){
             miLista.del(2);
+            m = [ [[True,True], [False,False]], [[True,True], [False,False]] ];
             miLista.insert([True, False, True], 1, 1);
             len(miLista);
             x[1:4].Neg;
@@ -13,11 +14,16 @@ def Main():
             miLista[:3].T;
             miLista[1].F;
             miLista[1:3].F;
+            miLista.shapeC
+            miLista.shapeF
+            miLista.shapeA
             Blink(x[1], 5, Min, True);
             Blink(x[1], True);
             Delay();
+            CALL miProc();
+            CALL miProc(1,2);
             Delay(3, Seg);
-            If miVar[:,1] == 5 {
+            If miVar == 5 {
                 jaja = 2;
             };
             Procedure jAAA (){

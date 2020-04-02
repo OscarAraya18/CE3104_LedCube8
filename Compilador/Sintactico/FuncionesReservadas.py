@@ -102,15 +102,28 @@ def p_delay_2(p):
     print("Entra al delay")
 
 def p_shapeF(p):
-    '''funcionReservada : ID0 SHAPEF'''
+    '''funcionReservada : ID0 PUNTO SHAPEF'''
     nodo = TreeNode("funcion")
     nodo.add_children([p[2], p[1]])
     p[0] = nodo
 
 def p_shapeC(p):
-    '''funcionReservada : ID0 SHAPEC'''
+    '''funcionReservada : ID0 PUNTO SHAPEC'''
     nodo = TreeNode("funcion")
     nodo.add_children([p[2], p[1]])
+    p[0] = nodo
+
+def p_shapeA(p):
+    '''funcionReservada : ID0 PUNTO SHAPEA'''
+    nodo = TreeNode("funcion")
+    nodo.add_children([p[2], p[1]])
+    p[0] = nodo
+
+
+def p_call(p):
+    '''funcionReservada : CALL ID0 PARENTESISI parametrosFuncion PARENTESISD PUNTOCOMA'''
+    nodo = TreeNode("funcion")
+    nodo.add_children([p[1], p[2], p[4]])
     p[0] = nodo
 
 def p_rango(p):
@@ -160,3 +173,18 @@ def p_rango_matriz_3(p):
 def p_rango_matriz_4(p):
     '''conjunto : PARENTESISCI NUMERO PARENTESISCD PARENTESISCI NUMERO PARENTESISCD PARENTESISCI NUMERO PARENTESISCD'''
     p[0] = [p[2], p[5], p[8]]
+
+
+def p_parametros_funcion_1(p):
+    '''parametrosFuncion : ID0
+                         | NUMERO
+                         | empty'''
+    p[0] = p[1]
+
+def p_parametros_funcion_2(p):
+    '''parametrosFuncion : ID0 COMA parametrosFuncion'''
+    p[0] = p[2]
+
+def p_parametros_funcion_3(p):
+    '''parametrosFuncion : NUMERO COMA parametrosFuncion'''
+    p[0] = p[2]
