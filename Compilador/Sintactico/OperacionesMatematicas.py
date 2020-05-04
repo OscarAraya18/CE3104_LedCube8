@@ -76,32 +76,6 @@ def p_factor_num(p):
     'factor : NUMERO'
     p[0] = p[1]
 
-'''
-def p_factor_ID(p):
-    'factor : ID0'
-    try:
-        if isinstance(variables[p[1]][-1], int):
-            p[0] = variables[p[1]][-1]
-        else:
-            print("'" + p[1] + "'", "must be integer")
-    except KeyError:
-        print("Syntactic Error: Variable %s has not been declared." % p[1])
-        p[0] = 0
-
-
-def p_factor_array(p):
-    'factor : ID0 PARENTESISCI NUMERO PARENTESISCD'
-    if variables[p[1]]:
-        arrayList = variables[p[1]][1]
-        if p[3] < len(arrayList):
-            value = arrayList[p[3]]
-            p[0] = value
-        else:
-            print("Index out of range")
-    else:
-        print("Syntactic Error: Variable %s has not been declared." % p[1])
-        
-    '''
 
 def p_factor_expr(p):
     'factor : PARENTESISI expression PARENTESISD'
@@ -111,7 +85,6 @@ def p_factor_expr(p):
 def p_empty(p):
     "empty :"
     pass
-
 
 # Error rule for syntax errors
 def p_error(p):

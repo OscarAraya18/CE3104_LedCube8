@@ -1,4 +1,5 @@
 from Compilador.EstructurasDeDatos.TreeNode import TreeNode
+from Compilador.Sintactico.OperacionesMatematicas import *
 
 
 def p_insert(p):
@@ -110,13 +111,13 @@ def p_shapeF(p):
 def p_shapeC(p):
     '''funcionReservada : ID0 PUNTO SHAPEC'''
     nodo = TreeNode("funcion")
-    nodo.add_children([p[2], p[1]])
+    nodo.add_children([p[3], p[1]])
     p[0] = nodo
 
 def p_shapeA(p):
     '''funcionReservada : ID0 PUNTO SHAPEA'''
     nodo = TreeNode("funcion")
-    nodo.add_children([p[2], p[1]])
+    nodo.add_children([p[3], p[1]])
     p[0] = nodo
 
 
@@ -124,6 +125,8 @@ def p_call(p):
     '''funcionReservada : CALL ID0 PARENTESISI parametrosFuncion PARENTESISD PUNTOCOMA'''
     nodo = TreeNode("funcion")
     nodo.add_children([p[1], p[2], p[4]])
+    print("Entra al call")
+    print(variables)
     p[0] = nodo
 
 def p_rango(p):
@@ -157,6 +160,10 @@ def p_conjunto_3(p):
 def p_conjunto_4(p):
     '''conjunto : PARENTESISCI NUMERO PARENTESISCD PARENTESISCI NUMERO PARENTESISCD '''
     p[0] = [p[2], p[5]]
+
+def p_conjunto_5(p):
+    '''conjunto : empty'''
+    p[0] = []
 
 def p_rango_matriz_1(p):
     '''rango_matriz : PARENTESISCI NUMERO PARENTESISCD'''

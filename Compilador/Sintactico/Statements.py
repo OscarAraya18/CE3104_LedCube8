@@ -47,7 +47,7 @@ def p_statements_6(p):
 
 def p_statements_7(p):
     '''statements : rutina statements'''
-    p[0] = p[1]
+    p[0] = p[2]
 
 def p_asignacion_0(p):
     'asignacion : ID0 ASIGNACION valor PUNTOCOMA'
@@ -55,108 +55,108 @@ def p_asignacion_0(p):
     id_en_variables = variables.get(ID, False)
     if not id_en_variables:
         if len(valores) > 0:
-            variables[ID] = valores.pop()
-            if isinstance(variables[ID], list):
-                variables[ID] += valores2
+            variables[ID] = [valores.pop()]
+            if isinstance(variables[ID][-1], list):
+                variables[ID][-1] += valores2
         else:
-            variables[ID] = valores2[0]
-        valores.clear()
-        valores2.clear()
+            variables[ID][-1] = valores2[0]
     else:
-        # Aqui cambia el valor de una variable ya establecida
-        # tengo que revisar si es correcto hacer x, y ,z = 1, 2, 3;
-        # y si anteriormente x, y o z estaba definida. Ej: x = 2 anteriormente y ahora x va a ser 1
-        valor = variables[ID]
-        if isinstance(valor, valores.pop()):
-            variables[ID] = valores.pop()
-            #variables[ID] += valores2
+        if len(valores) > 0:
+            variables[ID] += [valores.pop()]
+            if isinstance(variables[ID][-1], list):
+                variables[ID][-1] += valores2
+        else:
+            variables[ID][-1] = valores2[0]
     print(variables)
 
 def p_asignacion_1(p):
     'asignacion : ID0 COMA asignacion'
     ID = p[1]
-    print(ID)
     id_en_variables = variables.get(ID, False)
     if not id_en_variables:
-        variables[ID] = valores.pop()
-        valores.clear()
-        valores2.clear()
+        lenValores = len(valores)
+        lenVariables = len(variables)
+        if (lenValores - lenVariables) >= 2:
+            print("Error. La asignacion no es correcta")
+            print("Linea: " + str(p.lineno(1)))
+            raise Exception
+        else:
+            variables[ID] = [valores.pop()]
     else:
-        valor = variables[ID]
-        asig = valores.pop()
-        if isinstance(asig, type(valor)):
-            variables[ID] = asig
-    #p[0] = variables
-    print(variables)
-
+        variables[ID] += [valores.pop()]
 
 def p_asignacion_2(p):
     'asignacion : ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA'
-    variables[p[1]] = []
-    print(variables)
+    variables[p[1]] = [[]]
 
 
 def p_asignacion_range(p):
     'asignacion : ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA'
     ID = p[1]
     id_en_variables = variables.get(ID, False)
+    list = []
+    for x in range(p[5]):
+        list.append(p[7])
     if not id_en_variables:
-        list = []
-        for x in range(p[5]):
-            list.append(p[7])
-        variables[ID] = list
-        p[0] = variables
+        variables[ID] = [list]
     else:
-        print("Error. La variable ya ha sido declarada")
-        print("Linea: " + str(p.lineno(2)))
+        variables[ID] += [list]
 
     print(variables)
 
 
 def p_asignacion_index(p):
     'asignacion : ID0 conjunto ASIGNACION valor PUNTOCOMA'
-
     ID = p[1]
     id_en_variables = variables.get(ID, False)
     if id_en_variables != False:
         valor = variables[ID]
-        # if isinstance(valor, list):
-        #     if len(valor) > p[3]:
-        #         valor[p[3]] = p[6]
-        #         variables[ID] = valor
-        #         p[0] = variables
-        #     else:
-        #         print("Error. Indice fuera de rango")
-        # else:
-        #     print("Error. La variable no es indexable")
     else:
         print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
 
 
 def p_asignacion_index_2(p):
     'asignacion : ID0 conjunto ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA'
+    print("EEEEE")
+    ID = p[1]
+    conjunto = p[2]
+    id_en_variables = variables.get(ID, False)
+    print(p[2])
+    if id_en_variables != False:
+        valor = variables[ID][0]
+        if len(conjunto) == 1:
+            print("1")
+        elif len(conjunto) == 2:
+            print("2")
+        elif len(conjunto) == 3:
+            print("3")
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
 
+def p_asignacion_index_3(p):
+    'asignacion : ID0 conjunto ASIGNACION ID0 conjunto PUNTOCOMA'
     ID = p[1]
     id_en_variables = variables.get(ID, False)
     if id_en_variables != False:
         valor = variables[ID]
-        # if isinstance(valor, list):
-        #     if len(valor) > p[5] and p[5] > p[3]:
-        #         if (p[5] - p[3]) == len(valores):
-        #             valor[p[3]:p[5]] = valores
-        #             variables[ID] = valor
-        #             p[0] = variables
-        #         else:
-        #             print("Error Sintáctico.Debe indicar la cantidad de elementos correctos")
-        #             print("Linea: " + str(p.lineno(2)))
-        #     else:
-        #         print("Error Sintáctico. Indice fuera de rango o declaracion incorrecta de rango")
-        #         print("Linea: " + str(p.lineno(2)))
-        # else:
-        #     print("Error. La variable no es indexable")
     else:
         print("Error. La variable no ha sido declarada")
-        print("Linea: " + str(p.lineno(2)))
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
+
+def p_asignacion_index_4(p):
+    'asignacion : ID0 ASIGNACION ID0 conjunto PUNTOCOMA'
+    print("########")
+    ID = p[1]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        valor = variables[ID]
+    else:
+        print("Error. La variable no ha sido declarada")
 
 
 def p_if(p):
