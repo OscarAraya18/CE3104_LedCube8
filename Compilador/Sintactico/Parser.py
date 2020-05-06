@@ -15,7 +15,6 @@ astRoot = TreeNode("estructura")
 def p_estructura(p):
     '''estructura : rutina\
     rutina\
-    main
     '''
 
 
@@ -31,7 +30,7 @@ def p_rutina(p):
     '''rutina : PROCEDURE ID0 PARENTESISI parametros PARENTESISD LLAVEI statements LLAVED PUNTOCOMA'''
     ID = p[2]
     nombreEnTabla = tablaSimbolos.get(ID, False)
-    print(nombreEnTabla)
+    print("Esto: " + str(nombreEnTabla))
     if nombreEnTabla != False:
         lista = tablaSimbolos[ID].copy()
         for elem in lista:

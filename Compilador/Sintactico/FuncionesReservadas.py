@@ -146,19 +146,19 @@ def p_tipo(p):
 
 
 def p_conjunto_1(p):
-    '''conjunto : PARENTESISCI NUMERO DOSPUNTOS NUMERO PARENTESISCD'''
+    '''conjunto : PARENTESISCI indice DOSPUNTOS indice PARENTESISCD'''
     p[0] = [p[2], p[3], p[4]]
 
 def p_conjunto_2(p):
-    '''conjunto : PARENTESISCI DOSPUNTOS NUMERO PARENTESISCD'''
+    '''conjunto : PARENTESISCI DOSPUNTOS indice PARENTESISCD'''
     p[0] = [p[2], p[3]]
 
 def p_conjunto_3(p):
-    '''conjunto : PARENTESISCI NUMERO PARENTESISCD'''
+    '''conjunto : PARENTESISCI indice PARENTESISCD'''
     p[0] = [p[2]]
 
 def p_conjunto_4(p):
-    '''conjunto : PARENTESISCI NUMERO PARENTESISCD PARENTESISCI NUMERO PARENTESISCD '''
+    '''conjunto : PARENTESISCI indice PARENTESISCD PARENTESISCI indice PARENTESISCD '''
     p[0] = [p[2], p[5]]
 
 def p_conjunto_5(p):
@@ -166,19 +166,19 @@ def p_conjunto_5(p):
     p[0] = []
 
 def p_rango_matriz_1(p):
-    '''rango_matriz : PARENTESISCI NUMERO PARENTESISCD'''
+    '''rango_matriz : PARENTESISCI indice PARENTESISCD'''
     p[0] = [p[2]]
 
 def p_rango_matriz_2(p):
-    '''conjunto : PARENTESISCI NUMERO COMA NUMERO PARENTESISCD'''
+    '''conjunto : PARENTESISCI indice COMA indice PARENTESISCD'''
     p[0] = [p[2], p[3], p[4]]
 
 def p_rango_matriz_3(p):
-    '''conjunto : PARENTESISCI DOSPUNTOS COMA NUMERO PARENTESISCD'''
+    '''conjunto : PARENTESISCI DOSPUNTOS COMA indice PARENTESISCD'''
     p[0] = [p[2], p[3], p[4]]
 
 def p_rango_matriz_4(p):
-    '''conjunto : PARENTESISCI NUMERO PARENTESISCD PARENTESISCI NUMERO PARENTESISCD PARENTESISCI NUMERO PARENTESISCD'''
+    '''conjunto : PARENTESISCI indice PARENTESISCD PARENTESISCI indice PARENTESISCD PARENTESISCI indice PARENTESISCD'''
     p[0] = [p[2], p[5], p[8]]
 
 
@@ -195,3 +195,8 @@ def p_parametros_funcion_2(p):
 def p_parametros_funcion_3(p):
     '''parametrosFuncion : NUMERO COMA parametrosFuncion'''
     p[0] = p[2]
+
+def p_indices(p):
+    '''indice : NUMERO
+              | ID0'''
+    p[0] = p[1]

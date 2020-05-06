@@ -5,20 +5,10 @@ from Compilador.Sintactico.Parser import *
 
 def Main():
     data = ''' 
-    Procedure jAAA (name,age, color){
-            name = 12454;
-            CALL otro();
-            };
-    Procedure jAAA (name,age){
-            hola = 3333;
-            hola = True;
-            hola = False;
-            };
-    Procedure Main(){
-            
-            CALL jAAA(kevin, 19);
-                
-    };
+    Procedure prueba (perro, gato){
+            perro = 5;
+            }
+
     '''
 
     # analyzeData(data)
