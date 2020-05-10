@@ -7,7 +7,6 @@ from Compilador.EstructurasDeDatos.TreeNode import TreeNode
 
 
 tablaSimbolos = {}
-parametros = []
 
 start = 'estructura'
 astRoot = TreeNode("estructura")
@@ -30,7 +29,6 @@ def p_rutina(p):
     '''rutina : PROCEDURE ID0 PARENTESISI parametros PARENTESISD LLAVEI statements LLAVED PUNTOCOMA'''
     ID = p[2]
     nombreEnTabla = tablaSimbolos.get(ID, False)
-    print("Esto: " + str(nombreEnTabla))
     if nombreEnTabla != False:
         lista = tablaSimbolos[ID].copy()
         for elem in lista:
@@ -48,7 +46,7 @@ def p_rutina(p):
     variables.clear()
     parametros.clear()
     p[0] = p[7]
-    print(tablaSimbolos)
+    print("Aqui: " + str(tablaSimbolos))
 
 def p_parametros_1(p):
     '''parametros : ID0'''

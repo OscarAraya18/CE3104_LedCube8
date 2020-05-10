@@ -10,4 +10,9 @@ class TreeNode:
         for child in children:
             self.add_child(child)
 
-
+    def print(self, level=0):
+        print('\t' * level + repr(self.value))
+        print(self.children)
+        for child in self.children:
+            if isinstance(child,TreeNode):
+                child.print(level + 1)

@@ -6,8 +6,14 @@ from Compilador.Sintactico.Parser import *
 def Main():
     data = ''' 
     Procedure prueba (perro, gato){
-            perro = 5;
-            }
+            a.insert(2,True);
+            m = [ [1,2,3], [4, 5, 6], [7, 8, 9]];
+            m = True;
+            ca = [];
+            f = [];
+            ca[2]  = True; 
+            f = ca[1:3];
+            };
 
     '''
 

@@ -15,6 +15,9 @@ variables = {}
 
 funcList = []
 
+parametros = []
+
+
 precedence = (
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULTIPLICACION', 'DIVISION', 'DIVISIONE'),
