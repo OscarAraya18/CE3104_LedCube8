@@ -163,7 +163,6 @@ def p_conjunto_4(p):
 
 def p_conjunto_5(p):
     '''conjunto : empty'''
-    p[0] = []
 
 def p_rango_matriz_1(p):
     '''rango_matriz : PARENTESISCI indice PARENTESISCD'''

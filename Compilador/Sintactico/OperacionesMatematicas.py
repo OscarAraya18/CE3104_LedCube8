@@ -17,6 +17,7 @@ funcList = []
 
 parametros = []
 
+ifList = []
 
 precedence = (
     ('left', 'SUMA', 'RESTA'),

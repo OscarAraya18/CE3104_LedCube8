@@ -46,7 +46,6 @@ def p_statements_5(p):
 
 def p_statements_6(p):
     '''statements : bifurcacion statements'''
-    funcList.insert(0, p[1])
     p[0] = p[1]
 
 def p_statements_7(p):
@@ -65,7 +64,7 @@ def p_asignacion_0(p):
             #     print("WTF")
             #     variables[ID][-1] += valores2
         else:
-            variables[ID] = [valores2[0]]
+            variables[ID] = [valores2.pop()]
     else:
         nodo = TreeNode("asignacion")
         nodo.add_child(ID)
@@ -77,7 +76,6 @@ def p_asignacion_0(p):
         else:
             nodo.add_child(valores2.copy())
             valores2.clear()
-            variables[ID][-1] = valores2[0]
         nodo.print()
         p[0] = nodo
 
@@ -95,9 +93,7 @@ def p_asignacion_1(p):
         else:
             print("Valores: " + str(valores))
             variables[ID] = [valores.pop()]
-    else:
-        #ids.append(ID)
-        variables[ID] += [valores[-1]]
+
 
 def p_asignacion_2(p):
     'asignacion : ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA'
@@ -125,29 +121,34 @@ def p_asignacion_index(p):
     ID = p[1]
     id_en_variables = variables.get(ID, False)
     if id_en_variables != False:
-        nodo =TreeNode("asignacion")
-        nodo.add_children([ID, p[2], p[4]])
-        nodo.print()
-        p[0] = nodo
-    else:
-        print("Error. La variable no ha sido declarada")
-        print("Linea: " + str(p.lineno(1)))
-        raise Exception
-
-
-def p_asignacion_index_2(p):
-    'asignacion : ID0 conjunto ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA'
-    ID = p[1]
-    id_en_variables = variables.get(ID, False)
-    if id_en_variables != False:
         nodo = TreeNode("asignacion")
-        nodo.add_children([ID, p[2], p[5]])
+        nodo.add_children([ID, p[2]])
+        if len(valores) > 0:
+            nodo.add_child(valores.copy())
+            valores.clear()
+        else:
+            nodo.add_child(valores2.pop())
         nodo.print()
         p[0] = nodo
     else:
         print("Error. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
         raise Exception
+
+
+# def p_asignacion_index_2(p):
+#     'asignacion : ID0 conjunto ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA'
+#     ID = p[1]
+#     id_en_variables = variables.get(ID, False)
+#     if id_en_variables != False:
+#         nodo = TreeNode("asignacion")
+#         nodo.add_children([ID, p[2], p[5]])
+#         nodo.print()
+#         p[0] = nodo
+#     else:
+#         print("Error. La variable no ha sido declarada")
+#         print("Linea: " + str(p.lineno(1)))
+#         raise Exception
 
 def p_asignacion_index_3(p):
     'asignacion : ID0 conjunto ASIGNACION ID0 conjunto PUNTOCOMA'
@@ -180,17 +181,34 @@ def p_asignacion_index_4(p):
 
 
 def p_if(p):
-    '''bifurcacion : IF ID0 operador valor LLAVEI statements LLAVED PUNTOCOMA'''
-    nodo = TreeNode("IF")
-    nodo.add_children([p[2], p[3], p[4]])
-    #Me falta poner que por cada funcionReservada , loop y eso
-    #agregue un nuevo hijo
-    print("Entra al if")
+    '''bifurcacion : IF ID0 conjunto operador valor_b LLAVEI statements LLAVED PUNTOCOMA'''
+    ID = p[2]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        nodo = TreeNode("IF")
+        if p[3] is not None:
+            nodo.add_children([p[1], [ID, p[3]], p[4], p[5], p[7]])
+        else:
+            nodo.add_children([p[1], ID, p[4], p[5], p[7]])
 
+        for child in ifList:
+            nodo.add_child(child)
+        ifList.clear()
 
-def p_if_2(p):
-    '''bifurcacion : IF ID0 conjunto operador valor LLAVEI statements LLAVED PUNTOCOMA'''
-    print("Entra al if")
+        for child in funcList:
+            nodo.add_child(child)
+        nodo.print()
+        p[0] = nodo
+        ifList.insert(0, nodo)
+        funcList.clear()
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
+
+# def p_if_2(p):
+#     '''bifurcacion : IF ID0 conjunto operador valor LLAVEI statements LLAVED PUNTOCOMA'''
+#     print("Entra al if")
 
 
 def p_operador(p):
@@ -220,6 +238,22 @@ def p_valor_2(p):
 
 def p_valor_3(p):
     '''valor : lista'''
+    p[0] = p[1]
+
+def p_valor_b(p):
+    '''valor_b : ID0 conjunto'''
+    ID = p[1]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        p[0] = [ID, p[2]]
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
+
+def p_valor_b2(p):
+    '''valor_b : NUMERO
+               | bool '''
     p[0] = p[1]
 
 def p_bool(p):

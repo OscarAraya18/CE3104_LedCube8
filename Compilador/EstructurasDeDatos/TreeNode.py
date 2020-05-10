@@ -12,7 +12,7 @@ class TreeNode:
 
     def print(self, level=0):
         print('\t' * level + repr(self.value))
-        print(self.children)
+        print('\t' * level + repr(self.children))
         for child in self.children:
             if isinstance(child,TreeNode):
                 child.print(level + 1)
