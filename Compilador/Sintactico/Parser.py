@@ -12,9 +12,25 @@ start = 'estructura'
 astRoot = TreeNode("estructura")
 
 def p_estructura(p):
-    '''estructura : rutina\
+    '''estructura : main\
     rutina\
-    '''
+    rutina\
+    rutina\
+    rutina\
+    rutina '''
+
+    ListaLlaves = ["main", "img1", "img2", "img3", "img4", "img5"]
+    index = 0
+    for i in range(1, 6):
+        node = TreeNode(ListaLlaves[index])
+        if p[i]:
+            node.add_children(p[i])
+        astRoot.add_child(node)
+        index += 1
+    p[0] = astRoot
+    print("#############################################   A     S     T   ##########################################################")
+    astRoot.print()
+
 
 
 def p_main(p):
@@ -27,6 +43,8 @@ def p_main(p):
 
 def p_rutina(p):
     '''rutina : PROCEDURE ID0 PARENTESISI parametros PARENTESISD LLAVEI statements LLAVED PUNTOCOMA'''
+    forList.clear()
+    funcList.clear()
     ID = p[2]
     nombreEnTabla = tablaSimbolos.get(ID, False)
     if nombreEnTabla != False:
@@ -45,11 +63,14 @@ def p_rutina(p):
         tablaSimbolos[p[2]] = [variables.copy()]
     variables.clear()
     parametros.clear()
-    p[0] = p[7]
-    print("Aqui: " + str(tablaSimbolos))
+
+    p[0] = inst.copy()
+    inst.clear()
+
 
 def p_parametros_1(p):
-    '''parametros : ID0'''
+    '''parametros : ID0
+                  | empty '''
     p[0] = p[1]
     variables[p[1]] = []
     parametros.append(p[1])

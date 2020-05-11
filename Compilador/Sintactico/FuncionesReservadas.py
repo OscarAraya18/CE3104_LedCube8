@@ -4,24 +4,45 @@ from Compilador.Sintactico.OperacionesMatematicas import *
 
 def p_insert(p):
     '''funcionReservada : ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[3], p[1], p[5], p[7]])
-    p[0] = nodo
+    ID = p[1]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        nodo = TreeNode("funcion")
+        nodo.add_children([p[3], p[1], p[5], p[7]])
+        p[0] = nodo
+
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
     print("Entra al insert")
 
 def p_insert_2(p):
     '''funcionReservada : ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[3], p[1], p[5], p[7], p[9]])
-    p[0] = nodo
-    print(p[5])
+    ID = p[1]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        nodo = TreeNode("funcion")
+        nodo.add_children([p[3], p[1], p[5], p[7], p[9]])
+        p[0] = nodo
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
     print("Entra al insert")
 
 def p_insert_3(p):
     '''funcionReservada : ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA '''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[3], p[1], p[5], p[7]])
-    p[0] = nodo
+    ID = p[1]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        nodo = TreeNode("funcion")
+        nodo.add_children([p[3], p[1], p[5], p[7]])
+        p[0] = nodo
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
     print("Entra al insert")
 
 
@@ -50,41 +71,82 @@ def p_len(p):
 
 def p_neg(p):
     '''funcionReservada : ID0 conjunto PUNTO NEG PUNTOCOMA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[4], p[1], p[2]])
-    p[0] = nodo
+    ID  = p[1]
+    id_en_variables = variables.get(ID, False)
+    if  id_en_variables != False:
+        nodo = TreeNode("funcion")
+        nodo.add_children([p[4], [p[1], p[2]]])
+        p[0] = nodo
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
     print("Entra al neg ")
 
 
 def p_t(p):
     '''funcionReservada : ID0 conjunto PUNTO T PUNTOCOMA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[4], p[1], p[2]])
-    p[0] = nodo
+    ID = p[1]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        nodo = TreeNode("funcion")
+        nodo.add_children([p[4], [p[1], p[2]]])
+        p[0] = nodo
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
     print("Entra al T")
 
 
 def p_f(p):
     '''funcionReservada : ID0 conjunto PUNTO F PUNTOCOMA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[4], p[1], p[2]])
-    p[0] = nodo
+    ID = p[1]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        nodo = TreeNode("funcion")
+        nodo.add_children([p[4], [p[1], p[2]]])
+        p[0] = nodo
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
     print("Entra al F")
 
 
 def p_blink_1(p):
     '''funcionReservada : BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA '''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[1], p[3], p[4], p[6], p[8], p[10]])
-    p[0] = nodo
+    ID = p[3]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        nodo = TreeNode("funcion")
+        if p[4] is None:
+            nodo.add_children([p[1], p[3], p[6], p[8], p[10]])
+        else:
+            nodo.add_children([p[1], [p[3], p[4]], p[6], p[8], p[10]])
+        p[0] = nodo
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
     print("Entra a blink")
 
 
 def p_blink_2(p):
     '''funcionReservada : BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[1], p[3], p[4], p[6]])
-    p[0] = nodo
+    ID = p[3]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        nodo = TreeNode("funcion")
+        if p[4] is None:
+            nodo.add_children([p[1], p[3], p[6]])
+        else:
+            nodo.add_children([p[1], [p[3], p[4]], p[6]])
+        p[0] = nodo
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
     print("Entra a blink")
 
 
@@ -104,21 +166,42 @@ def p_delay_2(p):
 
 def p_shapeF(p):
     '''funcionReservada : ID0 PUNTO SHAPEF'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[2], p[1]])
-    p[0] = nodo
+    ID = p[1]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        nodo = TreeNode("funcion")
+        nodo.add_children([p[3], ID])
+        p[0] = nodo
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
 
 def p_shapeC(p):
     '''funcionReservada : ID0 PUNTO SHAPEC'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[3], p[1]])
-    p[0] = nodo
+    ID = p[1]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        nodo = TreeNode("funcion")
+        nodo.add_children([p[3], ID])
+        p[0] = nodo
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
 
 def p_shapeA(p):
     '''funcionReservada : ID0 PUNTO SHAPEA'''
-    nodo = TreeNode("funcion")
-    nodo.add_children([p[3], p[1]])
-    p[0] = nodo
+    ID = p[1]
+    id_en_variables = variables.get(ID, False)
+    if id_en_variables != False:
+        nodo = TreeNode("funcion")
+        nodo.add_children([p[3], ID])
+        p[0] = nodo
+    else:
+        print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
 
 
 def p_call(p):

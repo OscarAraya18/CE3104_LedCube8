@@ -19,6 +19,10 @@ parametros = []
 
 ifList = []
 
+forList = []
+
+inst = []
+
 precedence = (
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULTIPLICACION', 'DIVISION', 'DIVISIONE'),

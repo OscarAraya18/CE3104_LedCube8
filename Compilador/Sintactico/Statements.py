@@ -15,49 +15,55 @@ from Compilador.Lexer.AnalizadorLexico import *
 from Compilador.Sintactico.Ciclos import *
 from Compilador.Sintactico.FuncionesReservadas import *
 
-
 valores = []
 valores2 = []
-
-
 ids = []
+
 
 def p_statements_1(p):
     '''statements : COMENTARIO statements'''
     p[0] = p[2]
 
+
 def p_statements_2(p):
     '''statements : empty'''
-    p[0] = p[1]
+
 
 def p_statements_3(p):
     '''statements : expression PUNTOCOMA statements'''
     p[0] = p[3]
 
+
 def p_statements_4(p):
     '''statements : loop statements
                   | asignacion statements'''
+    if p[2]:
+        inst.insert(0, p[2])
     p[0] = p[1]
+
+
 
 def p_statements_5(p):
     '''statements : funcionReservada statements'''
     funcList.insert(0, p[1])
     p[0] = p[2]
 
+
 def p_statements_6(p):
     '''statements : bifurcacion statements'''
     p[0] = p[1]
 
+
 def p_statements_7(p):
     '''statements : rutina statements'''
     p[0] = p[2]
+
 
 def p_asignacion_0(p):
     'asignacion : ID0 ASIGNACION valor PUNTOCOMA'
     ID = p[1]
     id_en_variables = variables.get(ID, False)
     if not id_en_variables:
-        #ids.append(ID)
         if len(valores) > 0:
             variables[ID] = [valores.pop()]
             # if isinstance(variables[ID][-1], list):
@@ -74,10 +80,10 @@ def p_asignacion_0(p):
             # if isinstance(variables[ID][-1], list):
             #     variables[ID][-1] += valores2
         else:
-            nodo.add_child(valores2.copy())
-            valores2.clear()
+            nodo.add_child(valores2.pop())
         nodo.print()
         p[0] = nodo
+
 
 def p_asignacion_1(p):
     'asignacion : ID0 COMA asignacion'
@@ -151,14 +157,16 @@ def p_asignacion_index(p):
 #         raise Exception
 
 def p_asignacion_index_3(p):
-    'asignacion : ID0 conjunto ASIGNACION ID0 conjunto PUNTOCOMA'
+    'asignacion : ID0 conjunto ASIGNACION valor_b PUNTOCOMA'
     ID = p[1]
-    ID2 = p[4]
     id1_en_variables = variables.get(ID, False)
-    id2_en_variables = variables.get(ID2, False)
-    if id1_en_variables != False and id2_en_variables != False:
+    if id1_en_variables != False:
         nodo = TreeNode("asignacion")
-        nodo.add_children([ID, p[2], [ID2, p[5]]])
+        if p[3] is None:
+            nodo.add_child(ID)
+        else:
+            nodo.add_child([ID, p[2]])
+        nodo.add_child(p[4])
         nodo.print()
         p[0] = nodo
     else:
@@ -166,18 +174,20 @@ def p_asignacion_index_3(p):
         print("Linea: " + str(p.lineno(1)))
         raise Exception
 
+
 def p_asignacion_index_4(p):
-    'asignacion : ID0 ASIGNACION ID0 conjunto PUNTOCOMA'
+    'asignacion : ID0 ASIGNACION valor_b PUNTOCOMA'
     ID = p[1]
-    ID2 = p[3]
     id_en_variables = variables.get(ID, False)
     if id_en_variables != False:
         nodo = TreeNode("asignacion")
-        nodo.add_children([ID, [ID2, p[4]]])
+        nodo.add_children([ID, p[3]])
         nodo.print()
         p[0] = nodo
     else:
         print("Error. La variable no ha sido declarada")
+        print("Linea: " + str(p.lineno(1)))
+        raise Exception
 
 
 def p_if(p):
@@ -185,7 +195,7 @@ def p_if(p):
     ID = p[2]
     id_en_variables = variables.get(ID, False)
     if id_en_variables != False:
-        nodo = TreeNode("IF")
+        nodo = TreeNode("if")
         if p[3] is not None:
             nodo.add_children([p[1], [ID, p[3]], p[4], p[5], p[7]])
         else:
@@ -206,6 +216,7 @@ def p_if(p):
         print("Linea: " + str(p.lineno(1)))
         raise Exception
 
+
 # def p_if_2(p):
 #     '''bifurcacion : IF ID0 conjunto operador valor LLAVEI statements LLAVED PUNTOCOMA'''
 #     print("Entra al if")
@@ -219,6 +230,7 @@ def p_operador(p):
                 | MAYORIGUALQUE
                 | MENORIGUALQUE '''
     p[0] = p[1]
+
 
 def p_valor_0(p):
     '''valor : NUMERO
@@ -236,9 +248,11 @@ def p_valor_2(p):
     '''valor2 : COMA valor'''
     p[0] = p[2]
 
+
 def p_valor_3(p):
     '''valor : lista'''
     p[0] = p[1]
+
 
 def p_valor_b(p):
     '''valor_b : ID0 conjunto'''
@@ -251,10 +265,12 @@ def p_valor_b(p):
         print("Linea: " + str(p.lineno(1)))
         raise Exception
 
+
 def p_valor_b2(p):
     '''valor_b : NUMERO
                | bool '''
     p[0] = p[1]
+
 
 def p_bool(p):
     '''bool : TRUE
@@ -265,6 +281,7 @@ def p_bool(p):
 def p_comentario_opcional(p):
     '''comentario_opcional : COMENTARIO
                            | empty'''
+
 
 def p_lista_1(p):
     ''' lista : PARENTESISCI valor PARENTESISCD'''
@@ -292,7 +309,3 @@ def p_lista_1(p):
             valores.append(valores_aux)
 
     p[0] = valores.copy()
-
-
-
-
