@@ -1,3 +1,14 @@
+# ------------------------------------------------------------
+# Codigo Fuente: Parser.py
+# Desarrollado por: Saymon Astúa, Oscar Araya
+# Proyecto: LedCube8
+# Version: Beta
+#
+# Descripcion: Gramatica de la estructura principal del programa
+# TEC 2020 | CE3104 - Lenguajes, Compiladores e Interpretes
+# ------------------------------------------------------------
+
+
 import Compilador.ply.ply.yacc as yacc
 from Compilador.Lexer.AnalizadorLexico import *
 from Compilador.Sintactico.OperacionesMatematicas import *
@@ -5,8 +16,6 @@ from Compilador.Sintactico.Statements import *
 from Compilador.EstructurasDeDatos.TreeNode import TreeNode
 
 
-
-tablaSimbolos = {}
 
 start = 'estructura'
 astRoot = TreeNode("estructura")
@@ -21,7 +30,7 @@ def p_estructura(p):
 
     ListaLlaves = ["main", "img1", "img2", "img3", "img4", "img5"]
     index = 0
-    for i in range(1, 6):
+    for i in range(1, 7):
         node = TreeNode(ListaLlaves[index])
         if p[i]:
             node.add_children(p[i])
@@ -38,7 +47,9 @@ def p_main(p):
     print("Entra al main")
     tablaSimbolos[p[2]] = variables.copy()
     variables.clear()
-    p[0] = p[6]
+    p[0] = inst.copy() + funcList.copy()
+    funcList.clear()
+    inst.clear()
 
 
 def p_rutina(p):

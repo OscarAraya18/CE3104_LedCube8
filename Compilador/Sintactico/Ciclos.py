@@ -31,6 +31,7 @@ def p_loop_for_2(p):
     '''loop : FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA'''
     nodo = TreeNode("for")
     nodo.add_children([p[1], p[2], p[4], 1])
+
     for child in forList:
         nodo.add_child(child)
     forList.clear()

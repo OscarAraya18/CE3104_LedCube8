@@ -23,6 +23,8 @@ forList = []
 
 inst = []
 
+tablaSimbolos = {}
+
 precedence = (
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULTIPLICACION', 'DIVISION', 'DIVISIONE'),

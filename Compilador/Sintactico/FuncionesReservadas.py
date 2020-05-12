@@ -1,6 +1,19 @@
+# ------------------------------------------------------------
+# Codigo Fuente: FuncionesReservadas.py
+# Desarrollado por: Saymon Astúa, Oscar Araya
+# Proyecto: LedCube8
+# Version: Beta
+#
+# Descripcion: Gramatica de las funciones reservadas
+# TEC 2020 | CE3104 - Lenguajes, Compiladores e Interpretes
+# ------------------------------------------------------------
+
+
 from Compilador.EstructurasDeDatos.TreeNode import TreeNode
 from Compilador.Sintactico.OperacionesMatematicas import *
 
+
+param = []
 
 def p_insert(p):
     '''funcionReservada : ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA'''
@@ -207,7 +220,8 @@ def p_shapeA(p):
 def p_call(p):
     '''funcionReservada : CALL ID0 PARENTESISI parametrosFuncion PARENTESISD PUNTOCOMA'''
     nodo = TreeNode("funcion")
-    nodo.add_children([p[1], p[2], p[4]])
+    nodo.add_children([p[1], p[2], param.copy()])
+    param.clear()
     print("Entra al call")
     print(variables)
     p[0] = nodo
@@ -268,15 +282,18 @@ def p_parametros_funcion_1(p):
     '''parametrosFuncion : ID0
                          | NUMERO
                          | empty'''
-    p[0] = p[1]
+
+    if p[1]:
+        param.insert(0, p[1])
+
 
 def p_parametros_funcion_2(p):
     '''parametrosFuncion : ID0 COMA parametrosFuncion'''
-    p[0] = p[2]
+    param.insert(0, p[1])
 
 def p_parametros_funcion_3(p):
     '''parametrosFuncion : NUMERO COMA parametrosFuncion'''
-    p[0] = p[2]
+    param.insert(0, p[1])
 
 def p_indices(p):
     '''indice : NUMERO

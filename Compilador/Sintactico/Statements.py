@@ -51,6 +51,7 @@ def p_statements_5(p):
 
 def p_statements_6(p):
     '''statements : bifurcacion statements'''
+    funcList.insert(0, p[1])
     p[0] = p[1]
 
 
@@ -83,7 +84,6 @@ def p_asignacion_0(p):
             nodo.add_child(valores2.pop())
         nodo.print()
         p[0] = nodo
-
 
 def p_asignacion_1(p):
     'asignacion : ID0 COMA asignacion'
@@ -197,19 +197,19 @@ def p_if(p):
     if id_en_variables != False:
         nodo = TreeNode("if")
         if p[3] is not None:
-            nodo.add_children([p[1], [ID, p[3]], p[4], p[5], p[7]])
+            nodo.add_children([p[1], [ID, p[3]], p[4], p[5]])
         else:
-            nodo.add_children([p[1], ID, p[4], p[5], p[7]])
+            nodo.add_children([p[1], ID, p[4], p[5]])
 
-        for child in ifList:
-            nodo.add_child(child)
-        ifList.clear()
+        # for child in ifList:
+        #     nodo.add_child(child)
+        # ifList.clear()
 
         for child in funcList:
             nodo.add_child(child)
         nodo.print()
         p[0] = nodo
-        ifList.insert(0, nodo)
+        #ifList.insert(0, nodo)
         funcList.clear()
     else:
         print("Error. La variable no ha sido declarada")

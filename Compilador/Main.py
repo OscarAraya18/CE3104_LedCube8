@@ -6,7 +6,7 @@ from Compilador.Sintactico.Parser import *
 def Main():
     data = ''' 
     Procedure Main(){
-    
+        CALL img5();
     };
     
     Procedure img1 (perro, gato){
@@ -40,16 +40,21 @@ def Main():
                 for var6 in ca[4:6] Step 2{
                     m[var1, var2].Neg;
                 };
+                
+             m = [False, False];
+             
+             
             };
+            
         };
         
     Procedure img4 (){
             m = [ [1,2,3], [4, 5, 6]];
             m = True;
             ca = [];
-            for var7 in ca[1:3] {
-                for var8 in ca[4:6] Step 2{
-                    m[var1, var2].Neg;
+            If ca == 3{
+                If m== 9 {
+                    ca[2:1].T;
                 };
             };
     };
@@ -60,7 +65,9 @@ def Main():
             ca = [];
             for var9 in ca[1:3] {
                 for var10 in ca[4:6] Step 2{
-                    m[var1, var2].Neg;
+                    If ca == 4{
+                        m[var1, var2].Neg;
+                    };
                 };
             };
     };
