@@ -25,6 +25,10 @@ inst = []
 
 tablaSimbolos = {}
 
+variablesGlobales = {}
+
+
+
 precedence = (
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULTIPLICACION', 'DIVISION', 'DIVISIONE'),

@@ -39,6 +39,7 @@ def p_estructura(p):
     p[0] = astRoot
     print("#############################################   A     S     T   ##########################################################")
     astRoot.print()
+    print(tablaSimbolos)
 
 
 
