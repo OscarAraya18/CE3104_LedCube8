@@ -44,8 +44,8 @@ def p_estructura(p):
     print("#############################################   A     S     T   ##########################################################")
     astRoot.print()
     print(tablaSimbolos)
-    print(variablesGlobales)
-    print(consConfi)
+    print("Variables globales: " + str(variablesGlobales))
+    print("Constantes de configuración: " + str(consConfi))
 
 
 
@@ -83,9 +83,13 @@ def p_rutina(p):
                 variables["parametros"] = parametros.copy()
                 tablaSimbolos[p[2]] += [variables.copy()]
             else:
-                print("Error. Proceso definido anteriormente")
-                print("Linea: " + str(p.lineno(1)))
-                raise Exception
+                if param[0] == None and parametros[0] != None:
+                    variables["parametros"] = parametros.copy()
+                    tablaSimbolos[p[2]] += [variables.copy()]
+                else:
+                    print("Error. Proceso definido anteriormente")
+                    print("Linea: " + str(p.lineno(1)))
+                    raise Exception
     else:
         variables["parametros"] = parametros.copy()
         tablaSimbolos[p[2]] = [variables.copy()]
@@ -99,8 +103,9 @@ def p_rutina(p):
 def p_parametros_1(p):
     '''parametros : ID0
                   | empty '''
+    if p[1]:
+        variables[p[1]] = []
     p[0] = p[1]
-    variables[p[1]] = []
     parametros.append(p[1])
 
 def p_parametros_2(p):

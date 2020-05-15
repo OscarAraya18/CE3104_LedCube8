@@ -88,7 +88,11 @@ def p_neg(p):
     id_en_variables = variables.get(ID, False)
     if  id_en_variables != False:
         nodo = TreeNode("funcion")
-        nodo.add_children([p[4], [p[1], p[2]]])
+        nodo.add_child(p[4])
+        if p[2]:
+            nodo.add_child([p[1], p[2]])
+        else:
+            nodo.add_child(p[1])
         p[0] = nodo
     else:
         print("Error. La variable no ha sido declarada")
@@ -102,7 +106,11 @@ def p_t(p):
     id_en_variables = variables.get(ID, False)
     if id_en_variables != False:
         nodo = TreeNode("funcion")
-        nodo.add_children([p[4], [p[1], p[2]]])
+        nodo.add_child(p[4])
+        if p[2]:
+            nodo.add_child([p[1], p[2]])
+        else:
+            nodo.add_child(p[1])
         p[0] = nodo
     else:
         print("Error. La variable no ha sido declarada")
@@ -116,7 +124,11 @@ def p_f(p):
     id_en_variables = variables.get(ID, False)
     if id_en_variables != False:
         nodo = TreeNode("funcion")
-        nodo.add_children([p[4], [p[1], p[2]]])
+        nodo.add_child(p[4])
+        if p[2]:
+            nodo.add_child([p[1], p[2]])
+        else:
+            nodo.add_child(p[1])
         p[0] = nodo
     else:
         print("Error. La variable no ha sido declarada")

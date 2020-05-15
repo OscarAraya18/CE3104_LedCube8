@@ -195,9 +195,6 @@ def p_if(p):
         else:
             nodo.add_children([p[1], ID, p[4], p[5]])
 
-        # for child in ifList:
-        #     nodo.add_child(child)
-        # ifList.clear()
         for child in funcList:
             nodo.add_child(child)
         p[0] = nodo
