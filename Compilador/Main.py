@@ -47,7 +47,6 @@ def Main():
                 };
              
             };
-            m = [False, False];
         };
         
     Procedure img4 (){
@@ -65,7 +64,7 @@ def Main():
             m = [[4, 5, 6], [7, 8, 9]];
             m = True;
             ca = [];
-            ca[1][2][3].T;
+            m[1][1][1] = False;
             for var9 in ca[2] {
                 for var10 in ca Step 2{
                     If ca[2] == 4{
@@ -77,8 +76,9 @@ def Main():
             
     Procedure img6(){
             m = [[4, 5, 6], [7, 8, 9]];
-            m[:, 1] = [1,2,3,4,5];            
-            
+            m[:, 1] = [1,2,3,4,5];    
+            Blink(m[1],6, Seg, False);
+            Blink(m[:2],  False);
             };
             
 

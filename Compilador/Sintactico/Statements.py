@@ -52,7 +52,7 @@ def p_statements_5(p):
 def p_statements_6(p):
     '''statements : bifurcacion statements'''
     funcList.insert(0, p[1])
-    p[0] = p[1]
+    #p[0] = p[1]
 
 def p_statements_7(p):
     '''statements : rutina statements'''

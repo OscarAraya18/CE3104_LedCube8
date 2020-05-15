@@ -157,7 +157,7 @@ def p_blink_2(p):
     '''funcionReservada : BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA'''
     ID = p[3]
     id_en_variables = variables.get(ID, False)
-    if id_en_variables != False:
+    if id_en_variables:
         nodo = TreeNode("funcion")
         if p[4] is None:
             nodo.add_children([p[1], p[3], p[6]])

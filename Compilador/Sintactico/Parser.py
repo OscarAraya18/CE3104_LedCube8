@@ -28,7 +28,6 @@ def p_estructura(p):
     main\
     rutinas '''
 
-
     llaves = list(tablaSimbolos.keys())
 
     if p[3]:
@@ -71,8 +70,7 @@ def p_rutinas_2(p):
 
 def p_rutina(p):
     '''rutina : PROCEDURE ID0 PARENTESISI parametros PARENTESISD LLAVEI statements LLAVED PUNTOCOMA'''
-    forList.clear()
-    funcList.clear()
+
     ID = p[2]
     nombreEnTabla = tablaSimbolos.get(ID, False)
     if nombreEnTabla != False:
@@ -93,10 +91,15 @@ def p_rutina(p):
     else:
         variables["parametros"] = parametros.copy()
         tablaSimbolos[p[2]] = [variables.copy()]
+
     variables.clear()
     parametros.clear()
-    p[0] = inst.copy() + funcList.copy()
+    instrucciones = inst.copy()
+    funciones = funcList.copy()
+
+    p[0] = instrucciones + funciones
     funcList.clear()
+    forList.clear()
     inst.clear()
 
 
