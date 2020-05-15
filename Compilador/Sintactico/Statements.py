@@ -54,7 +54,6 @@ def p_statements_6(p):
     funcList.insert(0, p[1])
     p[0] = p[1]
 
-
 def p_statements_7(p):
     '''statements : rutina statements'''
     p[0] = p[2]
@@ -82,7 +81,6 @@ def p_asignacion_0(p):
             #     variables[ID][-1] += valores2
         else:
             nodo.add_child(valores2.pop())
-        nodo.print()
         p[0] = nodo
 
 def p_asignacion_1(p):
@@ -119,7 +117,6 @@ def p_asignacion_range(p):
         nodo = TreeNode("asignacion")
         nodo.add_children([ID, list])
         p[0] = nodo
-    print(variables)
 
 
 def p_asignacion_index(p):
@@ -134,7 +131,6 @@ def p_asignacion_index(p):
             valores.clear()
         else:
             nodo.add_child(valores2.pop())
-        nodo.print()
         p[0] = nodo
     else:
         print("Error. La variable no ha sido declarada")
@@ -167,7 +163,6 @@ def p_asignacion_index_3(p):
         else:
             nodo.add_child([ID, p[2]])
         nodo.add_child(p[4])
-        nodo.print()
         p[0] = nodo
     else:
         print("Error. La variable no ha sido declarada")
@@ -182,7 +177,6 @@ def p_asignacion_index_4(p):
     if id_en_variables != False:
         nodo = TreeNode("asignacion")
         nodo.add_children([ID, p[3]])
-        nodo.print()
         p[0] = nodo
     else:
         print("Error. La variable no ha sido declarada")
@@ -204,12 +198,9 @@ def p_if(p):
         # for child in ifList:
         #     nodo.add_child(child)
         # ifList.clear()
-
         for child in funcList:
             nodo.add_child(child)
-        nodo.print()
         p[0] = nodo
-        #ifList.insert(0, nodo)
         funcList.clear()
     else:
         print("Error. La variable no ha sido declarada")

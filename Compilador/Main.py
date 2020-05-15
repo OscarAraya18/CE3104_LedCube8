@@ -5,7 +5,12 @@ from Compilador.Sintactico.Parser import *
 
 def Main():
     data = ''' 
-        Procedure Main(){
+        Timer = 15;
+        Rango_Timer = Seg;
+        Dim_Filas = 8;
+        Dim_Columnas = 8; 
+        
+    Procedure Main(){
         CALL img5();
     };
     
@@ -63,15 +68,19 @@ def Main():
             ca[1][2][3].T;
             for var9 in ca[2] {
                 for var10 in ca Step 2{
-                    z = True;
                     If ca[2] == 4{
                         m[w, z].Neg;
                     };
                 };
             };
-            
     };
-        
+            
+    Procedure img6(){
+            m = [[4, 5, 6], [7, 8, 9]];
+            m = [1,2,3,4,5];            
+            
+            };
+            
 
     '''
 

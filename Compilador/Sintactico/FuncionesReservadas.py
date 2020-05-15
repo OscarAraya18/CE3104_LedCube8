@@ -94,7 +94,6 @@ def p_neg(p):
         print("Error. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
         raise Exception
-    print("Entra al neg ")
 
 
 def p_t(p):
@@ -109,7 +108,6 @@ def p_t(p):
         print("Error. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
         raise Exception
-    print("Entra al T")
 
 
 def p_f(p):
@@ -124,7 +122,6 @@ def p_f(p):
         print("Error. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
         raise Exception
-    print("Entra al F")
 
 
 def p_blink_1(p):
@@ -142,7 +139,6 @@ def p_blink_1(p):
         print("Error. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
         raise Exception
-    print("Entra a blink")
 
 
 def p_blink_2(p):
@@ -160,7 +156,6 @@ def p_blink_2(p):
         print("Error. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
         raise Exception
-    print("Entra a blink")
 
 
 def p_delay_1(p):
@@ -168,14 +163,12 @@ def p_delay_1(p):
     nodo = TreeNode("funcion")
     nodo.add_child(p[1])
     p[0] = nodo
-    print("Entra al delay")
 
 def p_delay_2(p):
     '''funcionReservada : DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA'''
     nodo = TreeNode("funcion")
     nodo.add_children([p[1], p[3], p[5]])
     p[0] = nodo
-    print("Entra al delay")
 
 def p_shapeF(p):
     '''funcionReservada : ID0 PUNTO SHAPEF'''
@@ -222,8 +215,6 @@ def p_call(p):
     nodo = TreeNode("funcion")
     nodo.add_children([p[1], p[2], param.copy()])
     param.clear()
-    print("Entra al call")
-    print(variables)
     p[0] = nodo
 
 def p_rango(p):

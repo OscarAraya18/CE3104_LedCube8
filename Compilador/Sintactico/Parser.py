@@ -20,26 +20,32 @@ from Compilador.EstructurasDeDatos.TreeNode import TreeNode
 start = 'estructura'
 astRoot = TreeNode("estructura")
 
-def p_estructura(p):
-    '''estructura : main\
-    rutina\
-    rutina\
-    rutina\
-    rutina\
-    rutina '''
+rutinas = []
 
-    ListaLlaves = ["main", "img1", "img2", "img3", "img4", "img5"]
+def p_estructura(p):
+    '''estructura : confiCons\
+    globalVar\
+    main\
+    rutinas '''
+
+
+    llaves = list(tablaSimbolos.keys())
+
+    if p[3]:
+        rutinas.insert(0, p[3])
+
     index = 0
-    for i in range(1, 7):
-        node = TreeNode(ListaLlaves[index])
-        if p[i]:
-            node.add_children(p[i])
+    for i in range(0, len(llaves)):
+        node = TreeNode(str(llaves[i]))
+        node.add_children(rutinas[i])
         astRoot.add_child(node)
         index += 1
     p[0] = astRoot
     print("#############################################   A     S     T   ##########################################################")
     astRoot.print()
     print(tablaSimbolos)
+    print(variablesGlobales)
+    print(consConfi)
 
 
 
@@ -52,6 +58,16 @@ def p_main(p):
     funcList.clear()
     inst.clear()
 
+
+def p_rutinas_1(p):
+    '''rutinas : rutina rutinas '''
+    if p[1]:
+        rutinas.insert(0, p[1])
+    p[0] = p[2]
+
+def p_rutinas_2(p):
+    '''rutinas : empty'''
+    p[0] = p[1]
 
 def p_rutina(p):
     '''rutina : PROCEDURE ID0 PARENTESISI parametros PARENTESISD LLAVEI statements LLAVED PUNTOCOMA'''
@@ -75,8 +91,8 @@ def p_rutina(p):
         tablaSimbolos[p[2]] = [variables.copy()]
     variables.clear()
     parametros.clear()
-
-    p[0] = inst.copy()
+    p[0] = inst.copy() + funcList.copy()
+    funcList.clear()
     inst.clear()
 
 
@@ -92,6 +108,47 @@ def p_parametros_2(p):
     p[0] = p[2]
     variables[p[1]] = []
     parametros.append(p[1])
+
+def p_globalVar(p):
+    'as : ID0 ASIGNACION valor PUNTOCOMA'
+    ID = p[1]
+    id_en_variables = variablesGlobales.get(ID, False)
+    if not id_en_variables:
+        if len(valores) > 0:
+            variablesGlobales[ID] = [valores.pop()]
+        else:
+            variablesGlobales[ID] = [valores2.pop()]
+
+def p_globalVar_2(p):
+    '''globalVar : as globalVar
+                 | empty'''
+
+def p_confiCons(p):
+    '''confiCons : timer\
+    rangoTimer\
+    dimFilas\
+    dimCol\
+    cubo'''
+
+def p_timer(p):
+    '''timer : TIMER ASIGNACION NUMERO PUNTOCOMA'''
+    consConfi[p[1]] = p[3]
+
+def p_rango_timer(p):
+    '''rangoTimer : RANGOTIMER ASIGNACION rango PUNTOCOMA'''
+    consConfi[p[1]] = p[3]
+
+def p_dimFilas(p):
+    '''dimFilas : DIMFILAS ASIGNACION NUMERO PUNTOCOMA'''
+    consConfi[p[1]] = p[3]
+
+def p_dimCol(p):
+    '''dimCol : DIMCOLUMNAS ASIGNACION NUMERO PUNTOCOMA'''
+    consConfi[p[1]] = p[3]
+
+def p_cubo(p):
+    '''cubo : empty'''
+
 
 #Se crea el parser
 def parse(lex):

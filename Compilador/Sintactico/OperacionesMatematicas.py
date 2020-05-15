@@ -27,7 +27,7 @@ tablaSimbolos = {}
 
 variablesGlobales = {}
 
-
+consConfi = {}
 
 precedence = (
     ('left', 'SUMA', 'RESTA'),
