@@ -24,9 +24,11 @@ def p_loop_for(p):
 
     for child in funcList:
         nodo.add_child(child)
+
     p[0] = nodo
     forList.insert(0, nodo)
     funcList.clear()
+
 
 def p_loop_for_2(p):
     '''loop : FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA'''
@@ -35,6 +37,7 @@ def p_loop_for_2(p):
 
     for child in forList:
         nodo.add_child(child)
+
     forList.clear()
     for child in funcList:
         nodo.add_child(child)
@@ -44,10 +47,10 @@ def p_loop_for_2(p):
     funcList.clear()
 
 
-
 def p_iterable_1(p):
     '''iterable : NUMERO'''
     p[0] = [p[1]]
+
 
 def p_iterable_2(p):
     '''iterable : ID0 conjunto'''

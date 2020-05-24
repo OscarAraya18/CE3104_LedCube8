@@ -8,7 +8,6 @@
 # TEC 2020 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-from Compilador.EstructurasDeDatos.Node import Node
 from Compilador.EstructurasDeDatos.TreeNode import TreeNode
 from Compilador.Sintactico.OperacionesMatematicas import *
 from Compilador.Lexer.AnalizadorLexico import *
@@ -66,9 +65,6 @@ def p_asignacion_0(p):
     if not id_en_variables:
         if len(valores) > 0:
             variables[ID] = [valores.pop()]
-            # if isinstance(variables[ID][-1], list):
-            #     print("WTF")
-            #     variables[ID][-1] += valores2
         else:
             variables[ID] = [valores2.pop()]
     else:
@@ -77,8 +73,6 @@ def p_asignacion_0(p):
         if len(valores) > 0:
             nodo.add_child(valores.copy())
             valores.clear()
-            # if isinstance(variables[ID][-1], list):
-            #     variables[ID][-1] += valores2
         else:
             nodo.add_child(valores2.pop())
         p[0] = nodo
@@ -138,20 +132,6 @@ def p_asignacion_index(p):
         raise Exception
 
 
-# def p_asignacion_index_2(p):
-#     'asignacion : ID0 conjunto ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA'
-#     ID = p[1]
-#     id_en_variables = variables.get(ID, False)
-#     if id_en_variables != False:
-#         nodo = TreeNode("asignacion")
-#         nodo.add_children([ID, p[2], p[5]])
-#         nodo.print()
-#         p[0] = nodo
-#     else:
-#         print("Error. La variable no ha sido declarada")
-#         print("Linea: " + str(p.lineno(1)))
-#         raise Exception
-
 def p_asignacion_index_3(p):
     'asignacion : ID0 conjunto ASIGNACION valor_b PUNTOCOMA'
     ID = p[1]
@@ -205,11 +185,6 @@ def p_if(p):
         raise Exception
 
 
-# def p_if_2(p):
-#     '''bifurcacion : IF ID0 conjunto operador valor LLAVEI statements LLAVED PUNTOCOMA'''
-#     print("Entra al if")
-
-
 def p_operador(p):
     '''operador : COMPARACION
                 | DISTINTOQUE
@@ -256,7 +231,8 @@ def p_valor_b(p):
 
 def p_valor_b2(p):
     '''valor_b : NUMERO
-               | bool '''
+               | bool
+               | expression'''
     p[0] = p[1]
 
 

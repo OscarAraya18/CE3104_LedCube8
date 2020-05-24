@@ -54,7 +54,7 @@ def Main():
             m = True;
             ca = [];
             If ca == 3{
-                If m== 9 {
+                If m== 9*2 {
                     ca[2].T;
                 };
             };

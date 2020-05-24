@@ -15,12 +15,11 @@ from Compilador.Sintactico.OperacionesMatematicas import *
 from Compilador.Sintactico.Statements import *
 from Compilador.EstructurasDeDatos.TreeNode import TreeNode
 
-
-
 start = 'estructura'
 astRoot = TreeNode("estructura")
 
 rutinas = []
+
 
 def p_estructura(p):
     '''estructura : confiCons\
@@ -40,12 +39,12 @@ def p_estructura(p):
         astRoot.add_child(node)
         index += 1
     p[0] = astRoot
-    print("#############################################   A     S     T   ##########################################################")
+    print(
+        "#############################################   A     S     T   ##########################################################")
     astRoot.print()
     print(tablaSimbolos)
     print("Variables globales: " + str(variablesGlobales))
     print("Constantes de configuración: " + str(consConfi))
-
 
 
 def p_main(p):
@@ -64,9 +63,11 @@ def p_rutinas_1(p):
         rutinas.insert(0, p[1])
     p[0] = p[2]
 
+
 def p_rutinas_2(p):
     '''rutinas : empty'''
     p[0] = p[1]
+
 
 def p_rutina(p):
     '''rutina : PROCEDURE ID0 PARENTESISI parametros PARENTESISD LLAVEI statements LLAVED PUNTOCOMA'''
@@ -111,11 +112,13 @@ def p_parametros_1(p):
     p[0] = p[1]
     parametros.append(p[1])
 
+
 def p_parametros_2(p):
     '''parametros : ID0 COMA parametros'''
     p[0] = p[2]
     variables[p[1]] = []
     parametros.append(p[1])
+
 
 def p_globalVar(p):
     'as : ID0 ASIGNACION valor PUNTOCOMA'
@@ -127,9 +130,11 @@ def p_globalVar(p):
         else:
             variablesGlobales[ID] = [valores2.pop()]
 
+
 def p_globalVar_2(p):
     '''globalVar : as globalVar
                  | empty'''
+
 
 def p_confiCons(p):
     '''confiCons : timer\
@@ -138,27 +143,32 @@ def p_confiCons(p):
     dimCol\
     cubo'''
 
+
 def p_timer(p):
     '''timer : TIMER ASIGNACION NUMERO PUNTOCOMA'''
     consConfi[p[1]] = p[3]
+
 
 def p_rango_timer(p):
     '''rangoTimer : RANGOTIMER ASIGNACION rango PUNTOCOMA'''
     consConfi[p[1]] = p[3]
 
+
 def p_dimFilas(p):
     '''dimFilas : DIMFILAS ASIGNACION NUMERO PUNTOCOMA'''
     consConfi[p[1]] = p[3]
+
 
 def p_dimCol(p):
     '''dimCol : DIMCOLUMNAS ASIGNACION NUMERO PUNTOCOMA'''
     consConfi[p[1]] = p[3]
 
+
 def p_cubo(p):
     '''cubo : empty'''
 
 
-#Se crea el parser
+# Se crea el parser
 def parse(lex):
     parser = yacc.yacc()
     astTree = parser.parse(lexer=lex)
