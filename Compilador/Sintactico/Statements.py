@@ -31,6 +31,7 @@ def p_statements_2(p):
 def p_statements_3(p):
     '''statements : expression PUNTOCOMA statements'''
     p[0] = p[3]
+    print("Resultado de operación matemática: " + str(p[1]))
 
 
 def p_statements_4(p):
@@ -248,7 +249,7 @@ def p_comentario_opcional(p):
 
 
 def p_lista_1(p):
-    ''' lista : PARENTESISCI valor PARENTESISCD'''
+    '''lista : PARENTESISCI valor PARENTESISCD'''
     valores_aux = valores.copy()
     if len(valores) == 1:
         valores2.append(valores.copy()[0])

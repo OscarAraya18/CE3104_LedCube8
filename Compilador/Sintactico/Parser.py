@@ -165,7 +165,9 @@ def p_dimCol(p):
 
 
 def p_cubo(p):
-    '''cubo : empty'''
+    '''cubo : CUBO ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA'''
+    consConfi[p[1]] = valores2.copy()
+    valores2.clear()
 
 
 # Se crea el parser

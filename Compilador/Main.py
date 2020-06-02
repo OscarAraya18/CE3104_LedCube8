@@ -9,14 +9,94 @@ def Main():
         Rango_Timer = Seg;
         Dim_Filas = 8;
         Dim_Columnas = 8; 
+        Cubo = [
+                    [   
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False] 
+                    ], 
+                    [   [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False] 
+                    ], 
+                    [   [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False] 
+                    ], 
+                    [   [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False] 
+                    ], 
+                    [   [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False] 
+                    ], 
+                    [   [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False] 
+                    ], 
+                    [   [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False] 
+                    ], 
+                    [   [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False],  
+                        [False, False, False, False, False, False, False, False], 
+                        [False, False, False, False, False, False, False, False] 
+                    ]
+            ];
         
     Procedure Main(){
+        --Viva Saprissa
+        --1ñfñgkfsgf
+        4* ((2+7)/3) + 1;
         CALL img5();
+        -(8);
     };
     
     Procedure img1 (perro, gato){
             m = [ [1,2,3], [4, 5, 6], [7, 8, 9]];
             m = True;
+            x, y = 20, 15;
             ca = [];
             for var1 in ca[1:3] {
                 m[2].T;
@@ -36,51 +116,7 @@ def Main():
                 };
             };
         };
-        
-    Procedure img3 (){
-            m = [ [1,2,3], [4, 5, 6], [7, 8, 9]];
-            m = True;
-            ca = [];
-            for var5 in ca[1:3] {
-                for var6 in ca[4:6] Step 2{
-                    m[var1, var2].Neg;
-                };
-             
-            };
-        };
-        
-    Procedure img4 (){
-            m = [ [1,2,3], [4, 5, 6]];
-            m = True;
-            ca = [];
-            If ca == 3{
-                If m== 9*2 {
-                    ca[2].T;
-                };
-            };
-    };
-        
-    Procedure img5 (){
-            m = [[4, 5, 6], [7, 8, 9]];
-            m = True;
-            ca = [];
-            m[1][1][1] = False;
-            for var9 in ca[2] {
-                for var10 in ca Step 2{
-                    If ca[2] == 4{
-                        m[w, z].Neg;
-                    };
-                };
-            };
-    };
-            
-    Procedure img6(){
-            m = [[4, 5, 6], [7, 8, 9]];
-            m[:, 1] = [1,2,3,4,5];    
-            Blink(m[1],6, Seg, False);
-            Blink(m[:2],  False);
-            };
-            
+
 
     '''
 
@@ -92,6 +128,7 @@ def Main():
     lexer.input(data)
 
     try:
+
         result = parse(lexer)
         print("Exito: " + str(result))
         return
