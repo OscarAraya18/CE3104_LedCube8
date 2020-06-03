@@ -25,9 +25,10 @@ def p_loop_for(p):
     for child in funcList:
         nodo.add_child(child)
 
-    p[0] = nodo
     forList.insert(0, nodo)
     funcList.clear()
+
+    #p[0] = nodo
 
 
 def p_loop_for_2(p):

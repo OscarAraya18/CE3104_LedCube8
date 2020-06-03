@@ -37,8 +37,12 @@ def p_statements_3(p):
 def p_statements_4(p):
     '''statements : loop statements
                   | asignacion statements'''
-    if p[2]:
-        inst.insert(0, p[2])
+    if p[1]:
+        inst.insert(0, p[1])
+        if p[2] not in inst:
+            print("Entra")
+            inst.insert(0, p[2])
+
     p[0] = p[1]
 
 
@@ -62,21 +66,26 @@ def p_statements_7(p):
 def p_asignacion_0(p):
     'asignacion : ID0 ASIGNACION valor PUNTOCOMA'
     ID = p[1]
+    nodo = TreeNode("asignacion")
+    nodo.add_child(ID)
     id_en_variables = variables.get(ID, False)
     if not id_en_variables:
         if len(valores) > 0:
+            valor = valores.copy()
             variables[ID] = [valores.pop()]
+            nodo.add_child(valor)
+            # valores.clear()
         else:
-            variables[ID] = [valores2.pop()]
+            valor = valores2.pop()
+            variables[ID] = [valor]
+            nodo.add_child(valor)
     else:
-        nodo = TreeNode("asignacion")
-        nodo.add_child(ID)
         if len(valores) > 0:
             nodo.add_child(valores.copy())
             valores.clear()
         else:
             nodo.add_child(valores2.pop())
-        p[0] = nodo
+    p[0] = nodo
 
 def p_asignacion_1(p):
     'asignacion : ID0 COMA asignacion'
@@ -169,15 +178,19 @@ def p_asignacion_index_3(p):
 def p_asignacion_index_4(p):
     'asignacion : ID0 ASIGNACION valor_b PUNTOCOMA'
     ID = p[1]
+    nodo = TreeNode("asignacion")
     id_en_variables = variables.get(ID, False)
-    if id_en_variables != False:
-        nodo = TreeNode("asignacion")
-        nodo.add_children([ID, p[3]])
-        p[0] = nodo
-    else:
-        print("Error. La variable no ha sido declarada")
-        print("Linea: " + str(p.lineno(1)))
-        raise Exception
+    #if id_en_variables != False:
+    nodo.add_children([ID, [p[3]]])
+    # else:
+    #     print("PPPPPP")
+    #     print("Error. La variable no ha sido declarada")
+    #     if len(valores) > 0:
+    #         nodo.add_child(valores.copy())
+    #         valores.clear()
+    #     else:
+    #         nodo.add_child(valores2.pop())
+    p[0] = nodo
 
 
 def p_if(p):
