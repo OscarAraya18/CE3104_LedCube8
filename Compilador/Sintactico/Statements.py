@@ -96,7 +96,22 @@ def p_asignacion_1(p):
 
 def p_asignacion_2(p):
     'asignacion : ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA'
-    variables[p[1]] = [[]]
+    ID = p[1]
+    id_en_variables = variables.get(ID, False)
+    if not id_en_variables:
+        variables[p[1]] = [[]]
+    else:
+        nodo = TreeNode("asignacion")
+        nodo.add_children([ID, [[]]])
+        p[0] = nodo
+
+def p_asignacion_3(p):
+    '''asignacion : ID0 ASIGNACION funcionReservada PUNTOCOMA'''
+    ID = p[1]
+    nodo = TreeNode("asignacion")
+    nodo.add_children([ID, [p[3]]])
+
+    p[0] = nodo
 
 
 def p_asignacion_range(p):

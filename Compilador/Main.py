@@ -96,8 +96,10 @@ def Main():
     Procedure img1 (perro, gato){
             m = [ [1,2,3], [4, 5, 6], [7, 8, 9]];
             m = True;
+            ca = [1,2,3];
             x, y = 20, 15;
             ca = [];
+            z = ca.shapeC;
             for var1 in ca[1:3] {
                 m[2].T;
                 for var2 in ca[4:6] Step 2{
@@ -108,8 +110,8 @@ def Main():
 
     Procedure img2 (){
             m = [];
-            m = True;
             ca = [];
+            m[3].T;
             for var3 in ca[1:3] {
                 for var4 in ca[4:6] Step 2{
                     m[var1, var2].Neg;

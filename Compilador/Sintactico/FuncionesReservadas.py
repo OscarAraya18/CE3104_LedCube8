@@ -25,9 +25,9 @@ def p_insert(p):
         p[0] = nodo
 
     else:
-        print("Error. La variable no ha sido declarada")
+        print("Error Sintáctico. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
     print("Entra al insert")
 
 
@@ -40,9 +40,9 @@ def p_insert_2(p):
         nodo.add_children([p[3], p[1], p[5], p[7], p[9]])
         p[0] = nodo
     else:
-        print("Error. La variable no ha sido declarada")
+        print("Error Sintáctico. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
     print("Entra al insert")
 
 
@@ -55,9 +55,9 @@ def p_insert_3(p):
         nodo.add_children([p[3], p[1], p[5], p[7]])
         p[0] = nodo
     else:
-        print("Error. La variable no ha sido declarada")
+        print("Error Sintáctico. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
     print("Entra al insert")
 
 
@@ -98,9 +98,9 @@ def p_neg(p):
             nodo.add_child(p[1])
         p[0] = nodo
     else:
-        print("Error. La variable no ha sido declarada")
+        print("Error Sintáctico. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
 
 
 def p_t(p):
@@ -116,9 +116,9 @@ def p_t(p):
             nodo.add_child(p[1])
         p[0] = nodo
     else:
-        print("Error. La variable no ha sido declarada")
+        print("Error Sintáctico. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
 
 
 def p_f(p):
@@ -134,9 +134,9 @@ def p_f(p):
             nodo.add_child(p[1])
         p[0] = nodo
     else:
-        print("Error. La variable no ha sido declarada")
+        print("Error Sintáctico. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
 
 
 def p_blink_1(p):
@@ -151,9 +151,9 @@ def p_blink_1(p):
             nodo.add_children([p[1], [p[3], p[4]], p[6], p[8], p[10]])
         p[0] = nodo
     else:
-        print("Error. La variable no ha sido declarada")
+        print("Error Sintáctico. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
 
 
 def p_blink_2(p):
@@ -168,9 +168,9 @@ def p_blink_2(p):
             nodo.add_children([p[1], [p[3], p[4]], p[6]])
         p[0] = nodo
     else:
-        print("Error. La variable no ha sido declarada")
+        print("Error Sintáctico. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
 
 
 def p_delay_1(p):
@@ -196,9 +196,9 @@ def p_shapeF(p):
         nodo.add_children([p[3], ID])
         p[0] = nodo
     else:
-        print("Error. La variable no ha sido declarada")
+        print("Error Sintáctico. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
 
 
 def p_shapeC(p):
@@ -210,9 +210,9 @@ def p_shapeC(p):
         nodo.add_children([p[3], ID])
         p[0] = nodo
     else:
-        print("Error. La variable no ha sido declarada")
+        print("Error Sintáctico. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
 
 
 def p_shapeA(p):
@@ -224,9 +224,9 @@ def p_shapeA(p):
         nodo.add_children([p[3], ID])
         p[0] = nodo
     else:
-        print("Error. La variable no ha sido declarada")
+        print("Error Sintáctico. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
 
 
 def p_call(p):
@@ -249,8 +249,9 @@ def p_tipo(p):
     if p[1] == 0 or p[1] == 1:
         p[0] = p[1]
     else:
-        print("Error en la linea: " + str(p.lineno(1)))
-        raise Exception
+        print("Error Sintáctico. Se necesita un 0 - 1")
+        print("Linea: " + str(p.lineno(1)))
+        raise SyntaxError
 
 
 def p_conjunto_1(p):
