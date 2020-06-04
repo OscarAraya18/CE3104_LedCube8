@@ -88,7 +88,7 @@ def p_rutina(p):
                 else:
                     print("Error. Proceso definido anteriormente")
                     print("Linea: " + str(p.lineno(1)))
-                    raise Exception
+                    raise SyntaxError
     else:
         variables["parametros"] = parametros.copy()
         tablaSimbolos[p[2]] = [variables.copy()]

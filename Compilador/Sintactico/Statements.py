@@ -16,8 +16,8 @@ from Compilador.Sintactico.FuncionesReservadas import *
 
 valores = []
 valores2 = []
-ids = []
 
+ids = []
 
 def p_statements_1(p):
     '''statements : COMENTARIO statements'''
@@ -40,7 +40,6 @@ def p_statements_4(p):
     if p[1]:
         inst.insert(0, p[1])
         if p[2] not in inst:
-            print("Entra")
             inst.insert(0, p[2])
 
     p[0] = p[1]
@@ -66,6 +65,7 @@ def p_statements_7(p):
 def p_asignacion_0(p):
     'asignacion : ID0 ASIGNACION valor PUNTOCOMA'
     ID = p[1]
+    ids.clear()
     nodo = TreeNode("asignacion")
     nodo.add_child(ID)
     id_en_variables = variables.get(ID, False)
@@ -74,7 +74,7 @@ def p_asignacion_0(p):
             valor = valores.copy()
             variables[ID] = [valores.pop()]
             nodo.add_child(valor)
-            # valores.clear()
+            ids.append(ID)
         else:
             valor = valores2.pop()
             variables[ID] = [valor]
@@ -85,21 +85,24 @@ def p_asignacion_0(p):
             valores.clear()
         else:
             nodo.add_child(valores2.pop())
+
     p[0] = nodo
 
 def p_asignacion_1(p):
     'asignacion : ID0 COMA asignacion'
     ID = p[1]
+    ids.append(ID)
     id_en_variables = variables.get(ID, False)
     if not id_en_variables:
         lenValores = len(valores)
-        lenVariables = len(variables) - len(parametros)
-        if (lenValores - lenVariables) >= 2:
+        lenVariables = len(ids)
+        resultado = lenValores - lenVariables
+        print(resultado)
+        if resultado >= 2 or resultado == 0:
             print("Error. La asignacion no es correcta")
             print("Linea: " + str(p.lineno(1)))
-            raise Exception
+            raise SyntaxError
         else:
-            print("Valores: " + str(valores))
             variables[ID] = [valores.pop()]
 
 
@@ -107,12 +110,13 @@ def p_asignacion_2(p):
     'asignacion : ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA'
     ID = p[1]
     id_en_variables = variables.get(ID, False)
+    nodo = TreeNode("asignacion")
     if not id_en_variables:
         variables[p[1]] = [[]]
-    else:
-        nodo = TreeNode("asignacion")
         nodo.add_children([ID, [[]]])
-        p[0] = nodo
+    else:
+        nodo.add_children([ID, [[]]])
+    p[0] = nodo
 
 def p_asignacion_3(p):
     '''asignacion : ID0 ASIGNACION funcionReservada PUNTOCOMA'''
@@ -122,20 +126,32 @@ def p_asignacion_3(p):
 
     p[0] = nodo
 
+def p_asignacion_4(p):
+    '''asignacion : ID0 ASIGNACION expression PUNTOCOMA'''
+    ID = p[1]
+    id_en_variables = variables.get(ID, False)
+    nodo = TreeNode("asignacion")
+    if not id_en_variables:
+        variables[p[1]] = [int(p[3])]
+        nodo.add_children([ID, [int(p[3])]])
+    else:
+        nodo.add_children([ID, [int(p[3])]])
+    p[0] = nodo
 
 def p_asignacion_range(p):
     'asignacion : ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA'
     ID = p[1]
     id_en_variables = variables.get(ID, False)
+    nodo = TreeNode("asignacion")
     list = []
     for x in range(p[5]):
         list.append(p[7])
     if not id_en_variables:
         variables[ID] = [list]
+        nodo.add_children([ID, [list]])
     else:
-        nodo = TreeNode("asignacion")
-        nodo.add_children([ID, list])
-        p[0] = nodo
+        nodo.add_children([ID, [list]])
+    p[0] = nodo
 
 
 def p_asignacion_index(p):
@@ -154,7 +170,7 @@ def p_asignacion_index(p):
     else:
         print("Error. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
 
 
 def p_asignacion_index_3(p):
@@ -172,24 +188,15 @@ def p_asignacion_index_3(p):
     else:
         print("Error. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
 
 
 def p_asignacion_index_4(p):
     'asignacion : ID0 ASIGNACION valor_b PUNTOCOMA'
     ID = p[1]
     nodo = TreeNode("asignacion")
-    id_en_variables = variables.get(ID, False)
-    #if id_en_variables != False:
     nodo.add_children([ID, [p[3]]])
-    # else:
-    #     print("PPPPPP")
-    #     print("Error. La variable no ha sido declarada")
-    #     if len(valores) > 0:
-    #         nodo.add_child(valores.copy())
-    #         valores.clear()
-    #     else:
-    #         nodo.add_child(valores2.pop())
+
     p[0] = nodo
 
 
@@ -211,7 +218,7 @@ def p_if(p):
     else:
         print("Error. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
 
 
 def p_operador(p):
@@ -255,7 +262,7 @@ def p_valor_b(p):
     else:
         print("Error. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
 
 
 def p_valor_b2(p):

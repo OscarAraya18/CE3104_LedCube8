@@ -65,4 +65,4 @@ def p_iterable_2(p):
     else:
         print("Error. La variable no ha sido declarada")
         print("Linea: " + str(p.lineno(1)))
-        raise Exception
+        raise SyntaxError
