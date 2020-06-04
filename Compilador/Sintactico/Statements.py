@@ -38,6 +38,9 @@ def p_statements_4(p):
     '''statements : loop statements
                   | asignacion statements'''
     if p[1]:
+        if isinstance(p[1], list):
+            for elem in p[1]:
+                inst.insert(0, elem)
         inst.insert(0, p[1])
         if p[2] not in inst:
             inst.insert(0, p[2])
@@ -65,7 +68,7 @@ def p_statements_7(p):
 def p_asignacion_0(p):
     'asignacion : ID0 ASIGNACION valor PUNTOCOMA'
     ID = p[1]
-    ids.clear()
+    ids.append(ID)
     nodo = TreeNode("asignacion")
     nodo.add_child(ID)
     id_en_variables = variables.get(ID, False)
@@ -73,8 +76,7 @@ def p_asignacion_0(p):
         if len(valores) > 0:
             valor = valores.copy()
             variables[ID] = [valores.pop()]
-            nodo.add_child(valor)
-            ids.append(ID)
+            nodo.add_child([valor.pop()])
         else:
             valor = valores2.pop()
             variables[ID] = [valor]
@@ -85,25 +87,29 @@ def p_asignacion_0(p):
             valores.clear()
         else:
             nodo.add_child(valores2.pop())
-
+    ids.clear()
     p[0] = nodo
 
 def p_asignacion_1(p):
     'asignacion : ID0 COMA asignacion'
     ID = p[1]
     ids.append(ID)
+    nodo = TreeNode("asignacion")
     id_en_variables = variables.get(ID, False)
     if not id_en_variables:
         lenValores = len(valores)
         lenVariables = len(ids)
         resultado = lenValores - lenVariables
-        print(resultado)
-        if resultado >= 2 or resultado == 0:
+        if abs(resultado) >= 1:
             print("Error. La asignacion no es correcta")
             print("Linea: " + str(p.lineno(1)))
             raise SyntaxError
         else:
-            variables[ID] = [valores.pop()]
+            valor = valores.pop()
+            variables[ID] = [valor]
+            nodo.add_children([ID, [valor]])
+
+    p[0] = [nodo, p[3]]
 
 
 def p_asignacion_2(p):
