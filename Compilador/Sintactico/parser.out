@@ -34,9 +34,9 @@ Rule 19    term -> term DIVISION factor
 Rule 20    statements -> bifurcacion statements
 Rule 21    term -> term DIVISIONE factor
 Rule 22    rutinas -> rutina rutinas
-Rule 23    statements -> rutina statements
-Rule 24    funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
-Rule 25    term -> term MODULO factor
+Rule 23    funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+Rule 24    term -> term MODULO factor
+Rule 25    statements -> rutina statements
 Rule 26    rutinas -> empty
 Rule 27    term -> term EXPONENCIAL factor
 Rule 28    asignacion -> ID0 ASIGNACION valor PUNTOCOMA
@@ -48,14 +48,14 @@ Rule 33    funcionReservada -> LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
 Rule 34    term -> factor
 Rule 35    funcionReservada -> ID0 conjunto PUNTO NEG PUNTOCOMA
 Rule 36    factor -> NUMERO
-Rule 37    asignacion -> ID0 COMA asignacion
-Rule 38    factor -> PARENTESISI expression PARENTESISD
+Rule 37    factor -> PARENTESISI expression PARENTESISD
+Rule 38    asignacion -> ID0 COMA asignacion
 Rule 39    empty -> <empty>
 Rule 40    funcionReservada -> ID0 conjunto PUNTO T PUNTOCOMA
 Rule 41    parametros -> ID0
 Rule 42    parametros -> empty
-Rule 43    asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
-Rule 44    parametros -> ID0 COMA parametros
+Rule 43    parametros -> ID0 COMA parametros
+Rule 44    asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
 Rule 45    as -> ID0 ASIGNACION valor PUNTOCOMA
 Rule 46    funcionReservada -> ID0 conjunto PUNTO F PUNTOCOMA
 Rule 47    asignacion -> ID0 ASIGNACION funcionReservada PUNTOCOMA
@@ -73,8 +73,8 @@ Rule 58    dimCol -> DIMCOLUMNAS ASIGNACION NUMERO PUNTOCOMA
 Rule 59    asignacion -> ID0 conjunto ASIGNACION valor PUNTOCOMA
 Rule 60    cubo -> CUBO ASIGNACION PARENTESISCI valor PARENTESISCD PUNTOCOMA
 Rule 61    funcionReservada -> DELAY PARENTESISI PARENTESISD PUNTOCOMA
-Rule 62    asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA
-Rule 63    funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+Rule 62    funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+Rule 63    asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA
 Rule 64    funcionReservada -> ID0 PUNTO SHAPEF
 Rule 65    asignacion -> ID0 ASIGNACION valor_b PUNTOCOMA
 Rule 66    funcionReservada -> ID0 PUNTO SHAPEC
@@ -124,16 +124,16 @@ Rule 109   indice -> ID0
 
 Terminals, with rules where they appear
 
-ASIGNACION           : 28 43 45 47 50 53 54 55 56 58 59 60 62 65
+ASIGNACION           : 28 44 45 47 50 53 54 55 56 58 59 60 63 65
 BLINK                : 52 57
 BOOL                 : 
 CALL                 : 75
-COMA                 : 2 8 8 13 29 37 44 52 52 52 54 57 63 83 97 100 106 107
+COMA                 : 2 8 8 13 29 38 43 52 52 52 54 57 62 83 97 100 106 107
 COMENTARIO           : 3 98
 COMPARACION          : 69
 CUBO                 : 60
-DEL                  : 24 29
-DELAY                : 61 63
+DEL                  : 23 29
+DELAY                : 61 62
 DIMCOLUMNAS          : 58
 DIMFILAS             : 56
 DISTINTOQUE          : 70
@@ -144,7 +144,7 @@ EXPONENCIAL          : 27
 F                    : 46
 FALSE                : 96
 FOR                  : 1 7
-ID0                  : 1 2 7 8 13 18 24 28 29 31 33 35 37 40 41 43 44 45 46 47 50 52 54 57 59 62 64 65 66 67 68 75 87 103 106 109
+ID0                  : 1 2 7 8 13 18 23 28 29 31 33 35 38 40 41 43 44 45 46 47 50 52 54 57 59 63 64 65 66 67 68 75 87 103 106 109
 ID1                  : 
 ID2                  : 
 IF                   : 67
@@ -161,18 +161,18 @@ MENORIGUALQUE        : 74
 MENORQUE             : 71
 MIL                  : 78
 MIN                  : 77
-MODULO               : 25
+MODULO               : 24
 MULTIPLICACION       : 16
 NEG                  : 35
 NEGATIVO             : 
-NUMERO               : 1 2 8 13 15 24 29 36 52 53 54 56 58 63 79 81 90 104 107 108
-PARENTESISCD         : 43 60 84 86 88 89 89 94 97 100 101 102 102 102
-PARENTESISCI         : 43 60 84 86 88 89 89 94 97 100 101 102 102 102
-PARENTESISD          : 2 8 13 14 24 29 31 33 38 52 54 57 61 63 75
-PARENTESISI          : 2 8 13 14 24 29 31 33 38 52 54 57 61 63 75
+NUMERO               : 1 2 8 13 15 23 29 36 52 53 54 56 58 62 79 81 90 104 107 108
+PARENTESISCD         : 44 60 84 86 88 89 89 94 97 100 101 102 102 102
+PARENTESISCI         : 44 60 84 86 88 89 89 94 97 100 101 102 102 102
+PARENTESISD          : 2 8 13 14 23 29 31 33 37 52 54 57 61 62 75
+PARENTESISI          : 2 8 13 14 23 29 31 33 37 52 54 57 61 62 75
 PROCEDURE            : 14 31
-PUNTO                : 2 8 13 24 29 35 40 46 64 66 68
-PUNTOCOMA            : 1 2 6 7 8 13 14 24 28 29 31 33 35 40 43 45 46 47 50 52 53 54 55 56 57 58 59 60 61 62 63 65 67 75
+PUNTO                : 2 8 13 23 29 35 40 46 64 66 68
+PUNTOCOMA            : 1 2 6 7 8 13 14 23 28 29 31 33 35 40 44 45 46 47 50 52 53 54 55 56 57 58 59 60 61 62 63 65 67 75
 RANGE                : 54
 RANGOTIMER           : 55
 RESTA                : 12 30
@@ -191,19 +191,19 @@ error                :
 Nonterminals, with rules where they appear
 
 as                   : 48
-asignacion           : 10 37
+asignacion           : 10 38
 bifurcacion          : 20
 bool                 : 2 52 54 57 80 91
 comentario_opcional  : 
 confiCons            : 4
-conjunto             : 18 35 40 46 52 57 59 62 67 87
+conjunto             : 18 35 40 46 52 57 59 63 67 87
 cubo                 : 51
 dimCol               : 51
 dimFilas             : 51
 empty                : 5 26 42 49 93 99 105
 estructura           : 0
-expression           : 6 11 12 38 50 92
-factor               : 16 19 21 25 27 34
+expression           : 6 11 12 37 50 92
+factor               : 16 19 21 24 27 34
 funcionReservada     : 17 47
 globalVar            : 4 48
 indice               : 84 84 86 88 89 89 94 97 97 100 102 102 102
@@ -212,20 +212,20 @@ lista                : 85
 loop                 : 9
 main                 : 4
 operador             : 67
-parametros           : 31 44
+parametros           : 31 43
 parametrosFuncion    : 75 106 107
-rango                : 52 55 63
+rango                : 52 55 62
 rangoTimer           : 51
 rango_matriz         : 
-rutina               : 22 23
+rutina               : 22 25
 rutinas              : 4 22
-statements           : 1 3 6 7 9 10 14 17 20 23 31 67
-term                 : 11 12 16 19 21 25 27 30 32
+statements           : 1 3 6 7 9 10 14 17 20 25 31 67
+term                 : 11 12 16 19 21 24 27 30 32
 timer                : 51
 tipo                 : 8 29
 valor                : 8 13 28 45 59 60 82 83 101
 valor2               : 82
-valor_b              : 62 65 67
+valor_b              : 63 65 67
 
 Parsing method: LALR
 
@@ -722,7 +722,7 @@ state 52
     (31) rutina -> PROCEDURE ID0 PARENTESISI . parametros PARENTESISD LLAVEI statements LLAVED PUNTOCOMA
     (41) parametros -> . ID0
     (42) parametros -> . empty
-    (44) parametros -> . ID0 COMA parametros
+    (43) parametros -> . ID0 COMA parametros
     (39) empty -> .
 
     ID0             shift and go to state 59
@@ -786,7 +786,7 @@ state 58
 state 59
 
     (41) parametros -> ID0 .
-    (44) parametros -> ID0 . COMA parametros
+    (43) parametros -> ID0 . COMA parametros
 
     PARENTESISD     reduce using rule 41 (parametros -> ID0 .)
     COMA            shift and go to state 65
@@ -816,7 +816,7 @@ state 62
     (10) statements -> . asignacion statements
     (17) statements -> . funcionReservada statements
     (20) statements -> . bifurcacion statements
-    (23) statements -> . rutina statements
+    (25) statements -> . rutina statements
     (39) empty -> .
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
@@ -825,18 +825,18 @@ state 62
     (1) loop -> . FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA
     (7) loop -> . FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -845,7 +845,7 @@ state 62
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -855,11 +855,11 @@ state 62
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     COMENTARIO      shift and go to state 69
     LLAVED          reduce using rule 39 (empty -> .)
@@ -915,10 +915,10 @@ state 64
 
 state 65
 
-    (44) parametros -> ID0 COMA . parametros
+    (43) parametros -> ID0 COMA . parametros
     (41) parametros -> . ID0
     (42) parametros -> . empty
-    (44) parametros -> . ID0 COMA parametros
+    (43) parametros -> . ID0 COMA parametros
     (39) empty -> .
 
     ID0             shift and go to state 59
@@ -936,7 +936,7 @@ state 66
 
 state 67
 
-    (38) factor -> PARENTESISI . expression PARENTESISD
+    (37) factor -> PARENTESISI . expression PARENTESISD
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
     (30) expression -> . RESTA term
@@ -944,11 +944,11 @@ state 67
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     RESTA           shift and go to state 78
     NUMERO          shift and go to state 81
@@ -975,7 +975,7 @@ state 69
     (10) statements -> . asignacion statements
     (17) statements -> . funcionReservada statements
     (20) statements -> . bifurcacion statements
-    (23) statements -> . rutina statements
+    (25) statements -> . rutina statements
     (39) empty -> .
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
@@ -984,18 +984,18 @@ state 69
     (1) loop -> . FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA
     (7) loop -> . FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -1004,7 +1004,7 @@ state 69
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -1014,11 +1014,11 @@ state 69
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     COMENTARIO      shift and go to state 69
     LLAVED          reduce using rule 39 (empty -> .)
@@ -1073,7 +1073,7 @@ state 72
     (10) statements -> . asignacion statements
     (17) statements -> . funcionReservada statements
     (20) statements -> . bifurcacion statements
-    (23) statements -> . rutina statements
+    (25) statements -> . rutina statements
     (39) empty -> .
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
@@ -1082,18 +1082,18 @@ state 72
     (1) loop -> . FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA
     (7) loop -> . FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -1102,7 +1102,7 @@ state 72
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -1112,11 +1112,11 @@ state 72
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     COMENTARIO      shift and go to state 69
     LLAVED          reduce using rule 39 (empty -> .)
@@ -1153,7 +1153,7 @@ state 73
     (10) statements -> . asignacion statements
     (17) statements -> . funcionReservada statements
     (20) statements -> . bifurcacion statements
-    (23) statements -> . rutina statements
+    (25) statements -> . rutina statements
     (39) empty -> .
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
@@ -1162,18 +1162,18 @@ state 73
     (1) loop -> . FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA
     (7) loop -> . FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -1182,7 +1182,7 @@ state 73
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -1192,11 +1192,11 @@ state 73
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     COMENTARIO      shift and go to state 69
     LLAVED          reduce using rule 39 (empty -> .)
@@ -1233,7 +1233,7 @@ state 74
     (10) statements -> . asignacion statements
     (17) statements -> . funcionReservada statements
     (20) statements -> . bifurcacion statements
-    (23) statements -> . rutina statements
+    (25) statements -> . rutina statements
     (39) empty -> .
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
@@ -1242,18 +1242,18 @@ state 74
     (1) loop -> . FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA
     (7) loop -> . FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -1262,7 +1262,7 @@ state 74
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -1272,11 +1272,11 @@ state 74
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     COMENTARIO      shift and go to state 69
     LLAVED          reduce using rule 39 (empty -> .)
@@ -1313,7 +1313,7 @@ state 75
     (10) statements -> . asignacion statements
     (17) statements -> . funcionReservada statements
     (20) statements -> . bifurcacion statements
-    (23) statements -> . rutina statements
+    (25) statements -> . rutina statements
     (39) empty -> .
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
@@ -1322,18 +1322,18 @@ state 75
     (1) loop -> . FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA
     (7) loop -> . FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -1342,7 +1342,7 @@ state 75
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -1352,11 +1352,11 @@ state 75
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     COMENTARIO      shift and go to state 69
     LLAVED          reduce using rule 39 (empty -> .)
@@ -1385,7 +1385,7 @@ state 75
 
 state 76
 
-    (23) statements -> rutina . statements
+    (25) statements -> rutina . statements
     (3) statements -> . COMENTARIO statements
     (5) statements -> . empty
     (6) statements -> . expression PUNTOCOMA statements
@@ -1393,7 +1393,7 @@ state 76
     (10) statements -> . asignacion statements
     (17) statements -> . funcionReservada statements
     (20) statements -> . bifurcacion statements
-    (23) statements -> . rutina statements
+    (25) statements -> . rutina statements
     (39) empty -> .
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
@@ -1402,18 +1402,18 @@ state 76
     (1) loop -> . FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA
     (7) loop -> . FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -1422,7 +1422,7 @@ state 76
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -1432,11 +1432,11 @@ state 76
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     COMENTARIO      shift and go to state 69
     LLAVED          reduce using rule 39 (empty -> .)
@@ -1469,7 +1469,7 @@ state 77
     (16) term -> term . MULTIPLICACION factor
     (19) term -> term . DIVISION factor
     (21) term -> term . DIVISIONE factor
-    (25) term -> term . MODULO factor
+    (24) term -> term . MODULO factor
     (27) term -> term . EXPONENCIAL factor
 
     PUNTOCOMA       reduce using rule 32 (expression -> term .)
@@ -1490,11 +1490,11 @@ state 78
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     NUMERO          shift and go to state 81
     PARENTESISI     shift and go to state 67
@@ -1513,18 +1513,18 @@ state 79
 state 80
 
     (28) asignacion -> ID0 . ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> ID0 . COMA asignacion
-    (43) asignacion -> ID0 . ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> ID0 . COMA asignacion
+    (44) asignacion -> ID0 . ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> ID0 . ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> ID0 . ASIGNACION expression PUNTOCOMA
     (54) asignacion -> ID0 . ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> ID0 . conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> ID0 . conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> ID0 . conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> ID0 . ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> ID0 . PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> ID0 . PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> ID0 . PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> ID0 . PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> ID0 . PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> ID0 . PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (35) funcionReservada -> ID0 . conjunto PUNTO NEG PUNTOCOMA
     (40) funcionReservada -> ID0 . conjunto PUNTO T PUNTOCOMA
@@ -1589,7 +1589,7 @@ state 83
 state 84
 
     (61) funcionReservada -> DELAY . PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> DELAY . PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> DELAY . PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
 
     PARENTESISI     shift and go to state 117
 
@@ -1637,9 +1637,9 @@ state 88
 
 state 89
 
-    (44) parametros -> ID0 COMA parametros .
+    (43) parametros -> ID0 COMA parametros .
 
-    PARENTESISD     reduce using rule 44 (parametros -> ID0 COMA parametros .)
+    PARENTESISD     reduce using rule 43 (parametros -> ID0 COMA parametros .)
 
 
 state 90
@@ -1652,7 +1652,7 @@ state 90
     (10) statements -> . asignacion statements
     (17) statements -> . funcionReservada statements
     (20) statements -> . bifurcacion statements
-    (23) statements -> . rutina statements
+    (25) statements -> . rutina statements
     (39) empty -> .
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
@@ -1661,18 +1661,18 @@ state 90
     (1) loop -> . FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA
     (7) loop -> . FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -1681,7 +1681,7 @@ state 90
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -1691,11 +1691,11 @@ state 90
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     COMENTARIO      shift and go to state 69
     LLAVED          reduce using rule 39 (empty -> .)
@@ -1724,7 +1724,7 @@ state 90
 
 state 91
 
-    (38) factor -> PARENTESISI expression . PARENTESISD
+    (37) factor -> PARENTESISI expression . PARENTESISD
     (11) expression -> expression . SUMA term
     (12) expression -> expression . RESTA term
 
@@ -1757,7 +1757,7 @@ state 94
     (10) statements -> . asignacion statements
     (17) statements -> . funcionReservada statements
     (20) statements -> . bifurcacion statements
-    (23) statements -> . rutina statements
+    (25) statements -> . rutina statements
     (39) empty -> .
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
@@ -1766,18 +1766,18 @@ state 94
     (1) loop -> . FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA
     (7) loop -> . FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -1786,7 +1786,7 @@ state 94
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -1796,11 +1796,11 @@ state 94
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     COMENTARIO      shift and go to state 69
     LLAVED          reduce using rule 39 (empty -> .)
@@ -1833,11 +1833,11 @@ state 95
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     NUMERO          shift and go to state 81
     PARENTESISI     shift and go to state 67
@@ -1851,11 +1851,11 @@ state 96
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     NUMERO          shift and go to state 81
     PARENTESISI     shift and go to state 67
@@ -1893,16 +1893,16 @@ state 100
 
 state 101
 
-    (23) statements -> rutina statements .
+    (25) statements -> rutina statements .
 
-    LLAVED          reduce using rule 23 (statements -> rutina statements .)
+    LLAVED          reduce using rule 25 (statements -> rutina statements .)
 
 
 state 102
 
     (16) term -> term MULTIPLICACION . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     NUMERO          shift and go to state 81
     PARENTESISI     shift and go to state 67
@@ -1913,7 +1913,7 @@ state 103
 
     (19) term -> term DIVISION . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     NUMERO          shift and go to state 81
     PARENTESISI     shift and go to state 67
@@ -1924,7 +1924,7 @@ state 104
 
     (21) term -> term DIVISIONE . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     NUMERO          shift and go to state 81
     PARENTESISI     shift and go to state 67
@@ -1933,9 +1933,9 @@ state 104
 
 state 105
 
-    (25) term -> term MODULO . factor
+    (24) term -> term MODULO . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     NUMERO          shift and go to state 81
     PARENTESISI     shift and go to state 67
@@ -1946,7 +1946,7 @@ state 106
 
     (27) term -> term EXPONENCIAL . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     NUMERO          shift and go to state 81
     PARENTESISI     shift and go to state 67
@@ -1959,7 +1959,7 @@ state 107
     (16) term -> term . MULTIPLICACION factor
     (19) term -> term . DIVISION factor
     (21) term -> term . DIVISIONE factor
-    (25) term -> term . MODULO factor
+    (24) term -> term . MODULO factor
     (27) term -> term . EXPONENCIAL factor
 
     PUNTOCOMA       reduce using rule 30 (expression -> RESTA term .)
@@ -1985,7 +1985,7 @@ state 108
 state 109
 
     (28) asignacion -> ID0 ASIGNACION . valor PUNTOCOMA
-    (43) asignacion -> ID0 ASIGNACION . PARENTESISCI PARENTESISCD PUNTOCOMA
+    (44) asignacion -> ID0 ASIGNACION . PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> ID0 ASIGNACION . funcionReservada PUNTOCOMA
     (50) asignacion -> ID0 ASIGNACION . expression PUNTOCOMA
     (54) asignacion -> ID0 ASIGNACION . RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
@@ -1997,7 +1997,7 @@ state 109
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -2006,7 +2006,7 @@ state 109
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -2025,11 +2025,11 @@ state 109
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     PARENTESISCI    shift and go to state 135
     RANGE           shift and go to state 138
@@ -2055,15 +2055,15 @@ state 109
 
 state 110
 
-    (37) asignacion -> ID0 COMA . asignacion
+    (38) asignacion -> ID0 COMA . asignacion
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
 
     ID0             shift and go to state 142
@@ -2091,7 +2091,7 @@ state 111
 state 112
 
     (59) asignacion -> ID0 conjunto . ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> ID0 conjunto . ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> ID0 conjunto . ASIGNACION valor_b PUNTOCOMA
     (35) funcionReservada -> ID0 conjunto . PUNTO NEG PUNTOCOMA
     (40) funcionReservada -> ID0 conjunto . PUNTO T PUNTOCOMA
     (46) funcionReservada -> ID0 conjunto . PUNTO F PUNTOCOMA
@@ -2105,7 +2105,7 @@ state 113
     (2) funcionReservada -> ID0 PUNTO . INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> ID0 PUNTO . INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> ID0 PUNTO . INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> ID0 PUNTO . DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> ID0 PUNTO . DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> ID0 PUNTO . DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (64) funcionReservada -> ID0 PUNTO . SHAPEF
     (66) funcionReservada -> ID0 PUNTO . SHAPEC
@@ -2154,7 +2154,7 @@ state 116
 state 117
 
     (61) funcionReservada -> DELAY PARENTESISI . PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> DELAY PARENTESISI . NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> DELAY PARENTESISI . NUMERO COMA rango PARENTESISD PUNTOCOMA
 
     PARENTESISD     shift and go to state 157
     NUMERO          shift and go to state 158
@@ -2207,18 +2207,18 @@ state 121
 
 state 122
 
-    (38) factor -> PARENTESISI expression PARENTESISD .
+    (37) factor -> PARENTESISI expression PARENTESISD .
 
-    MULTIPLICACION  reduce using rule 38 (factor -> PARENTESISI expression PARENTESISD .)
-    DIVISION        reduce using rule 38 (factor -> PARENTESISI expression PARENTESISD .)
-    DIVISIONE       reduce using rule 38 (factor -> PARENTESISI expression PARENTESISD .)
-    MODULO          reduce using rule 38 (factor -> PARENTESISI expression PARENTESISD .)
-    EXPONENCIAL     reduce using rule 38 (factor -> PARENTESISI expression PARENTESISD .)
-    PUNTOCOMA       reduce using rule 38 (factor -> PARENTESISI expression PARENTESISD .)
-    SUMA            reduce using rule 38 (factor -> PARENTESISI expression PARENTESISD .)
-    RESTA           reduce using rule 38 (factor -> PARENTESISI expression PARENTESISD .)
-    PARENTESISD     reduce using rule 38 (factor -> PARENTESISI expression PARENTESISD .)
-    LLAVEI          reduce using rule 38 (factor -> PARENTESISI expression PARENTESISD .)
+    MULTIPLICACION  reduce using rule 37 (factor -> PARENTESISI expression PARENTESISD .)
+    DIVISION        reduce using rule 37 (factor -> PARENTESISI expression PARENTESISD .)
+    DIVISIONE       reduce using rule 37 (factor -> PARENTESISI expression PARENTESISD .)
+    MODULO          reduce using rule 37 (factor -> PARENTESISI expression PARENTESISD .)
+    EXPONENCIAL     reduce using rule 37 (factor -> PARENTESISI expression PARENTESISD .)
+    PUNTOCOMA       reduce using rule 37 (factor -> PARENTESISI expression PARENTESISD .)
+    SUMA            reduce using rule 37 (factor -> PARENTESISI expression PARENTESISD .)
+    RESTA           reduce using rule 37 (factor -> PARENTESISI expression PARENTESISD .)
+    PARENTESISD     reduce using rule 37 (factor -> PARENTESISI expression PARENTESISD .)
+    LLAVEI          reduce using rule 37 (factor -> PARENTESISI expression PARENTESISD .)
 
 
 state 123
@@ -2242,7 +2242,7 @@ state 125
     (16) term -> term . MULTIPLICACION factor
     (19) term -> term . DIVISION factor
     (21) term -> term . DIVISIONE factor
-    (25) term -> term . MODULO factor
+    (24) term -> term . MODULO factor
     (27) term -> term . EXPONENCIAL factor
 
     PUNTOCOMA       reduce using rule 11 (expression -> expression SUMA term .)
@@ -2263,7 +2263,7 @@ state 126
     (16) term -> term . MULTIPLICACION factor
     (19) term -> term . DIVISION factor
     (21) term -> term . DIVISIONE factor
-    (25) term -> term . MODULO factor
+    (24) term -> term . MODULO factor
     (27) term -> term . EXPONENCIAL factor
 
     PUNTOCOMA       reduce using rule 12 (expression -> expression RESTA term .)
@@ -2328,18 +2328,18 @@ state 129
 
 state 130
 
-    (25) term -> term MODULO factor .
+    (24) term -> term MODULO factor .
 
-    MULTIPLICACION  reduce using rule 25 (term -> term MODULO factor .)
-    DIVISION        reduce using rule 25 (term -> term MODULO factor .)
-    DIVISIONE       reduce using rule 25 (term -> term MODULO factor .)
-    MODULO          reduce using rule 25 (term -> term MODULO factor .)
-    EXPONENCIAL     reduce using rule 25 (term -> term MODULO factor .)
-    PUNTOCOMA       reduce using rule 25 (term -> term MODULO factor .)
-    SUMA            reduce using rule 25 (term -> term MODULO factor .)
-    RESTA           reduce using rule 25 (term -> term MODULO factor .)
-    PARENTESISD     reduce using rule 25 (term -> term MODULO factor .)
-    LLAVEI          reduce using rule 25 (term -> term MODULO factor .)
+    MULTIPLICACION  reduce using rule 24 (term -> term MODULO factor .)
+    DIVISION        reduce using rule 24 (term -> term MODULO factor .)
+    DIVISIONE       reduce using rule 24 (term -> term MODULO factor .)
+    MODULO          reduce using rule 24 (term -> term MODULO factor .)
+    EXPONENCIAL     reduce using rule 24 (term -> term MODULO factor .)
+    PUNTOCOMA       reduce using rule 24 (term -> term MODULO factor .)
+    SUMA            reduce using rule 24 (term -> term MODULO factor .)
+    RESTA           reduce using rule 24 (term -> term MODULO factor .)
+    PARENTESISD     reduce using rule 24 (term -> term MODULO factor .)
+    LLAVEI          reduce using rule 24 (term -> term MODULO factor .)
 
 
 state 131
@@ -2375,7 +2375,7 @@ state 133
     (2) funcionReservada -> ID0 . PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> ID0 . PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> ID0 . PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> ID0 . PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> ID0 . PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> ID0 . PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (35) funcionReservada -> ID0 . conjunto PUNTO NEG PUNTOCOMA
     (40) funcionReservada -> ID0 . conjunto PUNTO T PUNTOCOMA
@@ -2417,7 +2417,7 @@ state 134
 
 state 135
 
-    (43) asignacion -> ID0 ASIGNACION PARENTESISCI . PARENTESISCD PUNTOCOMA
+    (44) asignacion -> ID0 ASIGNACION PARENTESISCI . PARENTESISCD PUNTOCOMA
     (101) lista -> PARENTESISCI . valor PARENTESISCD
     (79) valor -> . NUMERO
     (80) valor -> . bool
@@ -2510,13 +2510,13 @@ state 141
 state 142
 
     (28) asignacion -> ID0 . ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> ID0 . COMA asignacion
-    (43) asignacion -> ID0 . ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> ID0 . COMA asignacion
+    (44) asignacion -> ID0 . ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> ID0 . ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> ID0 . ASIGNACION expression PUNTOCOMA
     (54) asignacion -> ID0 . ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> ID0 . conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> ID0 . conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> ID0 . conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> ID0 . ASIGNACION valor_b PUNTOCOMA
     (84) conjunto -> . PARENTESISCI indice DOSPUNTOS indice PARENTESISCD
     (86) conjunto -> . PARENTESISCI DOSPUNTOS indice PARENTESISCD
@@ -2540,21 +2540,21 @@ state 142
 
 state 143
 
-    (37) asignacion -> ID0 COMA asignacion .
+    (38) asignacion -> ID0 COMA asignacion .
 
-    COMENTARIO      reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
-    RESTA           reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
-    FOR             reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
-    ID0             reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
-    LEN             reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
-    BLINK           reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
-    DELAY           reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
-    CALL            reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
-    IF              reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
-    PROCEDURE       reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
-    NUMERO          reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
-    PARENTESISI     reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
-    LLAVED          reduce using rule 37 (asignacion -> ID0 COMA asignacion .)
+    COMENTARIO      reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
+    RESTA           reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
+    FOR             reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
+    ID0             reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
+    LEN             reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
+    BLINK           reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
+    DELAY           reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
+    CALL            reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
+    IF              reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
+    PROCEDURE       reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
+    NUMERO          reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
+    PARENTESISI     reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
+    LLAVED          reduce using rule 38 (asignacion -> ID0 COMA asignacion .)
 
 
 state 144
@@ -2604,7 +2604,7 @@ state 147
 state 148
 
     (59) asignacion -> ID0 conjunto ASIGNACION . valor PUNTOCOMA
-    (62) asignacion -> ID0 conjunto ASIGNACION . valor_b PUNTOCOMA
+    (63) asignacion -> ID0 conjunto ASIGNACION . valor_b PUNTOCOMA
     (79) valor -> . NUMERO
     (80) valor -> . bool
     (82) valor -> . valor valor2
@@ -2623,11 +2623,11 @@ state 148
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     NUMERO          shift and go to state 139
     ID0             shift and go to state 179
@@ -2667,7 +2667,7 @@ state 150
 
 state 151
 
-    (24) funcionReservada -> ID0 PUNTO DEL . PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> ID0 PUNTO DEL . PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> ID0 PUNTO DEL . PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
 
     PARENTESISI     shift and go to state 187
@@ -2769,7 +2769,7 @@ state 157
 
 state 158
 
-    (63) funcionReservada -> DELAY PARENTESISI NUMERO . COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> DELAY PARENTESISI NUMERO . COMA rango PARENTESISD PUNTOCOMA
 
     COMA            shift and go to state 191
 
@@ -2894,7 +2894,7 @@ state 167
 
 state 168
 
-    (43) asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD . PUNTOCOMA
+    (44) asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD . PUNTOCOMA
 
     PUNTOCOMA       shift and go to state 207
 
@@ -2966,7 +2966,7 @@ state 172
 state 173
 
     (59) asignacion -> ID0 conjunto . ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> ID0 conjunto . ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> ID0 conjunto . ASIGNACION valor_b PUNTOCOMA
 
     ASIGNACION      shift and go to state 148
 
@@ -3065,7 +3065,7 @@ state 180
 
 state 181
 
-    (62) asignacion -> ID0 conjunto ASIGNACION valor_b . PUNTOCOMA
+    (63) asignacion -> ID0 conjunto ASIGNACION valor_b . PUNTOCOMA
 
     PUNTOCOMA       shift and go to state 216
 
@@ -3127,7 +3127,7 @@ state 186
 
 state 187
 
-    (24) funcionReservada -> ID0 PUNTO DEL PARENTESISI . NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> ID0 PUNTO DEL PARENTESISI . NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> ID0 PUNTO DEL PARENTESISI . NUMERO COMA tipo PARENTESISD PUNTOCOMA
 
     NUMERO          shift and go to state 222
@@ -3170,7 +3170,7 @@ state 190
 
 state 191
 
-    (63) funcionReservada -> DELAY PARENTESISI NUMERO COMA . rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> DELAY PARENTESISI NUMERO COMA . rango PARENTESISD PUNTOCOMA
     (76) rango -> . SEG
     (77) rango -> . MIN
     (78) rango -> . MIL
@@ -3229,11 +3229,11 @@ state 196
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     ID0             shift and go to state 179
     NUMERO          shift and go to state 230
@@ -3365,7 +3365,7 @@ state 206
     (10) statements -> . asignacion statements
     (17) statements -> . funcionReservada statements
     (20) statements -> . bifurcacion statements
-    (23) statements -> . rutina statements
+    (25) statements -> . rutina statements
     (39) empty -> .
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
@@ -3374,18 +3374,18 @@ state 206
     (1) loop -> . FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA
     (7) loop -> . FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -3394,7 +3394,7 @@ state 206
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -3404,11 +3404,11 @@ state 206
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     COMENTARIO      shift and go to state 69
     LLAVED          reduce using rule 39 (empty -> .)
@@ -3437,21 +3437,21 @@ state 206
 
 state 207
 
-    (43) asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .
+    (44) asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .
 
-    COMENTARIO      reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
-    RESTA           reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
-    FOR             reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
-    ID0             reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
-    LEN             reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
-    BLINK           reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
-    DELAY           reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
-    CALL            reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
-    IF              reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
-    PROCEDURE       reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
-    NUMERO          reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
-    PARENTESISI     reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
-    LLAVED          reduce using rule 43 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    COMENTARIO      reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    RESTA           reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    FOR             reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    ID0             reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    LEN             reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    BLINK           reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    DELAY           reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    CALL            reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    IF              reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    PROCEDURE       reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    NUMERO          reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    PARENTESISI     reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
+    LLAVED          reduce using rule 44 (asignacion -> ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA .)
 
 
 state 208
@@ -3541,21 +3541,21 @@ state 215
 
 state 216
 
-    (62) asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .
+    (63) asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .
 
-    COMENTARIO      reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
-    RESTA           reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
-    FOR             reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
-    ID0             reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
-    LEN             reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
-    BLINK           reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
-    DELAY           reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
-    CALL            reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
-    IF              reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
-    PROCEDURE       reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
-    NUMERO          reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
-    PARENTESISI     reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
-    LLAVED          reduce using rule 62 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    COMENTARIO      reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    RESTA           reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    FOR             reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    ID0             reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    LEN             reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    BLINK           reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    DELAY           reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    CALL            reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    IF              reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    PROCEDURE       reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    NUMERO          reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    PARENTESISI     reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
+    LLAVED          reduce using rule 63 (asignacion -> ID0 conjunto ASIGNACION valor_b PUNTOCOMA .)
 
 
 state 217
@@ -3642,7 +3642,7 @@ state 221
 
 state 222
 
-    (24) funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO . PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO . PARENTESISD PUNTOCOMA
     (29) funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO . COMA tipo PARENTESISD PUNTOCOMA
 
     PARENTESISD     shift and go to state 241
@@ -3684,7 +3684,7 @@ state 224
 
 state 225
 
-    (63) funcionReservada -> DELAY PARENTESISI NUMERO COMA rango . PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> DELAY PARENTESISI NUMERO COMA rango . PARENTESISD PUNTOCOMA
 
     PARENTESISD     shift and go to state 245
 
@@ -3886,7 +3886,7 @@ state 240
 
 state 241
 
-    (24) funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD . PUNTOCOMA
+    (23) funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD . PUNTOCOMA
 
     PUNTOCOMA       shift and go to state 257
 
@@ -3916,7 +3916,7 @@ state 244
 
 state 245
 
-    (63) funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD . PUNTOCOMA
+    (62) funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD . PUNTOCOMA
 
     PUNTOCOMA       shift and go to state 262
 
@@ -3965,7 +3965,7 @@ state 249
     (10) statements -> . asignacion statements
     (17) statements -> . funcionReservada statements
     (20) statements -> . bifurcacion statements
-    (23) statements -> . rutina statements
+    (25) statements -> . rutina statements
     (39) empty -> .
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
@@ -3974,18 +3974,18 @@ state 249
     (1) loop -> . FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA
     (7) loop -> . FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -3994,7 +3994,7 @@ state 249
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -4004,11 +4004,11 @@ state 249
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     COMENTARIO      shift and go to state 69
     LLAVED          reduce using rule 39 (empty -> .)
@@ -4045,7 +4045,7 @@ state 250
     (10) statements -> . asignacion statements
     (17) statements -> . funcionReservada statements
     (20) statements -> . bifurcacion statements
-    (23) statements -> . rutina statements
+    (25) statements -> . rutina statements
     (39) empty -> .
     (11) expression -> . expression SUMA term
     (12) expression -> . expression RESTA term
@@ -4054,18 +4054,18 @@ state 250
     (1) loop -> . FOR ID0 IN iterable STEP NUMERO LLAVEI statements LLAVED PUNTOCOMA
     (7) loop -> . FOR ID0 IN iterable LLAVEI statements LLAVED PUNTOCOMA
     (28) asignacion -> . ID0 ASIGNACION valor PUNTOCOMA
-    (37) asignacion -> . ID0 COMA asignacion
-    (43) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
+    (38) asignacion -> . ID0 COMA asignacion
+    (44) asignacion -> . ID0 ASIGNACION PARENTESISCI PARENTESISCD PUNTOCOMA
     (47) asignacion -> . ID0 ASIGNACION funcionReservada PUNTOCOMA
     (50) asignacion -> . ID0 ASIGNACION expression PUNTOCOMA
     (54) asignacion -> . ID0 ASIGNACION RANGE PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (59) asignacion -> . ID0 conjunto ASIGNACION valor PUNTOCOMA
-    (62) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
+    (63) asignacion -> . ID0 conjunto ASIGNACION valor_b PUNTOCOMA
     (65) asignacion -> . ID0 ASIGNACION valor_b PUNTOCOMA
     (2) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI NUMERO COMA bool PARENTESISD PUNTOCOMA
     (8) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA tipo COMA NUMERO PARENTESISD PUNTOCOMA
     (13) funcionReservada -> . ID0 PUNTO INSERT PARENTESISI valor COMA NUMERO PARENTESISD PUNTOCOMA
-    (24) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
+    (23) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA
     (29) funcionReservada -> . ID0 PUNTO DEL PARENTESISI NUMERO COMA tipo PARENTESISD PUNTOCOMA
     (33) funcionReservada -> . LEN PARENTESISI ID0 PARENTESISD PUNTOCOMA
     (35) funcionReservada -> . ID0 conjunto PUNTO NEG PUNTOCOMA
@@ -4074,7 +4074,7 @@ state 250
     (52) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA NUMERO COMA rango COMA bool PARENTESISD PUNTOCOMA
     (57) funcionReservada -> . BLINK PARENTESISI ID0 conjunto COMA bool PARENTESISD PUNTOCOMA
     (61) funcionReservada -> . DELAY PARENTESISI PARENTESISD PUNTOCOMA
-    (63) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
+    (62) funcionReservada -> . DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA
     (64) funcionReservada -> . ID0 PUNTO SHAPEF
     (66) funcionReservada -> . ID0 PUNTO SHAPEC
     (68) funcionReservada -> . ID0 PUNTO SHAPEA
@@ -4084,11 +4084,11 @@ state 250
     (16) term -> . term MULTIPLICACION factor
     (19) term -> . term DIVISION factor
     (21) term -> . term DIVISIONE factor
-    (25) term -> . term MODULO factor
+    (24) term -> . term MODULO factor
     (27) term -> . term EXPONENCIAL factor
     (34) term -> . factor
     (36) factor -> . NUMERO
-    (38) factor -> . PARENTESISI expression PARENTESISD
+    (37) factor -> . PARENTESISI expression PARENTESISD
 
     COMENTARIO      shift and go to state 69
     LLAVED          reduce using rule 39 (empty -> .)
@@ -4178,22 +4178,22 @@ state 256
 
 state 257
 
-    (24) funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .
+    (23) funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .
 
-    COMENTARIO      reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    RESTA           reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    FOR             reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    ID0             reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    LEN             reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    BLINK           reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    DELAY           reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    CALL            reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    IF              reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    PROCEDURE       reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    NUMERO          reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    PARENTESISI     reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    LLAVED          reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
-    PUNTOCOMA       reduce using rule 24 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    COMENTARIO      reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    RESTA           reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    FOR             reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    ID0             reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    LEN             reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    BLINK           reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    DELAY           reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    CALL            reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    IF              reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    PROCEDURE       reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    NUMERO          reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    PARENTESISI     reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    LLAVED          reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
+    PUNTOCOMA       reduce using rule 23 (funcionReservada -> ID0 PUNTO DEL PARENTESISI NUMERO PARENTESISD PUNTOCOMA .)
 
 
 state 258
@@ -4232,22 +4232,22 @@ state 261
 
 state 262
 
-    (63) funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .
+    (62) funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .
 
-    COMENTARIO      reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    RESTA           reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    FOR             reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    ID0             reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    LEN             reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    BLINK           reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    DELAY           reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    CALL            reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    IF              reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    PROCEDURE       reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    NUMERO          reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    PARENTESISI     reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    LLAVED          reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
-    PUNTOCOMA       reduce using rule 63 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    COMENTARIO      reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    RESTA           reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    FOR             reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    ID0             reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    LEN             reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    BLINK           reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    DELAY           reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    CALL            reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    IF              reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    PROCEDURE       reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    NUMERO          reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    PARENTESISI     reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    LLAVED          reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
+    PUNTOCOMA       reduce using rule 62 (funcionReservada -> DELAY PARENTESISI NUMERO COMA rango PARENTESISD PUNTOCOMA .)
 
 
 state 263

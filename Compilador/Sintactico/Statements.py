@@ -41,7 +41,8 @@ def p_statements_4(p):
         if isinstance(p[1], list):
             for elem in p[1]:
                 inst.insert(0, elem)
-        inst.insert(0, p[1])
+        else:
+            inst.insert(0, p[1])
         if p[2] not in inst:
             inst.insert(0, p[2])
 
