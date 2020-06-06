@@ -6,10 +6,10 @@ from Compilador.Sintactico.Parser import *
 def Main():
     data = ''' 
         Timer = 15;
-        Rango_Timer = Seg;
-        Dim_Filas = 8;
-        Dim_Columnas = 8; 
-        Cubo = [
+Rango_Timer = "Mil";
+Dim_Filas = 8;
+Dim_Columnas = 8; 
+Cubo = [
                     [   
                         [False, False, False, False, False, False, False, False], 
                         [False, False, False, False, False, False, False, False], 
@@ -84,42 +84,66 @@ def Main():
                         [False, False, False, False, False, False, False, False] 
                     ]
             ];
-        
-    Procedure Main(){
-        --Viva Saprissa
-        --1ñfñgkfsgf
-        4* ((2+7)/3) + 1;
-        CALL img5();
-        -(8);
-    };
+
+Procedure Main(){
     
-    Procedure img1 (perro, gato){
-            m = [ [1,2,3], [4, 5, 6], [7, 8, 9]];
-            m = True;
-            ca = [1,2,3];
-            x, y = 20, 15;
-            ca = [];
-            z = ca.shapeC;
-            for var1 in ca[1:3] {
-                m[2].T;
-                for var2 in ca[4:6] Step 2{
-                    m[var1, var2].Neg;
-                };
-            };
-        };
+    ----- 1 -------
 
-    Procedure img2 (){
-            m = [];
-            ca = [];
-            m[3].T;
-            for var3 in ca[1:3] {
-                for var4 in ca[4:6] Step 2{
-                    m[var1, var2].Neg;
-                };
-            };
-        };
+    for i in 7{
+        Cubo[i].T;
 
+    };
 
+    Delay(500, "Mil");
+
+    for i in 7{
+        Cubo[i].F;
+
+    };
+
+    ------ 2 --------
+
+    for i in 7{
+        Cubo[i].T;
+
+    };
+
+    Delay(500, "Mil");
+
+    for i in 7{
+        Cubo[i].F;
+
+    };
+
+    ------ 3 --------
+
+    for i in 7{
+        Cubo[i].T;
+
+    };
+
+    Delay(500, "Mil");
+
+    for i in 7{
+        Cubo[i].F;
+
+    };
+
+    ------ 4 -------
+
+    for i in 7{
+        Cubo[i].T;
+
+    };
+
+    Delay(500, "Mil");
+
+    for i in 7{
+        Cubo[i].F;
+
+    };
+
+};
     '''
 
     # analyzeData(data)
@@ -131,7 +155,9 @@ def Main():
 
     try:
 
+        #analisis sintáctico
         result = parse(lexer)
+
         print("Exito: " + str(result))
         return
     except Exception:

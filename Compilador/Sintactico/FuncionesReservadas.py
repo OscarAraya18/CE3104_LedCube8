@@ -104,10 +104,10 @@ def p_neg(p):
 
 
 def p_t(p):
-    '''funcionReservada : ID0 conjunto PUNTO T PUNTOCOMA'''
+    '''funcionReservada : ID0 conjunto PUNTO T PUNTOCOMA
+                        | CUBO conjunto PUNTO T PUNTOCOMA'''
     ID = p[1]
-    id_en_variables = variables.get(ID, False)
-    if id_en_variables != False:
+    if p[1] == "Cubo":
         nodo = TreeNode("funcion")
         nodo.add_child(p[4])
         if p[2]:
@@ -116,16 +116,26 @@ def p_t(p):
             nodo.add_child(p[1])
         p[0] = nodo
     else:
-        print("Error Sintáctico. La variable no ha sido declarada")
-        print("Linea: " + str(p.lineno(1)))
-        raise SyntaxError
+        id_en_variables = variables.get(ID, False)
+        if id_en_variables != False:
+            nodo = TreeNode("funcion")
+            nodo.add_child(p[4])
+            if p[2]:
+                nodo.add_child([p[1], p[2]])
+            else:
+                nodo.add_child(p[1])
+            p[0] = nodo
+        else:
+            print("Error Sintáctico. La variable no ha sido declarada")
+            print("Linea: " + str(p.lineno(1)))
+            raise SyntaxError
 
 
 def p_f(p):
-    '''funcionReservada : ID0 conjunto PUNTO F PUNTOCOMA'''
+    '''funcionReservada : ID0 conjunto PUNTO F PUNTOCOMA
+                        | CUBO conjunto PUNTO F PUNTOCOMA'''
     ID = p[1]
-    id_en_variables = variables.get(ID, False)
-    if id_en_variables != False:
+    if ID == "Cubo":
         nodo = TreeNode("funcion")
         nodo.add_child(p[4])
         if p[2]:
@@ -134,9 +144,19 @@ def p_f(p):
             nodo.add_child(p[1])
         p[0] = nodo
     else:
-        print("Error Sintáctico. La variable no ha sido declarada")
-        print("Linea: " + str(p.lineno(1)))
-        raise SyntaxError
+        id_en_variables = variables.get(ID, False)
+        if id_en_variables != False:
+            nodo = TreeNode("funcion")
+            nodo.add_child(p[4])
+            if p[2]:
+                nodo.add_child([p[1], p[2]])
+            else:
+                nodo.add_child(p[1])
+            p[0] = nodo
+        else:
+            print("Error Sintáctico. La variable no ha sido declarada")
+            print("Linea: " + str(p.lineno(1)))
+            raise SyntaxError
 
 
 def p_blink_1(p):
